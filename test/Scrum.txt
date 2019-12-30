@@ -1,0 +1,19 @@
+Scrum:
+-------
+Product Owner: Person responsible for the features that are needed  in the product.
+Scrum master :leader of the team responsible for protecting the team and the process.keeps track of running things is keep on going.
+Team : Consisting the deveoper and testers or the member that helps in building the product.
+
+There are 3 artifacts or documents used in scrum:
+Product backlog: Product owner create a prioritize list of product features known as user stories.
+User stories:the way of describibng a feature set.
+
+
+There are 3 ceremonies(meeting and discussions) in scrum:
+Sprint Planning:Product owner , scrum master and team meet to disscuss the user stories and estimated the relarive sizes.
+
+Daily scrum call: brief stand up meeting where the team discuss what tey have completed since previous meeting,what they have worked and any thing is blocked
+for that they need help.
+ 
+Sprint review:Occurs at the end of the sprint, where the team demontrates the completed work to product owner and also what they can do to improve process going 
+forward.

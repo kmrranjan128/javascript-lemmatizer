@@ -1,0 +1,58 @@
+This blog compares each of them and presents/shows the differences between them.
+
+1.Java database connectivity (JDBC) is an api. Api?s are not-completely, they are partial, we need to use an 
+implementation, this makes them complicated to understand and difficult to use. They don?t provider boiler-plate
+logic so they don?t support rapid application development. 
+
+Hibernate is an Framework. Frameworks will be provide bunch of classes. These classes will have pre-built 
+functionality, so I can directly use these classes rather than writing boiler-plate logic by my own.
+Jdbc Exceptions are checked exceptions, so we need to always write our code in annoying try/catch block.
+Hibernate Exceptions are un-checked exceptions. So we have a freedom of handling them.
+
+2.While developing application using Jdbc our application logic has to refer to the underlying database schema 
+and tables. This makes our code tightly coupled with database schema and makes it difficult to maintain the 
+application logic.
+ While working with Hibernate we always access the data from database by referring to the objects rather than 
+tables, this makes our application logic loosely-coupled and easy maintainable.
+
+3.Resources are not managed by Jdbc, the connection, statement and resultset has to be closed by the programmer
+at the end of their usage. Improper management of these resources will cause resource leakage issue.  It is 
+even difficult and lot of code should be written to manage in closing theses resources throughout our 
+application.
+
+Hibernate takes care of managing/closing the ?Session? object while working with ?Contextual Sessions? we don?t
+ need to manage the resources manually.
+
+4.Versioning and Timestamp support is not there in Jdbc. We need to write application logic in tracking and 
+capturing them in the database
+You can declare an attribute in entity class as version column or timestamp. Hibernate takes care of persisting
+the values for these columns automatically
+
+5.Jdbc doesn?t support caching, we need to deal with performance optimization mechanisms by our own
+Hibernate supports caching and there are total 3 levels are caching supported by hibernate.
+
+·        Session Level Cache
+
+·        Session Factory Level Cache
+
+·        Query Cache
+
+These helps in optimizing the performance of an application in various different ways
+
+6.Application logic we developed using Jdbc is not portable across databases. When we switch from one database
+to another, the queries we used sometimes has to be re-written. This might influence the application logic we 
+wrote in gathering the data.
+
+Application logic we developed in Hibernate is completely portable across all the databases, as we use HQL 
+queries (database independent)
+
+7.Pagination is not supported in Jdbc, we cannot access the subset of records to use from Resultset
+Hibernate supports Pagination and we can access the Subset of objects from database
+
+8.Has to rely on ?SQL queries? to access the data from database
+Hibernate has provided ?Criteria Api? considered as an alternate to HQL/SQL queries. We can build HQL/SQL 
+queries using Criteria Api without writing queries directly.
+
+9.No unified api for managing transactions in Jdbc, we need to rely between Jdbc/Jta while working in Jdbc.
+10.Hibernate provided unified transaction management api using which we can work with both Global/Local 
+transactions easily

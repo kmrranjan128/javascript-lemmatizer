@@ -1,0 +1,222 @@
+
+ java collections programs
+-----------------------------
+ How to find duplicate element in arraylist.
+-----------------------------------------------
+ public class ArrayList {
+ public static void main(string[] args) {
+ ArrayList<string> names=new ArrayList<>();
+ names.add("navin");
+ names.add("mohan");
+ names.add("mohan");
+ set<string> s= new Hashset<>();
+ for(string name:names)
+ {
+ if(S.add(name) ==false)
+ s.o.p.ln (name);
+ }
+  }
+    second method 
+-----------------------
+  public class RemoveDuplicates {
+  public static void main(String[] args) {
+  
+  List<String> list = new ArrayList<String>();
+  list.add("Mahesh");
+  list.add("Nagesh");
+  list.add("Lohit");
+  list.add("Mahesh"); 
+  System.out.println("List with duplicates:");
+  for (String name : list) {
+  System.out.println(name);
+  }
+   /* Convert list to LinkedHashSet, to preserve the insertion order and remove the duplicates */
+  
+  Set<String> set = new LinkedHashSet<String>(list);
+  System.out.println("Set with unique elements:");
+  for (String name: set) {
+  System.out.println(name);
+            }
+      }
+}
+
+Output :--
+List with duplicates:
+Mahesh
+Nagesh
+Lohit
+Mahesh
+Set with unique elements:
+Mahesh
+Nagesh
+Lohit
+    
+  How to iterate hashmap.
+--------------------------------------
+ public class Map {
+ public static void main(String a[]){
+ HashMap<String, String> hm = new HashMap<String, String>();
+ hm.put( 1,"one");
+ hm.put( 2, "two");
+ hm.put( 3,"THree");
+ hm.put( null,null); //HashMap can have one null key and multiple null values
+ hm.put( 4,null);
+ System.out.println ("Size Of The Map : "+ hm.size());
+ System.out.println("-----------------");    //Displaying the elements
+ System.out.println("The elements are :");
+ Set set = hm.keySet();
+ Iterator it = set.iterator();
+ while (it.hasNext()) 
+ {
+ Object obj = it.next();
+ System.out.println(key+"  : "+ hm.get(obj));
+ }
+ System.out.println("-----------------");
+         
+  //Checking the map for a particular key/value
+         
+  System.out.println("Does this map has 1 as key? "+hm.containsKey("1"));
+         
+  System.out.println("Does this map has two as value? "+hm.containsValue(two));
+         
+   System.out.println("-----------------");
+
+     System.out.println("Value removed from the map : "+map.remove("2"));
+    }    
+}
+  through for-each loop
+----------------------------
+
+ for(Integer i: hm.keySet()){
+ System.out.println("Iterating using keyset for each"+ "key"+i " value"+ "+hm.get(i));
+        }
+    }
+ }
+ output : -
+
+ Size Of The Map : 5
+—————–-----------------
+ The elements are :
+
+ null : null
+  1 : one
+  2 : two
+  3 : three
+  4 : null
+ —————–
+ Does this map has 1 as key? true
+ Does this map has two as value? true
+ —————–
+ Value removed from the map : two
+
+ how to convert array to arraylist in java
+----------------------------------------------------
+ public class ArrayToArrayList {
+ public static void main(String[] args) {
+ String citynames[]={"Agra", "Mysore", "Chandigarh", "Bhopal"};
+ ArrayList<String> citylist= new ArrayList<String>(Arrays.asList(citynames));
+ citylist.add("New City2");
+ citylist.add("New City3");
+ for (String str: citylist)
+ {
+ System.out.println(str);
+  }
+ }}
+ Output:
+ Agra
+ Mysore
+ Chandigarh
+ Bhopal
+ New City2
+ New City3
+
+
+
+  
+  method overloading
+---------------------------
+ 
+  class Addition
+ {
+ public void sum(int a, int b)
+ {
+ System.out.println(a+b);
+ }
+ public void sum(float a, float b)
+ {
+ System.out.println(a+b);
+ }
+ public static void main(String args[])
+ {
+ Addition obj=new Addition();
+ obj.sum(10, 20);
+ obj.sum(10.05, 15.20);
+ }
+ }     output- 30
+               25.25
+
+  
+ method overriding.
+----------------------
+
+ class Animal {
+ {  
+ public void eat()
+ {
+ System.out.println("Animal is eating");
+ }  
+ }  
+ class Dog extends Animal
+ {  
+ public void eat()
+ {
+ System.out.println("Dog is eating");
+ }
+  }
+ public static void main(String args[])
+ {  
+ Animal animal1 = new Animal();  
+        animal1.eat();          // animal is eating
+
+ Animal animal2 = new Dog();
+        animal2.eat();         // dog is eating
+
+ }
+ } 
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+

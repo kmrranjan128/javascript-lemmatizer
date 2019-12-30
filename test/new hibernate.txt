@@ -1,0 +1,445 @@
+ 
+ JDBC
+--------
+-> it is database dependent.
+-> jdbc does not send the data in the form of object. it will allow to send the data 
+   in form of text or value.
+-> jdbc is an api. its throw sql exception i.e checked exception.
+   so we need to write lot of try catch block.its a boiler plate code. 
+-> jdbc does not support cache mechanism so performance of application is very low.
+-> jdbc code is very tightly coupled with the application.
+-> jdbc does not support any relationships.
+
+ Hibernate
+--------------
+-> hibernate is a database independent so we can run any platform.
+-> but in real-time we need to transfer the data in the form of objs.
+   in hibernate we can send the data in the form of object.
+-> hibernate is an ORM framework.its throw uncheked exception so we no need to write try catch an throws
+   exception.hibernate builts in transaction managemnetsystem.it removes the usage of try catch blocks.
+-> hibernate support caching mechanism .it improves the performance of the application for efficient data retrieval.
+-> hibernate support jpa annotaions. so it removes lot of boiler plate code that comes jdbc api the code looks 
+   like more readable and clears.
+-> its support inheritance or association relationship.
+
+  what is ORM (object relational mapping).
+------------------------------------------------
+-> Hibernate is a orm framework for Java Applications.
+-> it is a methodology where objects in Java Applications are persisted transparently 
+   in the relational database tables.
+
+ what is session. 
+-----------------------------
+-> session is an interface present in org.hibernate.package.it is used to perform db operation.
+-> we will create session : Session session = factory.openSession();
+
+  what is Session Factory.
+-----------------------------------
+-> session factory is an interface present in org.hibernate package.
+-> session factory is a state which contain mapping file & configuration file information and 
+   create the connection to perform the db operation.
+-> Session Factory is a heavy weight object and it should be created one per database. 
+   SessionFactory object is shared by multiple sessions.
+-> when u have multiple db in your application you should create multiple session factory objects. eg if u are using 
+   two db called mysql & oracle in your hibernate application then u need to build 2 session factory objects.
+
+             Sessionfactory factory = newconfiguration().buildSessionfactory();.
+
+  what is diff between session and session factory.
+---------------------------------------------------------
+  session
+--------------
+-> session is not a threadsafe.
+-> it is mutable.
+-> it is a lightweight.
+-> performance wise it is high compare to session factory.
+-> an application can have n number of session.
+
+ sessionfactory
+--------------------------
+-> sessionfactory is threadsafe so, many thread can access at a time.
+-> it is immutable and it will be created as singleton.
+-> it is heavy weight becoz it maintain datasource, mapping file, and configuration file information.
+-> performance wise it is low compare to session.
+-> an application can have onle session factory.
+
+ what is Caching in hibernate. 
+---------------------------------------
+-> caching is a mechanism provided by ORM frameworks which to store the object which are 
+   loaded from the databse.
+-> it is reduce the number of round trips between java application and the database and it 
+   improves the performance of an application.
+-> when an application wants an object from database, then hibernate looks for that object 
+   at level 1 cache, if not found then it looks for that obj at level2 cache.even though 
+   if it is not found, then only it goes for database.
+-> hibernate maintains cache at two levels to gives better performance.
+
+ first level cache
+ -----------------------------
+-> by default, for each hibernate application the first level cache is bydefault enabled and 
+   as a programmer we are not able to enable or disable first level cache.
+-> first level cache is associated with session obj.and other session object in application can not see it
+-> first level cache scope is session level.
+-> first level cache is not sharable.
+-> first level cache is avilable only untill the session is opened, once the session is closed.
+   the first level cache is destroyed.
+
+ second level cache
+ --------------------------------
+-> second level cache is introduced in hibernate 3.0. second level cache is associated with session factory obj.
+-> it is optional. if u want then enabled hibernate.cfg.xml.
+-> second level cache scope is application level.
+-> second level cache is sharable.
+-> second level cache is avilable through the application life cycle.it is only destroy when your application is restart.
+
+ Lazy loading & Eager loading.
+---------------------------------------
+-> it is an important feature of hibernate which improves performance of the application by reducing 
+   network round trips between java application and database .
+-> in lazy loading hibernate doesnt load an object from database immediately. an object will be loaded on demand basis.
+-> if an object is immediately loaded then that obj is called as eager/early loading.
+-> hibernate lazy loading is true by default.
+-> in lazy loading, hibernate creates a proxy object returns proxy obj to the appicaion. 
+-> when application is accessing the proxy object, then internally the data is selected from the database.
+-> since hibernate 3 lazy loading is by deafult enabled so that child objs are not loaded when parent is loaded.
+
+          Fetch=FetchType.LAZY.
+
+ what is diff between session.Get() method and session.Load() method.
+--------------------------------------------------------------------------------------
+-> session.get() and session.load() both are session class method used for retrieving the
+   data from the database.
+-> get() and load() return the data in the object format.
+
+ get()
+----------
+-> if the record is not present in the database then get() always returns null.
+-> get() not create proxy obj its always return actual object.
+-> get() always hits the database.
+-> performance wise get() is not good.
+-> get() is eager initializer,its load the obj from the db early.
+
+ load()
+-------------
+-> if the record is not present in the database then load() method returns object not found exception.
+-> load() create  proxy objects and loads() data on demand basis .so load() is better becoz its support 
+   lazy loading.
+-> load() doesnt hits the database every time.
+-> performance wise it is better to get().
+-> load() lazy initializer.it is not load the object on the db immediately its load the obj on demand basis.
+-> If you are sure about existence of object, you can use load.
+
+ what is lifecycle of hibernate or state of an object.
+------------------------------------------------------------------------
+  transient state.
+-----------------------------
+-> in programming world every object has life cycle after birth and before death.
+-> there are three states in hibernate obj will perform the persistency.
+-> when obj has been created then that state is called as transient state.
+-> If object is in transient state, then it means it is not associated with session obj.
+
+  persistent state.
+-----------------------
+-> when obj is associated with session obj as well as obj present in database to perform operation.
+-> When an object is saved to database using hibernate session via Session.save() or Session.persist(),
+   save or update then this object is called to be in persistent state.
+
+  Detached state.
+-------------------------
+-> an obj is said to be detached state, when the obj is not associated with session but present in the database.
+-> there are several method which can easily detached the obj from persistency state to detached state.
+   eg-close, evict, clear.
+-> If you call merge or update, object goes back to persistent state.
+
+ save()
+-------------
+-> save() and persist() both method which we are mainly used for saves the object in the database.
+-> save() method will save an obj to the database and returns the id of the saved objects(primary key)
+   in the form of serializable type.
+-> save() can be used inside or outside the transaction boundries.save() is not fit for long time running transaction.
+-> its take more time to execute.
+-> save() method return type is serializable.
+
+ persist()
+------------------
+-> persist() will save an obj into database but it doesnt return id of saved obj. 
+   it doesnt return anything. its return type is void.
+-> persist() can be used only within the boundary of transaction. persist() is suitable for
+   long time running transaction.It saves data when flush is called.
+-> persist() takes less time to execute.
+-> persist() method return type is void.
+
+ save or saveorupadate().
+---------------------------------------------
+
+ save () method.
+-------------------
+-> Save() save the object in database. It generates id for the object and returns it. 
+-> If object already exists in database, it will throw an error.
+
+ saveorUpdate () method.
+----------------------------
+-> SaveOrUpdate() save the object in the db. if id does not exist. If it exists, it calls update method.
+-> saveorupdate() update the record if record is avialable otherwise insert the record in the database table.
+
+ session.upadate().
+----------------------------------------
+-> update() just update the record & throws hibernate exception. if record is not avialable to update.
+-> this method doesnt return anything becoz its return type is void.
+-> this method cannot update primary key value.
+
+ Merge()
+----------------
+-> merge() update the record if record is avialable otherwise insert the record in database table. 
+-> through this method we can update primary key column value also.
+
+  what is cascade in hibernate.
+-----------------------------------------
+-> cascade is an attribute.it is a mandatory when we apply parent child relationship between the objects.
+-> cascade attributes takes multiple values none, all, save-update, all-delete-orphan.
+-> whenever we perform any operation on parent table it perform the operation on child table also.
+-> by default values of cascade="none" means no operation will tranfer to the child class.
+-> eg if we apply insert(update or delete) operation on parent class obj, then child class obj will 
+   also be stored into the database.
+-> eg if we apply insert(update or delete) on parent class object will not be effected,if cascade="none".
+
+  what is orphan record
+--------------------------------
+-> it is a record in child table but it doesnt have association with its parent in the application.
+-> in an application, if a child record is removed from the collection and if we want to remove that 
+   child record immediately from the database, then we need to set the cascade="all-delete-orphan".
+
+ what is inverse in hibernate.
+-----------------------------------------
+
+\-> default value of inverse="false".
+-> if inverse="false" hibernate will not check the bi-directional relationships between the tables.
+    in this scenario if we try to send multiple insert queries, and update queries.
+-> if inverse="false", parent class is responsible for saving/updating the child and its relationships.
+-> if the inverse is="true" and associated subclass is responsible for saving/updating itself.
+
+  NOTE
+---------
+ -> An inverse keyword is always used with the one-to-many and many-to-many relationships.
+ -> it doesnt work with many to one relationships.
+
+ what is dialect in hibernate. and how it works.
+------------------------------------------------------------
+-> dialect is a simple java class present in org.hibernate.dialect package.
+-> every configuration file contains dialect which is very important while performing the db operation.
+-> dialect class is used to convert hql queries into db specific queries.
+-> if u want to shift from one db to another db just change the dialect class name and connection details 
+   in hibernate cfg file.
+
+ what is mapping file
+------------------------------------------------
+-> mapping file is a mechanism of placing an object properties into column of a table.
+-> mapping can be done by using annotation also.from hibernate 3.0 version its support.
+
+ what is configuration file and how to write this.
+------------------------------------------------------
+-> It is used to bootstrap hibernate application and it is used to locate to hibernate mapping file.
+-> configuration file is an xml file, this configuration file contains 3 types of information.
+-> connection properties, hibernate properties, mapping resource (file name).
+-> we can create one configuration file for each database.it means the number of configuration files
+   in a project depends on number of databases.
+-> suppose if we want to connect with 2 database like oracle, mysql then we must create 2 configuration file.
+
+  getOpen session
+-----------------------------
+-> It always create new Session object.
+
+ getCurrent session.
+---------------------------
+-> It creates a new Session if not exists.
+
+  Association relationship
+-------------------------------
+-> in hibernate to put relations between entities i.e one obj associated  with multiple objs
+   we use association relationship.
+-> if we want to implement association relationship there must be foriegn key relationship 
+   between child to parent.
+    
+  the main advantage of association relationship is
+----------------------------------------------------------
+-> to perform operations on one object we can transfer that operation on another obj.
+-> e.g if we want to retrieve the data from more than one table complusory we put assosiation in hibernate.
+-> to create assosiation relationship with object to object complusory their a must be foreign key 
+   relationship in the database table.
+ 
+ there are 4 types of Association in hibernate.
+----------------------------------------------------
+ one-to-many relationship
+------------------------------
+-> in this relationship one parent has multiple child object.
+-> one user has multiple task. country and state. One Country can have n number of states.
+   and team and player one team has multiple players. customer and items.
+-> to create this kind of association relationships in hibernate we need to perform two modification.
+   1.> in parent pojo class we must take child class as a collection properties. 
+       eg set properties, list properties, map properties.
+   2.> in parent class mapping file we must take one coressponding collection properties to map this child properties.
+
+ many-to-one relationship
+---------------------------------
+-> multiple tasks for one user.
+
+ many-to-many relationship
+----------------------------------
+-> Lets take example of Country and Language. One Country can have n number of languages and one language 
+   can be spoken by n number of countries. 
+
+ inheritance Mapping (or) inheritance Strategies
+---------------------------------------------------------
+-> through inheritance we can save both parent object and child obj in to the db.
+-> in a hibernate application, if there are multiple POJO classes and if they have common 
+   properties, then to get reusability we apply inheritance.
+-> common properties, we separate and we create in super class and we extend that super class 
+   to multiple sub classes. 
+
+  hibernate has provided three inheritance strategies, to map the classes of hierarchy to database tables.
+------------------------------------------------------------------------------------------------------------
+ table per class:
+--------------------------------
+-> in this hierarchy we store both parent data and child data in a single data.
+-> through descriminator column we can identify which employee it is.
+-> descriminator column help us to is identified which child is.
+   
+         payment              payment (single table)
+          /\
+  credit    cheque
+  card
+
+  table per sub class
+--------------------------------------
+-> if we want to map each concrete class hierarchy to a separate table of database then we need to choose this strategy.
+
+          payment             credit card (separte table)        cheque (separate table)
+            /\
+    credit   cheque
+    card
+
+  table per concrete class
+----------------------------------
+ -> if we want to map each class of hierarchy to a separate table of database, then we need to choose this strategy.
+
+          payment             payment(separate table) credit card(separate table) cheque(separate table)
+            /\
+     credit cheque
+     card
+
+ what is HQL.(hibernate Query language).
+-------------------------------------------------
+-> by calling save(), update(), delete() we can perform bulk operation.
+-> we can perform CURD operation on a single obj at a time. if we want to perform CURD operations on multiple 
+   objects at a time,we use bulk operation technique of hibernate at a time. ex- HQL, criteria, Native Sql.
+-> hibernate has introduce its own query language with the name of HQL.
+-> Hql is a database independent query language. it means we no need of changing a query while connecting
+   with another database.
+-> using hql, we can perform both select and non-select operations on database.
+     eg. sql > select *from emp
+         hql > from Employee e
+
+  what is Criteria in hibernate.
+---------------------------------------
+-> It is an alternative to HQL, it is very useful for the search query involving the multiple conditions.
+-> we cannot use criteria to run update or delete quries or any ddl statemnts. its only used to
+   fetch the results from the database using more obj oriented approch.
+-> we can read the same output from a database by executing the diff sql commands.
+    for eg. select *from emp;
+            select empno, ename, esal from emp;
+-> the above two sql commands will return same output. but second query gives better performance.
+-> while reading the data from the database, tuned queries are important to improve the performance. 
+-> as a java developer, creating tuned queries will increase the burden on the developer.
+-> to decrease the burden hibernate has provided criteria API, it internally creates tuned queries
+   and execute them on the database. so a developer is no need to prepare tuned quries explicitly.
+
+
+ Hibernate jpa annotation
+---------------------------------
+ 1> @Entity
+-------------------
+-> it is used to mark the class as persistent java class.
+
+ 2> @Table
+-------------------
+-> it is used to provide the details of the table.
+
+3> @Id
+-----------
+-> it is used to define the primary key.
+
+ 4> @GeneratedValue
+-------------------------
+-> it is used to define the primary key generation strategy.
+
+ 5> @Column
+-----------------
+-> it is used to define the properties of the column that will be mapped to the annotated field. you can define
+ several properties like name, length, nullable etc. 
+
+ 6> @OneToOne
+---------------------
+-> @OneToOne annotation is used to create one to one relationship between Country and Capital entities.
+
+ 7> @joinColumn
+------------------------
+-> it is used to specify a mapped column for joining an entity association.
+
+ 8> @Inheritance
+------------------------
+-> For implementing inheritance in hiberante, @Inheritance annotation is used.It defines inheritance strategy 
+to be implement for entity class hierarchy.
+-> For one table per class hierarhcy,we have used Single_Table as inheritance strategy.This annotation is define
+-d at root level or sub hierarchy level
+    where different strategy is to be applied.
+
+ 9> @DescriminatorColumn
+--------------------------
+-> This annotation is used to define discriminator column for Single_Table and joined strategy.It is used to 
+distinguish between different class instances.
+-> This annotation is defined at root level or sub hierarchy level where different strategy is to be applied.
+-> If @DiscriminatorColumn annotation is not specified,then hibernate will create a column named as “DType” 
+and DiscriminatorType will be string.
+
+10> @DescriminatorValue
+------------------------------
+-> This annotation defines value in discriminator column for that class.This can only be applied on entity 
+concrete class.
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,583 @@
+
+ 
+ singletone class
+--------------------------------
+
+ public class Employee {              // static - we are able to call the using class name.
+ 
+ private static Employee emp ;        // create a instance of same class.
+
+ private Employee () {}               // create a constructor as private to hide other class to create an obj of this class. 
+
+ public static Employee getInstance() // create a method to return the instance we declare it above.    
+ 
+ {
+  if(emp==null)
+ {
+  emp = new Employee();
+ }
+ return emp;
+
+ }
+  }
+
+    threadsafe singletone.
+--------------------------------
+
+ public class Employee {
+
+ private static Employee emp = null;
+
+ private Employee() {}
+
+ public static Employee getInstance(){
+
+  if(emp==null){
+
+  synchronized (Employee.class){
+  
+   if(emp==null){
+
+   emp=new Employee();
+ }
+ }
+ }
+  return emp;
+ }
+
+  How to create a custom exception.
+------------------------------------------
+
+ class InvalidAgeException extends RuntimeException {
+
+   InvalidAgeException (Str str)
+    {
+        super(str);
+  }
+ }
+
+   class Test {
+  
+    static void status (int age)
+  {
+   if(age>20)
+  {
+   s.o.p.ln ("eligible for vote");
+  }
+   else
+     {
+    throw InvalidAgeException ("not eligible/zero");
+   }
+ }
+  public static void main (String[] args) {
+  
+  scanner s=new Scanner(system.in);
+  
+   s.o.p.ln ("enter your age");
+  
+    int age=s.nextInt();
+
+    Test.status(age);
+ }
+ }
+   
+  How to create immutable class
+------------------------------------
+
+  final public class Employee {           //  class is public & final.
+ 
+  private final String panCardNumber;     //  properties are private & final.
+
+   public Employee(String pancardNumber) {   //  must initialize the all the properties through constructor.
+    
+   this.pancardNumber = pancardNumber;
+    }
+    public String getpancardNumber();        // only getter are allowed, setter are not allowed.
+       
+    return pancardNumber;
+ }
+  }
+
+  how to write the mapping file in hibernate.
+--------------------------------------------------
+->  <hibernate-mapping>
+
+   <class name="Employee" table="emp">
+
+   <id name="emp_no" column="empno"/>
+
+   <property name="emp-name" column="ename"/>
+
+   <property name="emp-sal" column="esal"/>
+
+   <property name="dept-number" column="deptno"/>
+
+   </class>
+
+   <hibernate-mapping>
+
+
+ how to write the configuration file in hibernate.
+------------------------------------------------------
+-> <hibernate-configuration>
+
+  <session-factory>
+
+  <property name="connection.driver_class">driver class name </property>
+
+  <property name="connection.url"> url</property>
+
+  <property name="connection.username">username</property>
+
+  <property name="connection.password>password</property>
+
+  <propert name="show-sql">true</property>
+
+  <mapping resource="Employee.hbm.xml/>
+
+  </session-factory>
+
+  </hibernate-configuration>
+
+ how to write controller class in spring.
+-----------------------------------------------
+
+ @Controller
+ @RequestMapping("/employee)
+ public class EmployeeController 
+ {
+ @Autowire
+ EmployeeManager manager;
+ @RequestMapping(value="/getAllEmployees",method=RequestMethod.GET)
+ public String getAllEmployess(Model model) {
+ model.addAttribute("employee",manager.getAllEmployee());
+ return "employeeListDisplay";
+ }
+  }
+
+
+  ApplicationContext.xml
+-----------------------------
+
+ <bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+ 
+ <property name="datasource" ref="datasoure"/>
+ 
+ <property name ="configuration">
+
+ <value>classpath:hibernate.cfg.xml</value>
+ <property>
+ <property name="configurationClass">
+ <value>org.hibernate.cfg.AnnotaionConfiguration</value>
+ </property>
+ <property name="hibernateProperties">
+ <props>
+ <prop key="hibernate.dialect">org.hibernate.MySqlDialect</prop>
+ <prop key="hibernate.show_sql">true</prop>
+ <props>
+ </property>
+ </bean>
+            
+   Configuring HibernateTransactionManager in spring.
+--------------------------------------------------------
+
+ <bean id="transactionManger" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+ <property name="sessionFactory" ref="sessionFactory"/>
+ </bean>
+
+
+ What is minimum web.xml configuration to run Spring MVC.
+----------------------------------------------------------------
+
+-> To run the Spring MVC, we need to define DispatcherServlet,contextConfigLocation and ContextLoaderListener in web.xml. 
+    <servlet>
+
+	<servlet-name>dispatcher</servlet-name>
+
+	<servlet-class>org.springframework.web.servlet.DispatcherServlet</servlet-class>
+
+	<load-on-startup>1</load-on-startup>
+
+  </servlet>
+
+    <servlet-mapping>
+
+	<servlet-name>dispatcher</servlet-name>
+
+	<url-pattern>/</url-pattern>
+
+     </servlet-mapping>
+
+     <context-param>
+
+	<param-name>contextConfigLocation</param-name>
+
+	<param-value>/WEB-INF/dispatcher-servlet.xml</param-value>
+
+     </context-param>
+
+     <listener>
+	<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
+     </listener> 
+
+
+  step-2. configure web.xml to include spring security configuration.
+---------------------------------------------------------------------
+ <filter>
+
+ <filter-name> springSecurityFilterChain </filter-name>
+
+ <filter-class>org.springframework.web.filter.DelegatingFilterProxy</filter-class>
+ </filter>
+
+ <filter-mapping>
+
+ <filter-name> springFilterChain </filter-name>
+
+ <url-pattern>/*</url-pattern>
+
+ </filter-mapping>
+
+ step 4. Authentication model.
+-------------------------------------
+
+-> <authentication-manager>
+   <authentication-provider>
+
+   <user-service>
+
+   <user name = "mohan" password = "kumar" authorities = "admin, user"/>
+   <user name = "gandhi" password = "rakesh" authorities ="user"/>
+
+   </user-service>
+
+   <authentication-manager>
+   <authentication-provider>
+
+ ONE TO MANY HIBERNATE USING ANNOTATION
+-------------------------------------------------
+ customer.java
+----------------
+
+ @Entity
+ @Table(name = "Customers")
+ public class Customers{
+ 
+ @Id
+ @Column(name = "custid")
+ private int customerId;
+ 
+ @Column(name = "custName", length=10)
+ private String customerName;
+
+ setters & getters.
+
+ vendor.java
+-----------------
+
+ @Entity
+ @Table(name = "Vendor")
+ 
+ public class Vendor{
+ 
+ @Id
+ @Column(name = "vid")
+ private int vendorId;
+ 
+ @Column(name = "vname", length=10)
+ private String vendorName;
+ 
+ @OneToMany(fetch=FetchType.LAZY, targetEntity=Customers.class,cascade=CascadeType.ALL)
+ @JoinColumn(name = "venid", referencedColumnName="vid")
+ 
+ private Set children;
+
+ setters & getters
+
+
+ setter injection program
+----------------------------
+ com.firstspring.bean
+
+ public class Address {
+	private String city;
+	private String State;
+
+ setters & getters
+
+ com.firstspring.bean
+
+ public class Employee {
+	private int eid;
+	private String ename;
+	private Address address;
+
+  setters & getters
+
+ ApplicationContext.xml
+---------------------------
+ <beans>
+ <bean class="com.firstspring.bean.Address" id="address">
+ <property value= "patna" name= "city"/>
+ <property value= "bihar" name= "state"/>
+ </bean>
+ <bean class= "com.firstspring.bean.Employee" id= "employee">
+ <property value= "101" name= "eid"/>
+ <property value= "mohan" name="ename"/>
+ <property value= "address" ref="address"/>
+ </bean>
+ </beans>
+
+
+ com.firstspring.test
+--------------------------
+ public class Test {
+ public static void main(String[] args) {
+
+ BeanFactory factory=new XmlBeanFactory(new ClassPathResource("com/secondspring/config/ApplicationContext.xml"));
+	
+ Employee emp=factory.getBean("employee",Employee.class);
+ System.out.println( emp.getEid()+" "+emp.getEname());
+ Address adr=emp.getAddress();
+ System.out.println(adr.getCity()+" "+adr.getState());
+	
+ }
+  }
+ 
+ How to consume rest api
+----------------------------
+
+ import com.rest.modle.Product;
+ productresource.java
+------------------------
+
+ import com.rest.modle.Product;
+
+@Path("/products")
+public class ProductResource {
+	
+	@GET
+	@Path("/getProduct/{pid}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Product getProduct(@PathParam("pid") Integer pid)
+	{
+	
+		Product p=new Product();
+		p.setPid(pid);
+		p.setName("PARLE");
+		p.setPrice(5);
+		return p;
+	}
+   
+}
+
+
+http://localhost:8021/FirstRest/rest/products/getProduct/12
+ 
+ matrix param
+---------------
+
+ Path("/products")
+public class ProductResource {
+	
+	@GET
+	@Path("/getProduct")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Product getProduct(@MatrixParam("pid") Integer pid)
+	{
+	
+		Product p=new Product();
+		p.setPid(pid);
+		p.setName("PARLE");
+		p.setPrice(5);
+		return p;
+	}
+   
+}
+  http://localhost:8021/FirstRest/rest/products/getProduct;pid=12
+
+ 
+
+ import com.rest.modle.Product;
+
+ queryparam
+----------------
+
+@Path("/products")
+public class ProductResource {
+	
+	@GET
+	@Path("/getProduct")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Product getProduct(@QueryParam("pid") Integer pid)
+	{
+	
+		Product p=new Product();
+		p.setPid(pid);
+		p.setName("PARLE");
+		p.setPrice(5);
+		return p;
+	}
+   
+}
+
+ 
+
+ package com.rest.modle;
+
+public class Product {
+    
+	private int pid;
+	private String name;
+	private int price;
+
+
+ myApplication.java
+--------------------------
+
+ @ApplicationPath(value="rest")
+public class MyApllication extends Application {
+
+}
+
+ how to consume rest API (client api)
+--------------------------------------------
+
+ customer.java
+----------------
+
+ public class Customer {
+    
+    private int custNo;
+    private String custName;
+    private String custCountry;
+
+    getters & setters
+
+ jsonFromRestful.java
+------------------------
+ @Path("/customers")
+ public class JsonFromRestful {
+    
+    @GET
+    @Path("/{cusNo}")
+    @Produces("application/json")
+    public Customer produceCustomerDetailsinJSON(@PathParam("cusNo") int no) {
+  
+  Customer cust = new Customer();        
+            cust .setCustNo(no);
+            cust .setCustName("Java4s");
+            cust .setCustCountry("India");
+        return cust;
+    }
+}
+
+ RestClient.java
+-------------------
+ 
+ public class RESTfulClient {
+    
+    public static void main(String[] Java4s) {
+        
+        try {
+
+   Client client = Client.create();    
+   WebResource resource = client.resource("http://localhost:2015/JAX-RS-Client-Example/rest/customers/100");    
+   ClientResponse response = resource.accept("application/json").get(ClientResponse.class);
+            
+            if(response.getStatus() == 200){
+                
+                String output = response.getEntity(String.class);
+                System.out.println(output);    
+                
+            }else System.out.println("Somthing went wrong..!");        
+    
+          } catch (Exception e) {    
+                  e.printStackTrace();    
+          }
+    
+        }   
+}
+
+ 
+
+
+
+                                     
+
+
+
+ 
+
+ 
+ by extending thread class.
+---------------------------------
+
+  class MyThread extends Thread
+{
+   public void run()
+   {
+     System.out.println("Concurrent thread started running..");
+   }
+}
+
+class MyThreadDemo
+{
+   public static void main( String args[] )
+   {
+     MyThread mt = new  MyThread();
+     mt.start();
+   }  
+
+ 
+ by implementing runnable interface.
+---------------------------------------------
+
+ class MyThread implements Runnable
+{
+   public void run()
+   {
+     System.out.println("concurrent thread started running..");
+   }
+}
+
+class MyThreadDemo
+{
+    public static void main( String args[] )
+    {
+      MyThread mt = new MyThread();
+      Thread t = new Thread(mt);
+      t.start();
+   }
+}
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

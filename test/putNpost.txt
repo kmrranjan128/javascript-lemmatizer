@@ -1,0 +1,17 @@
+PUT:
+->It is usually modelled as an insert or update. 
+->But mostly it used for Update operation only but not for insert. 
+->In order to update a resource we need to send the identity as part of the PUT req.
+->It is idempotent because sending the same PUT message more than once has no effect on the underlying service.
+->For example if we wanted to update the order we need to send the order-id and to do this update we need to 
+  send PUT request with order-id over the URL.
+
+
+POST:
+->It is used to create a new resource.
+->POST is the only Non-Idempotent and unsafe operation of HTTP.
+->Each POST method is allowed to modify the service in a unique way that means always it will creates a new 
+ resource for each and every req in the server side hence it is not Idempotent. 
+
+->For Example if we are creating account for first time we can use post method.but if we want to update our 
+account information then we have to send that account-no with the request;so here we can use put.

@@ -1,0 +1,59 @@
+
+ Array iinterview program in java w3resource and concept of the day topjavatutorial
+-------------------------------------------------------------------------------------
+-> write a java program to find the missing number in integer array of 1 to 100.
+-> write a java program to find duplicate number on Integer array in Java if it contains multiple duplicates.
+-> write a java program to find largest and smallest number in unsorted array.
+-> write a java program to find the first repeating element in an array of integers.
+-> write a java program to find first non-repeating element in array of integers.
+-> Write a java program to find second largest element in an array of integers.
+-> Write a java program to find a missing number in an integer array.
+-> Write a java program to convert an array to ArrayList and an ArrayList to array.
+-> Write a java program to count occurrences of each element in an array.
+
+ 
+ String interview programs in java. 
+----------------------------------------
+-> write a java program to reverse a string without using any methods.
+-> write a java program to reverse a number.
+-> write a java program to check the given string is palindrome or not.
+-> write a java program to convert integer to string.
+-> write a java program to find the number of Occurrences Of Each Character In String.
+-> Write a Java program to count and print all the duplicates in the input string.  
+   The given string is: w3resource
+   The duplicate characters and counts are: 
+   e appears 2 times.
+   r appears 2 times.
+
+
+ collections interview programs.
+----------------------------------------
+-> How to iterate Arraylist in java.
+-> write a java program to remove duplicate element in arraylist.
+-> how to iterate hashmap in java.
+-> how to iterate treemap in java.
+-> write a java program sort arraylist using comparable and comparator.
+
+
+ Common logical programs.
+-----------------------------
+-> write a java program to swap two numbers without using third variables.
+-> write a java program factorial number.
+-> write a java program fabbonici series.
+-> write a java program to find prime number between 1 to 100.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

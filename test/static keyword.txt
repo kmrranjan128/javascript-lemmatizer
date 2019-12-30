@@ -1,0 +1,18 @@
+Q:1 without writing main method is it possible to print some statement to the console?Yes by using the static block.
+Class Test{
+Static{
+SOP("Hello");
+system.exit(0);
+}
+}
+O/P: Hello
+
+Q:2 without writng main and static block can we pint some statement to console.
+Class Test{
+static int x=m1();
+public static int m1(){
+SOP("Hello");
+system.exit(0);
+return 10;
+}
+}

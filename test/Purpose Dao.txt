@@ -1,0 +1,51 @@
+Purpose Dao (Data Access Object):
+Dao layer is a class which can perform the persistency logic operation and we can write any Dao's as part of our project. 
+If we write the Business logic and Persistency logic as part of Business Layer then our Business logic will exposed to specific persistency store from which data is coming from.
+So if we wanted to switch from one persistency store to another persistency then Business logic and Persistency has been tighly coupled together so we cannot easily differentiate business and persistency logic to switch from one persistency store to another. 
+That means always the BL should be independent of Persistency store so that if any changes are happen in the persistency then our BL will not gets impacted bcz BL always sends obj as a input Dao and takes object of data from the Dao that means the BL will not know from which persistency store the data is coming from hence Dao is madatory otherwise our BL will be tightly coupled with persistency store.
+
+Advanteges of Dao:
+1. Abtracts the persistency Storage:
+It ensures that none of the classes of our application has been exposed to the finite details from which persistecncy store the data is coming from. That means it acts as an layer in abtracting the rest of the classes in accessing the data from underlying persistency store (which may be DB, file or xml anything). So if any changes are done in persistency store then only Dao has to be modified but rest of the components are independent.
+2. Abstract form persistency store vendors:
+If we switch from one persistency storage vendor (Oracle DB) to another persistency store vendor (MySql DB)then only Dao gets modified but other classes of our application will not gets impacted.
+3. Abstrcts form the accessing tech:
+If we wanted to switch from one persistency access tech to another persistency tech (like Jdbc, Hibernate, Jpa to access form DB and JAX-P (SAX or DOM), JAX-B for Xml) then we no need to do any changes in the business layer rather we need to change only in the Dao.
+
+Note:
+Current Version jdbc-4 which supports for the xml.
+
+|-Persistency Stores
+  |-DB
+  |-File
+  |-Xml
+  |-EAI (Enterprise Application Information) System
+|-Persistency Tier Tech
+  |-Jdbc tech(for DB Store)
+    |-FW (Hibernate, JPA, IBatis)
+  |-File I/O Streams (for File Store)
+  |-JAX-P, JAX-B (for Xml Store)
+    |-SAX
+    |-DOM
+  |-Connectors will used to connect with EAI and to access the data from EAI
+    |-Web Sevice API Connectors
+    |-Rest API Connectors
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

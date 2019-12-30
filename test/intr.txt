@@ -1,0 +1,262 @@
+
+ Hi good morning ,
+
+-> my name is mohan gandhi. i am basically from patna bihar.
+-> i completed BCA from SIKKIM manipal university 2012.
+-> i have 3 plus years of experience in open source technolgy & distributed world like 
+   java, j2ee, spring, hibernate, restfull webservices along with angular js.
+-> i am permannet employee of java R&D pvt ltd he is located in NEAR to manyata tech park 
+   as a position of sr.software engineer. 
+-> apart from my experience i involved in two projects  one project is call health. 
+   it is health insurance related project. and my current proj is mahindra finance.
+-> i have ability to learn new technology with minimum time period.
+
+ project objective :-
+-------------------------
+
+-> main objective of this project is to provide the facility for the customers who indicate a desire for the loan.   
+-> The goal of this project is to develop a capability the required information from its consumer for the 
+   Capturing of all its Enhancement.
+
+ role and responsibility.
+-----------------------------
+-> apart from my project objective i am Involved in Client interaction on regular basis to understand the
+   Business requirement or chnage request of the Client.
+-> i mainly involved in the analysis,design aspect coding modification and implementation of user requirements 
+   in the applicationlearn and learn these thing with the help of my team lead and proj manager.  
+-> i am working as a provider side in provider side 3 layers.
+   service/ buisness layer.
+   presentation layer.
+   integration layer.
+-> i am mainly involved in buisness layer of the project by writting service class, controller class, and dao class.
+-> i Developed User defined Exceptions for each and every request and response.
+
+ Modules.
+----------
+ 
+ Home 
+-------
+-> this is the starting point of the application where all the functionalities of the application have been listed.
+
+ proposal instantiation 
+-------------------------
+-> in this module if user is register then instantiation for loan is being done on the basis of user eligibility.
+
+ tranche instantiation 
+-------------------------
+-> this is the final step to approve an initiated proposal for a loan by proposal instantiation module of the aap.
+
+ Approved quee 
+-----------------
+-> in this module all the approved user is being stored aswell listed. u can fetch the information 
+   of a particular user by its unique id/refrence number.
+
+ Rejected quee
+-----------------
+-> in this module all those user are listed those who tried to initiate a proposal for a loan but could't 
+   initiated or disqulified due to some certain reason or due to criteria for the instantiation of a loan.
+
+ Application
+-----------------
+-> in this module where application can be handled like start the service or or to stop the service as well 
+   keeps the application related information.
+
+ Note .
+---------
+-> this application is related to LOS(loan orgnization system) where the information of the user is collected 
+   and approved in various stage and finaaly handle off to LMS(loan mangement system).
+
+ project flow:-
+------------------
+-> lets assume whenever the user send the request from the browser the request will be
+   recieved by the dispatcher servlet.
+-> diaspatcher servlet acts as a front controller/common gateway/single entry point to the application.
+-> it performs common processing logic for each & every request of our application like validation logic,
+   form validation. authentication logic like outside ip-address not allowed into the with in the organization.
+-> the dispatcher servlet forward the request to the handler mapping.
+-> handler mapping identify the appropriate handler or controller class for the given url request and 
+   sends to the dispatcher servlet.
+-> the request is submitted to the controller class for processing it. it may go to service and data access
+   for the  database communication.
+-> the controller class perform operation like dao or buisness method according to the buisness requirement.
+   then the resultant page with data will be forward to dispatcher servlet.
+-> the dispatcher servlet forward it with logical view name to view resolver.
+-> view resolver resolves it and create the view obj.
+-> it calls the render method on view obj then the view page will be displayed.
+-> then finally ui page is send as response to the client.
+
+ how to handle exception in your project.
+-----------------------------------------------
+-> in my project having 3 layers service layer, presentation layer, integration layer.
+-> we handle user defined exception based on the buisness requirement we have cateogarised user defined 
+   exception into diff type of exception like buisness exception, system exception, service exception.
+-> user send the req like first name, last name, dob, mob no, etc. if the data is not valid then we are throwing 
+   the some user defined exception.this data is not sending the process layer here we are handle the exception. 
+
+ Ant 
+----------
+-> It is a build tool.
+-> There is no life cycle in Ant.
+-> Ant doesn't has formal conventions, so we need to provide information of the 
+   project structure in build.xml file.
+
+ Maven tools
+---------------
+-> it is a project mangement tools.i.e is based on POM (project object model).
+   It is used for projects build, dependency and documentation.
+-> There is a life cycle in maven.
+-> Maven has a convention to place source code, compiled code etc. So we don't need 
+   to provide information about the project structure in pom.xml file.
+
+  What is Build Tool
+---------------------
+-> A build tool takes care of everything for building a process. It does following:
+   .Generates source code (if auto-generated code is used)
+   .Generates documentation from source code
+   .Compiles source code
+   .Packages compiled code into JAR of ZIP file
+   .Installs the packaged code in local repository, server repository, or central repository
+
+ what is pom.(Project Object Mode).
+-------------------------------------
+-> it is an xml file. It always resides in the base directory of the project as pom.xml.It contains 
+  information about the project and various configuration details used by Maven to build the project(s).
+-> project dependencies.
+   plugins.
+   goals.
+   build profiles.
+   project version.
+   developers.
+   mailing list.
+
+ Maven lifecycle
+------------------
+-> validate -> valiadte the project is correct and all necessary information is avialable.
+-> compile -> complie the source code of the project.
+-> tests -> test the compiled source code using a suitable unit testing framework.
+-> package -> take the compiled code and package it in its distributable format such as jar.
+-> verify the package.
+-> install the verifed package to the local repository for use as a dependency in other projects locality.
+-> deploy the installed package in a specified environment
+
+  Maven Repository
+--------------------
+-> A maven repository is a directory of packaged JAR file with pom.xml file.
+-> maven searches for the dependencies in the following orders:-
+-> Local Repository -> means .m2 folder in your system
+   Central Repository -> it is located on the web. it has been created by the apache maven community itself.
+   Remote Repository -> it is a company specific library or custom library.
+
+ project -> it is the root element of pom.xml file.
+ model version -> it is the sub element of project.it specifies the model version.it should be set 4.0.0.
+ group id -> it will identify your project uniquly acrooss all the projects (com.test.java).
+ artifact id -> project name
+ packaging -> it defines packaging type such as jar, war etc.
+ dependencies -> define dependencies for this project.
+ dependency -> defines a dependency is used inside dependencies. 
+
+ Log4J
+--------
+-> In Log4j, we use log statements rather than SOPL statements in the code to know the 
+   status of a project while it is executing.
+-> log4j components.
+   1.> Logger - It is responsible for logging information.
+   2.> Appender - it is used to write the logs in file
+   3.> Layout - It is responsible for formatting logging information in different styles.
+
+-> So in order to get an object of Logger class, we need to call a static factory method 
+   [ factory method will gives an object as return type ]
+
+ getting logger object.
+
+ static Logger log = Logger.getLogger(YourClassName.class.getName())
+
+-> We have totally 5 methods in Logger class.
+
+   ALL()  - This level of logging will log everything 
+   debug() - print the debugging information and is helpful in development stage
+   info() - print informational message that highlights the progress of the application
+   warn() -  print information regarding faulty and unexpected system behavior.
+   error() - print error message that might allow system to continue
+   fatal() - print system critical information which are causing the application to crash
+
+ SVN( SUBVERSION)
+-----------------------
+-> SVN is an open source control system; it is used to trace all the changes made to your source code or files.
+
+ The difference between SVN and GIT is
+------------------------------------------------
+-> Git does not support “commits” across multiple branches or tags. 
+-> Gits are unchangeable. 
+-> Git is less preferred for handling large files or frequently changing binary files
+
+-> Subversion allows the creation of folders at any location in the repository layout.
+-> while subversion enables committers to treat a tag a branch and to create multiple revisions under a tag root.
+->  while SVN is capable of handling multiple projects stored in the same repository
+
+ How to resolve a conflicts in SVN 
+---------------------------------------
+ file conflicts
+-----------------------
+-> A file conflict occurs if two (or more) developers have changed the same few lines of a file
+
+ tree conflicts
+------------------
+-> A tree conflict occurs when a developer moved/renamed/deleted a file or folder, 
+   which another developer either also has moved/renamed/deleted or just modified.
+-> To resolve a conflict do one of three things: Merge the conflicted text by hand. 
+-> Copy one of the temporary files on top of the working file. Run svn revert FILENAME 
+   to throw away all of the local changes.
+
+ List out what all things should be stored in SVN repository
+---------------------------------------------------------------
+-> Source Code
+-> mysql queries
+-> database update
+-> project regarding information file.((When whole team is using the same IDE)
+-> product documents.(Internal and External)
+-> Minutes of meetings, significant e-mails and info from the web
+
+ list out the common subversion commands
+---------------------------------------------
+-> Common subversion commands include
+   Import
+   Checkout
+   Commit
+   Update
+
+ Update
+-----------
+-> Update is used to update the local workspace with the changes made by the team to the repository.
+
+ Commit
+-------------
+-> commit is the process to implement changes from local to repository, in simple words, upload a file into repository.
+
+ . What is "branch" , "Tag" and "Trunk" in SVN .
+-------------------------------------------------------
+-> Trunk is the main body of development, originating from the start of the project till end. 
+-> Branch is a copy of code derived from a certain point in the trunk that is used for applying major
+   changes to the code while preserving the integrity of the code in the trunk.
+-> Trunk is a point in time on the trunk or a branch that you wish to preserve. This is like baselining
+   the code after a major release.
+
+ version.
+------------- 
+ java- 1.7.
+ spring- 4.x.
+ hibernate- 3.6.
+ restfull- 2.x.
+ maven - 3.5.
+ jnuit - 4.1.
+ svn - 1.5.2.
+ log 4j- 1.2.
+
+
+ 
+ 
+
+
+
+ 
+ 

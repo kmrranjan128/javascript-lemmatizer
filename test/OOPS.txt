@@ -1,0 +1,4 @@
+Data Hididng
+Abstraction
+Encapsulation=data-hiding+Abstraction
+All these thing talks about security only.

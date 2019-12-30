@@ -1,0 +1,1396 @@
+ 
+ Core java collections interview questions
+-------------------------------------------------
+ 
+collecton
+--------------
+-> if we want to represnt a group of individual objects in a single entity then we should go for collections.
+-> usually we can use collections to hold and transfer data(objects) from one location to another location.
+
+ Diff between array and collection
+--------------------------------------------
+ Array
+---------
+-> array are static and fixed in size. once you allocate the memory you cannot changed it is fixed.
+-> memory point of view it is not recomended to use.
+-> array can hold only homegenious data type (same type of elemnts).
+-> performance point of view array are recomended to use.
+
+ collection
+---------------
+-> it is dynamic. it is growable in nature. ie based on our requirement we can increase or decrease the size.
+-> memory point of view it is recomended to use.
+-> it stores both homegenous & hetrogeneous data type. 
+-> performance point of view collection are not recomended to use.
+
+ Diff between arraylist and vector.
+----------------------------------------
+-> arraylist and vector both are implementation of list interfaces.
+-> both are allowed duplicate object.
+-> arraylist and vector both are ordered collection in which oreder we are storing the element in same order 
+it will displayed.
+
+ arraylist
+---------------
+-> every method present in arraylist is non-synchronized means multiple thread can access at a time so it is 
+not threadsafe.
+-> relatively performance is high becoz threads are not required to wait.
+-> arraylist initial capacity we cannot check becoz they did not provide any functionality.
+
+ Vector
+----------
+-> every method present in vector is a by default synchronized & threadsafe means at a time only one thread 
+can access the code.
+-> relatively performance is low becoz threads are required to wait.
+-> in vector we can provide capacity() to check initial capacity.
+
+ Diff between arraylist and linked list
+---------------------------------------------
+ -> both are the implementation of the list interfaces.
+
+ arraylist
+--------------
+-> we can access the element using index in array list. it is much faster becoz processing the element is very 
+easily compare to linked list.
+-> it is the best choice if our frequent operation is retrieval.
+-> array list is better for storing & accessing the data.
+
+ linked list
+-------------------
+-> we can access the element in node. so it is very difficult. it is travel one location to another location 
+are random memory location.
+-> it is the best choice if our frequent operation is insertion or deletion.
+-> linked list is better for mainupulating the data.
+
+ Diff between list and set
+----------------------------------
+ List
+---------
+-> if u want to represent a group of individual objects where duplicates are allowed and insertion order is 
+preserved.
+-> in which order we are inserting the element in the same order you can retrieve the element. it will display 
+sequentialy.
+
+ Set
+------------
+-> if u want to represent a group of individual obj where duplicate are not allowed and insertion order is not 
+preserved.
+-> set doesnt maintain insertion order. in which order we are inserting the element in the same order you 
+cannot retrieve the element it will display randomly.
+
+ Diff between hasmap and hashtable
+---------------------------------------------
+-> hashmap & hashtable both are map based collections. and it allow to store the obj key and value pairs.
+ 
+ hashmap
+-----------
+-> hashmap is not synchronized & not thread safe. so multiple thread can access at a time.
+-> if multiple thread can access simultaniously data inconsistency problems arises.
+-> performance wise hashmap is much faster than hashtable .
+-> in case of hashmap only one null key and multiple null values are allowed.
+-> hashmap always recomended if you dont want thread safety.
+
+ hashtable
+--------------
+-> hashtable is by default synchronized & threadsafe. so means at a time only one thread we can access.
+-> Java 5 introduced ConcurrentHashMap which is an alternative of Hashtable and provides better scalability 
+than Hashtable in Java.
+-> Synchronized means only one thread can modify a hash table at one point of time. 
+-> in hashtable multiple thread can access simulteniously without synchronization issue.
+-> performance wise it is slow compare to hashmap.
+-> hashtable doesnt allow null key and value. it throws null pointer exception.
+-> if u want threadsafety then use concurrent hashmap. hastable is not recomended.
+
+ Diff between hashmap and concurrent hashmap
+----------------------------------------------------
+ Hashmap
+-------------
+-> hashmap is not threadsafe .
+-> in hashmap one null key are allowed.
+-> performance wise hasmap is much faster than concurrent hashmap.
+-> hashmap is not synchronized. hashmap can be synchronize by using synchronizedmap(hashmap). by using this 
+method we get hashmap obj which is equivalent to hashtable object.
+-> whenever we synchronozed hashmap hashmap it locks whole map.
+
+ concurrent hashmap
+-----------------------------
+-> it is threadsafe.
+-> in concurrent hashmap null keys are not allowed.
+-> performance wise it is slow compare to hashmap.
+-> concurrent hashmap synchronized or lock on the certain portion of the map.
+-> A concurrentHashMap is a thread-safe implementation of Map interface. In this class put and remove methods 
+   are synchronized but not get method. 
+-> This class is different from Hashtable in terms of locking.
+-> it means that hashtable use object level lock but this class uses bucket level lock thus having better 
+    performance.
+
+ Diff between comparable & comparator
+-------------------------------------------
+-> comparable and comparator in Java are two interfaces which is used to implement sorting in Java. 
+-> Comparator interface in Java has method public int compare (Object o1, Object o2) which returns a negative 
+   integer, zero, 
+   or a positive integer as the first argument is less than, equal to, or greater than the second. 
+   While Comparable interface has method public int compareTo(Object o) which returns a negative integer,
+   zero, or a positive integer as this object is less than,
+   equal to, or greater than the specified object.
+-> Some time you write code to sort object of a class for which you are not the original author, or you don't 
+   have access to code.
+   In these cases you can not implement Comparable and Comparator is only way to sort those objects.
+-> Order of comparison is very important while implementing Comparable or Comparator interface.
+-> for example if you are sorting object based upon name than you can compare first name or last name on any 
+    order, so decide it judiciously. 
+-> 1) There is class called Person, sort the Person based on person_id, which is primary key in database
+   2) Sort the Person based on there name.
+-> For a Person class, sorting based on person_id can be treated as natural order sorting and sorting based on 
+   name field can be implemented using Comparator interface.
+   To sort based on person_id we need to implement compareTo() method.
+   
+   public class Person implements Comparable {
+    private int person_id;
+    private String name;
+    
+     /**
+     * Compare current person with specified person
+     * return zero if person_id for both person is same 
+     * return negative if current person_id is less than specified one
+     * return positive if specified person_id is greater than specified one
+     */
+    @Override 
+    public int compareTo(Object o) {
+        Person p = (Person) o; 
+        return this.person_id - o.person_id ;
+    }
+    ….
+}
+-> And for sorting based on person name we can implement compare(Object o1, Object o2) method of Java Comparator class.
+  **
+ * Comparator implementation which sorts Person objects on person_id field
+ */
+public class SortByPerson_ID implements Comparator{
+
+    public int compare(Object o1, Object o2) {
+        Person p1 = (Person) o;
+        Person p2 = (Person) o; 
+        return p1.getPersonId() - p2.getPersonId();
+    }
+}
+ comparable
+----------------
+-> it is present in java lang package.
+-> it is meant for default natural sorting.
+-> In Java API String, Date and all wrapper classes implements Comparable interface.Its always good practice to override compareTo() for value obj.
+-> it will have a only one method compareto() to sort a objects.
+-> Comparable iterface used for natural sorting .these is the reason all wrapper classes and string class implementing this comparator and 
+   overriding compareTo(Object obj) method.
+-> So in String and all wrapper classes compareTo(Object  obj) method is implemented in such way that it will sort all objects.
+
+ comparator
+-----------------
+-> it is present in java .util package.
+-> it is meant for customize sorting.
+-> it will have a two methods 1> compare() 2> equals() to sort a objects.
+-> comparator Will place sorting logic in other class so that its easy to change.
+
+ diff between failfast iterator & failsafe iterator
+-------------------------------------------------------------
+
+ failfast iterator
+---------------------------
+-> failfast iterator is the no clone copy will be created.
+-> no memory problem is there.
+-> failfast iterator can throw concurrentmodification exception in two secanario.
+    1.>. single threded enviroment.
+    2.>. multithreded enviroment.
+
+ cursor
+-----------------
+-> if u want to get obj one by one from the collection then we should go for cursor.
+
+ Enumeration
+----------------
+-> we can use enumeration to get obj one by one from the legacy collection objects.
+-> it is applicable for only legacy classes.
+-> we can perform only read operation. we cannot perform remove operation.
+-> enumeration can traverse only single direction(forward direction).
+-> bu using elements() method get it enumeration obj.
+-> we have only two methods. 1>.hasMoreElements()
+                             2>.nextElement()
+
+ Iterator
+-------------
+->. we can use iterator to get objects one by one for any collection object. it is a universal cursor.
+->. we can perform both read and remove operations.
+->. movement of iterator is single direction(forward).
+->. we can get iterator obj by using iterator() of collection interface.
+->. we have three methods 1>.hasNext()
+                          2>.next()
+                          3>.remove()
+
+ ListIterator
+----------------------
+-> listiterator is the child interface of iterator.
+-> by using listiterator we can move either to the forward direction or to the backward direction.
+-> it is the bidirectional cursor.
+-> we can perform read, remove, replace and addition of new objects also.
+-> it is applicapable for only list objects.
+-> we can get listiterator obj by using listiterator() method.
+-> we have 9 methods hasNext(),add(),set()(replace),remove(),hasprevious(),next(),nextindex(),privious(),priviousindex().
+
+ Treeset & Treemap
+----------------------------
+-> treeset & treemap both are internally uses red-black tree.
+-> treeset & treemap both are non synchronized.
+-> null value is not permitted in treeset ot treemap.
+-> in treemap duplicates duplicate keys are not allowed but value can be duplicated.
+-> in treeset duplicate objects are not allowed.
+-> in treemap duplicate value are allowed.
+
+ Hashset
+--------------
+-> underlying datastructure is hastable.
+-> it doesn't maintain insertion order.and it is the based on hashcode of the obj.
+-> duplicates obj are not allowed. it is not synchronized.
+-> Hashset is best suitable for our frequent operation is serch operation.
+
+ Hashtable.
+------------------
+-> underlying datastructure is hashtable.
+-> insertion order is not preserved and it is the based on hashcode of the keys.
+-> Hetrogenious obj are allowed for both key and values.
+-> null key or null value is not allowed is not allowed otherwise we will get null pointer exception.
+-> every method present in hashtable is synchronized & threadsafe.
+
+  How HashMap internally works
+-----------------------------------------
+-> hashmap is the child of map interface.
+-> underlying datastructure is hashtable.
+-> if we want to represent a group of individual objs as "key-value" pairs then we should go for map interface.
+-> insertion order is not preserved and it is based on hashcode of hashcode of the keys.
+-> duplicate keys are not allowed but value can be duplicated.
+-> each key-value pairs is called one "entry".
+-> hetrogenious objs are allowed for both key and value.
+-> it is the best suitable for search operation.
+-> hashmap is bydefault not synchronized but we can get synchronized method public static map synchronizedMap(Map m1).
+-> hashmap works on principle of hashing techniques.
+-> it is a datastructure which allow us to store & retrieve obj in constant time 0(1).
+-> hashmap uses the hashcode method to calculate a hash value.
+-> hashmap provides put(key,value)of storing the objs. and get() method for retrieving value from hashmap.
+-> hasmap uses the equals() to find the correct key.
+-> when get() is used to retriev value.again key obj is used to calculate haswhich is used then to find a bucket where that particular key is stored.
+
+ OOPS principles
+-----------------------
+ -> oops is not a programming language. it is a principle or methodology to design a application using class & 
+  objects with decouple manner.
+ -> it provides some set of rules or guidelines to develop an application.
+
+ class
+---------
+-> a collection of object is nothing but class. it is a logical entity.
+-> class is user defined data type in java means by using class we can structure our own programs.
+-> complete definations of objects 100 % it has define.
+-> a class in java contains data members, method, constructor, block.
+-> only concreate methods are allowed.
+-> a class is blueprint of objects which defines its properties and behaviour.
+
+ objects
+--------------
+-> any entity that has state & behaviour is known objects. We can create number of objects for one class based 
+  on our requirements.
+-> it can be physical & logical.
+   state-> represnt data(value) of an object.
+   behaviour-> represnt the functionality of an obj such as deposit withdraw etc.
+-> Instance of class is known as object.
+   Instance means dynamic memory allocation. So dynamic memory allocation to class is called object.
+
+ Data Hiding
+-------------------
+-> our internal data should not go out directly i.e outside person cannot access our internal data directly is 
+   called data hiding.
+-> by using private modifier we can implement data hiding.
+-> after providing proper username and password only we can access our account information.
+-> security purpose we can use data hiding.
+   eg. class Account {
+             private double;
+              -----------
+               -----------
+        }
+  Abstraction
+--------------------
+-> hiding internal implementation and just highlights functionality or set of services is nothing but data 
+  abstraction.
+-> by using abstract class & interfaces we can implement abstraction.
+-> eg. using ATM GUI screen bank people are highlighting the set of services what they are offering without 
+   highlighting internal implementation.
+-> Advantages.
+ 1>. security purpose we can use abstraction.
+ 2>. to improve modularity of application.
+ 3>. maintainbility of application.
+ 
+ Encapsulation
+-----------------------
+-> binding the data and methods in a single unit is called encapsulation.
+-> the java class is a best eg of encapsulation.
+-> Binding the data with its related functionalities known as encapsulation
+-> Here data means variables and functionalities means methods.
+-> java bean is the fully encapsulated class, becoz all the data members are private.
+-> eg. a book application restrict a client to change an accounts balance.
+-> every data members should be declared as private and for every member we have to maintain setter & getter.
+ 
+ Advantages
+------------------
+-> security purpose we can use encapsulation.
+-> enhancement will become very easy.
+-> it provides flexibility to the user to use system very easily.
+
+ where u apply encapsulation in your project.
+-----------------------------------------------------
+-> in my project we are using encapsulation concept in value bean class, here we are bind the all useful data 
+   and methods together to provide the services.
+-> so that no one can access this property from outside the class. but they can access this property by using 
+   public method(getter/setter).
+
+ polymorphism
+-------------------------
+-> the process of representing one task perform multiple ways. i.e polymorphism eg to draw something shape or
+   rectangle.
+-> the main advantage of polymorphism is to provide flexibilty in a application.
+-> Defining multiple methods with same name.
+
+ Inheritance
+----------------------
+-> inheritance is a mechanism in which one objs acquires all the properties of the parent obj.
+-> by extend keywords we can implement is-a relationship.
+-> it is used to achieve runtime polymorphism.
+-> Getting the properties from one class object to other class is known as inheritance.
+-> In this inheritance will have parent class and child class so getting the properties of parent class object 
+   to child class object known as inheritance.
+-> the main advantage of is-a relationship is code reusability ( create a program once and execute any no of 
+    times).
+-> inheritance allows to inherit properties and methods of parent class, so you can reuse all methods and 
+    properties.
+    eg. class Loan {
+                   // common methods which are required for anytime of loan.
+     }
+        class HousingLoan extend Loan{
+                  // housingloan specific method.
+     }
+       class EducationLoan extends Loan{
+                 // Education Loan specific methods
+     }
+
+
+ Multiple inheritance
+-------------------------
+-> having more than one parent class at the same level is called multiple inheritance.
+-> any class can extends only one class at a time and cannot extends more than one class simultaniously hence 
+   java wont provide support for multiple inheritance.
+-> but an interface can extends any no of interfaces at a time hence java provide support for multiple 
+  inheritance through interface.
+    eg interface A{}
+       interface B{}
+       interface C extends A,B{}
+   note- java doesn't support multiple inheritance becoz may be a chance of raising ambiguity problems.
+-> interface having dummy declaration and they wont have implementation hence no ambiguity problem. 
+
+ IS-A relationship.
+----------------------------
+-> it is a relationship between simillar data representation.
+-> we have common logic then we go for is-a relationship.
+ class Person{
+ firstName:String;
+ lastName:String;
+ }
+ class student extends Person{
+    s.no:number;
+    email:String;
+}
+ class Address{
+  aid:number;
+  details:String;
+}
+-> in the above representation student class contain firstname, lastname, s.no, email here person is called as 
+  parent class student as subclass or child class.
+
+ HAS-A relationship
+----------------------------
+-> when we have diff data items we use HAS-A relationship.
+   class Person{
+    firstName:String;
+    lastName:String;
+    address:Address;
+    getAddress(){
+    return this.address;
+ }}
+ASSOCIATION:
+------------
+ Association is a relationship between two objects. It defines the diversity between objects. In this OOP 
+concept, all object have their separate lifecycle, and there is no owner. For example, many students can 
+associate with one teacher while one student can also associate with multiple teachers.
+
+AGGREGATION:
+-------------
+In this technique, all objects have their separate lifecycle. However, there is ownership such that child object
+can’t belong to another parent object. For example consider class/objects department and teacher. Here, a 
+single teacher can’t belong to multiple departments, but even if we delete the department, the teacher object 
+will never be destroyed.
+
+COMPOSITION:
+-------------
+A composition is a specialized form of Aggregation. It is also called "death" relationship. Child objects do 
+not have their lifecycle so when parent object deletes all child object will also delete automatically. For that
+, let’s take an example of House and rooms. Any house can have several rooms. One room can’t become part of two
+ different houses. So, if you delete the house room will also be deleted.
+ 
+ Overriding
+-------------------
+-> providing diff implementation for parent method is called as overriding.
+
+   class Authentication{
+    login(username,password){
+ }}
+ class fbAuthentication extends Authentication{
+     login(token){
+}}
+ class googleAuthentication extends Authentication{
+      login(token){
+}}
+
+ overloading
+--------------------
+-> in the same if we have two diff implementation we called it as overloading.
+  class Authentication{
+   login(username, password){
+}}
+// overloading login(token){
+}}
+ class Authentication extends Authentication{
+ // overriding
+  login(token){
+}}
+
+ Constructor
+-----------------
+-> it is used to initialize obj properties at the time of creation.
+  class Student {
+ s.no:number;
+ sname:String;
+ constructor(a,b){
+ this.sno=a;
+ this.sname=b;
+}}
+
+ Diff between abstraction and encapsulation
+------------------------------------------------------
+ Abstraction
+----------------
+-> abstraction solves the problem in the design level.
+->  Abstraction means hiding implementation details using abstract class and interface.
+-> abstraction is used for hiding the unwanted data and giving relevant data.
+
+ Encapsulation
+-------------------
+-> encapsulation solves the problem in the implementation level.
+-> Encapsulation means data hiding using getter and setters
+-> encapsulation means hiding the code and data into a single unit to protect the data from outside world.
+
+ diff between method overloading and method overriding
+--------------------------------------------------------------
+ Method overloading
+ -------------------------
+-> if having two method with same name & different argument(signature) type is called method overloading.
+-> it is also known as static binding or compile time polymorphism.
+-> Method overloading is nothing but defining multiple methods with same name with 
+   different parameters is known as method overloading .
+-> Overloading gives better performance compared to overriding. The reason is that the 
+   binding of overridden methods is being done at runtime. eg.
+
+   class Addition
+ {
+ void sum(int a, int b)
+ {
+ System.out.println(a+b);
+ }
+ void sum(float a, float b)
+ {
+ System.out.println(a+b);
+ }
+ public static void main(String args[])
+ {
+ Addition obj=new Addition();
+ obj.sum(10, 20);
+ obj.sum(10.05, 15.20);
+ }
+ }     output- 30
+                25.25
+ 
+ Method overriding
+ -------------------
+-> if having two method with same name & same signature must be same i.e method overloading.
+-> it is also known as dynamic binding, runtime polymorphism.
+-> Defining multiple methods with same name and same signature in super class and sub class known as method 
+   overriding. 
+-> Method overriding is type of polymorphism in java which is one of the main object oriented feature.
+-> Method overriding is nothing but defining multiple methods with same name with 
+-> same definition in super class and sub class is known as Method overriding.
+-> While Run time only now which method is Executed.
+-> Overriding gives slower performance compared to overloading.The reason is that the 
+-> binding of overridden methods is being done at run time. eg
+
+ class Walking
+ {  
+ void walk()
+ {
+ System.out.println("Man walking fastly");
+ }  
+ }  
+ class Man extends walking
+ {  
+ void walk()
+ {
+ System.out.println("Man walking slowly");
+ }
+ }
+ class OverridingDemo
+ {  
+ public static void main(String args[])
+ {  
+ Man obj = new Man();  
+ obj.walk();  
+ }
+ } output- man walking slowly.
+
+ static binding
+ ----------------------
+-> Its a process of defining multiple methods with the same name and with different parameter types or list or
+  order is called static polymorphism.
+-> it is binding that happens at compile time.
+-> actual object is not used for binding.
+-> method overloading is the best eg of static binding.
+
+ dynamic binding
+ ------------------------
+-> it is a binding that happens at runtime.
+-> actual object is used for binding.
+-> method overriding is the best eg of dynamic binding.
+
+ Interface
+ ---------------
+-> if we dont know anything about implementation just we have requirement specification then we should go for 
+   interface. eg.servlet interface, plan for building.
+-> only abstract methods are allowed.
+-> every method inside interface is always public, abstract.
+-> every variable inside interface must be public, static, final.
+-> inside interface we cannot declare static & instance blocks.
+-> inside interface we cannot take constructor.
+-> interface support multiple interface.
+ 
+ Abstract class
+ ----------------------------
+-> if we are talking about implementation but not completly(partial implementation) then we should go for 
+   abstract class. eg. generic servlet, http servlet, complete bulding
+-> every method present inside abstract class need not be abstract & public. we can take concreate method also.
+-> every variable present inside abstract class need not be public, static & final.
+-> inside abstract class we can declare static & instance blocks.
+-> inside abstract class we can take constructor.
+-> abstract class doesnt support multiple inheritance.
+
+ Concreate class
+ -------------------
+-> if we are talking about implementation completly and ready to provode service then we should go for concreate
+ class.eg. my own servlet,fully completed building.
+ 
+ Marker interface
+----------------------
+-> it is an interface with no fields or with in it.
+-> it is also called as empty interface. there are lot of marker interfaces avialable in java. e.g- serilazable
+, clonable remote interface random access.
+-> by implementing serializable interface we can send that objs across the network and we can save state of an 
+obj into a file.
+-> Marker interface also helps code coverage or code review tool to find bugs based on specified behavior of 
+  marker interface.
+-> A good example of use of marker interface in java is Serializable interface.
+   A class implements this interface to indicate that its non-transient data members can be written to a 
+  steam or file system.
+ 
+ Adapter class.
+---------------------
+-> it is a simple class that implements an interface only with empty implementation for every method.
+-> this approach decrease lenght of code & improve readability of the code.
+
+ Modifier.
+-------------
+-> public, private, protected, final, <default>, static, Synchronized, abstract, native, strictfp, transient, 
+volatile.
+
+ Transient.
+------------------
+-> if u want to hide some of the details of the obj state such type of variable is we should declare transient.
+-> it is a modifier applicable only for variable.
+-> transient modifier are not searliaized.
+-> transient keyword cannot be used along with static keyword.
+-> transient keyword is used to searilazation process.
+-> The transient keyword in Java is used to indicate that a field should not be serialized.
+-> Transient keyword can only be applied to fields or member variable. Applying it to method or local variable 
+  is compilation error.
+
+ public class Stock {
+    private transient Logger logger = Logger.getLogger(Stock.class); //will not serialized
+    private String symbol; //will be serialized
+    private BigInteger price; //serialized
+    private long quantity; //serialized
+}
+
+ Volatile 
+------------
+-> it is also a modifier applicable for variable but not class & methods. using volatile keyword along with 
+  class and method is a compiler error
+-> if the value of variable keeps on changing such types of variables we have to declare with volatile modifier.
+-> Any variable which is shared between multiple threads should be made variable, in order to ensure that all 
+  thread must see the latest value of the volatile variable.
+
+
+ Serialization
+-------------------
+-> Serialization in java is a mechanism of writing the state of an object into a byte stream.
+-> Serializable is a marker interface. When an object has to be transferred over a network ( typically through 
+   rmi or EJB).
+-> it is the process of converting obj state into persistent obj.
+-> by using Fileoutput stream and obj output stream classes we can achieve serialzation process.
+-> serialization is the best choice if we want to save total obj to the file.
+
+ Advantages.
+-------------------
+-> It is mainly used to travel object’s state on the network (known as marshaling).
+-> To save the state of an object in a file.
+
+ java.io.serializable.
+-----------------------------
+-> import java.io.Serializable;  
+public class Employee implements Serializable{  
+ int empid;  
+ String empname;  
+ public Employee(int empid, String empname) {  
+  this.empid = empid;  
+  this.empname = empname;  
+ }  
+}  
+ 
+import java.io.*;  
+class PersistTest{  
+ public static void main(String args[])throws Exception{  
+  Employee emp = new Employee(100,"Dinesh");  
+  FileOutputStream fileout = new FileOutputStream("emp.txt");  
+  ObjectOutputStream out = new ObjectOutputStream(fileout);  
+  out.writeObject(emp);  
+  out.flush();  
+  System.out.println("success write");  
+ }  
+}  output- success write
+
+ Deserialization
+-------------------
+-> it is the  process of converting file to obj.
+-> by using fileinput stream and obj input stream we can achieve deserialization.
+-> It is the reverse operation of serialization. eg.
+
+ import java.io.*;  
+class DepersistTest{  
+ public static void main(String args[])throws Exception{  
+  ObjectInputStream in = new ObjectInputStream(new FileInputStream("emp.txt"));  
+  Employee emp = (Employee)in.readObject();  
+  System.out.println(emp.empid+" "+emp.empname);  
+  in.close();  
+ }  
+}  output- 100 dinesh
+
+ Externalization.
+--------------------------
+-> it is meant for customized serialization.
+-> externalization is the best choice if we want to save part of the obj to the file.
+-> in serialization everything takes care by jvm and programmer doesnt have any control.
+-> in externalization everything take care by programmer and jvm doesnt have any control.
+
+ Exception.
+--------------------
+-> an unwanted, unexpected event that distrb normal flow of the  program is called exception. eg.file not found
+  exception.
+-> the main objective of exception handling is graceful(normal) termination of the program.
+-> these are mostly caused by our program and it is recoverable.
+
+ Error
+----------
+-> these are not caused by our program ,mostly caused by lack of system resource. these are non recoverable. 
+  eg out of memory error, virtual machine error, assertion 
+
+ Exception Handling
+----------------------------
+-> Exception handling doesnt mean repairing an exception. we have to define alternative way to continue rest of
+ the code normally.
+-> if our programming requirement is to read the data from the file locating at london but at runtime if london file is not avialable then we have to use local
+   file automatically alternatively continue rest of program normally. this is nothing but exception handling.
+
+ Checked Exception
+------------------------
+-> the exceptions which are checked by the compiler for smooth execution of the  program at runtime is called 
+   cheked exception. eg. file not found exception, IOE 
+    exception, SQL Exception.
+-> your java application is connected to outer resource.
+
+ Uncheked Exception
+--------------------------
+-> the exception which are not cheked by the compiler wheather programmer handling or not are called uncheked 
+   exeption. eg Arthmetic Exception, nullPointer exception.
+-> your java application is not connected to outer resource only your java application is running.
+-> both checked & uncheked exception are handled by using try, catch, finally. in terms of functionality both 
+   are same.
+
+ Try Block
+----------------
+-> it is maintain all risky code inside the try block.
+
+ Catch block
+------------------
+-> we have to maintain all exception handling code inside the catch block.
+
+ Finally block
+------------------
+-> to maintain the cleanup code. 
+
+ Throwable
+------------------
+-> it is the root element of all theexception hierarchy.
+-> it is a class that represents all errors & exceptions occur in java.
+
+ Throw keyword
+-----------------
+-> throw is used when the programmers wants to throw an exception explicitly and wants to handle it using catch block. throw & throws are contradictory.
+
+ Throws keyword
+------------------
+-> throws keyword is used when the programmer doesnot want to handle the exception and throw it out of a method.
+-> to delegate the responsbility of exception handling to the caller.
+
+ Final
+------------
+-> final is a modifier applicapable for classes, methods and variables.
+-> its value cannot changed during scope of the program.
+-> if a class declared as final then child creation is not possible.
+-> if method declare as a final then overriding of that method is not possible.
+
+ finally
+-----------
+-> finally is the block associated with try- catch to maintain cleanup code.
+-> which should be executed always irrespective of whether exception raised or not raised.
+-> this block execute always one situation where the finally block won't be executed if the jvm is going to 
+ shutdown.
+
+ Finalize.
+----------------
+-> it is a method, garbage collector always calls this method just before destroying any obj to perform cleanup activities.
+
+ custom exception
+----------------------
+-> sometimes our programming requirement we have to create our own exception such type of exception are called 
+ custom exception.  
+
+ class ownException1 extends RuntimeException{
+  public ownException1(String s){
+     super(s);
+}
+ class ownException{
+    static int a=1;
+ public static void main(String[] args){
+     int age=17;
+if(age<18)
+  if(a<16){
+throw new ArithmaticException( "age is not valid" );
+ }
+else{
+sopln("valid");
+}}}
+
+  To String() method
+------------------------
+-> To String() is used to retrieve obj information in String format.
+
+ Hascode()
+----------------
+-> for every obj jvm will generate a unique number which is nothing but hashcode.
+-> hashcode is an integer which repersent internals address of an obj.
+-> hashcode differs from one obj to another obj.
+-> hascode is used to store, remove, search in set and map collections (eg hashset, hashmap).
+
+ == operator
+----------------------
+-> == operator meant for refrence or address comparision.
+-> it is an operator applicable for both both primitive and obj refrence.
+-> we cannot override == operator for content comparision in obj refrence.
+
+ .equals() method
+-----------------------
+-> .equals() method meant for content comparision.
+-> it is a method applicable only for obj refrence but not for primitive.
+-> we can override .equals() for content comparision.
+    
+    String s1=new String("durga");
+    String s2=new String("durga");
+    s.o.p.ln(s1==s2); false
+    s.o.p.ln(s1.equals(s2));true
+
+  SCP (String constant pool)
+----------------------------------
+-> a specially designed memory area for the String literals/objs.
+-> instead of creating a separate obj for every requirement we can create only one obj and we can reuse same 
+  
+ obj for every requirement.
+-> this approch improves performance and memory utilization. we can achieve this bu using "scp".
+
+ Why String is immutable.
+------------------------------
+-> becoz java uses the concept of literals. suppose there are 5 refrences variables all refers to one obj.
+-> if one refrence variable changes the value of the obj. 
+-> it will be effected to all the refrence variable thats why string obj are immutable in java.
+ 
+ we can create String obj in two ways.
+-------------------------------------------
+-> String literals.
+-> using new keyword constructor.
+
+ String.
+----------------
+-> if the content is fixed and wont change frequntly then we should go for String.
+-> it is an immutable. once String obj is creates its state cannot be changed eg. all wrapper classes.
+-> the obj is created as a String is stored in Scp.
+-> every immutable obj in java is threadsafe. String is also threadsafe & synchronized.
+-> performance wise it is very fast.
+
+ StringBuffer
+--------------------
+-> if the content will change frequntly but threadsafety is required then we should go for StringBuffer.
+-> the obj is created as a StringBuffer is stored in heap area.
+-> it is also threadsafe & synchronized.
+-> performance wise it is very slow.
+
+ StringBuilder
+--------------------
+-> if the content will change frequntly and threadsafety is not required then we should go for StringBuilder.
+-> the obj is created as a StringBuilder is stored in Heap area.
+-> it is not threadsafe. performance wise very fast.
+
+ How to create immutable class
+------------------------------------
+-> class is public & final.
+-> properties are private & final.
+-> must initialize the all the properties through constructor.
+-> setter are not allwed.
+-> getter are allowed.
+
+ final public class Immutable{
+   private final int a;
+   public Immutable(int a){
+   this.a=a;
+   }
+   public int getA()
+{
+ return this.a;
+}} 
+
+ Multtasking
+--------------------
+-> it is the process of multiple tasks executing simulteneously .
+-> two types of multitasking.
+
+ 1> process based multitasking
+------------------------------------
+-> two process are running cuncurrently such type of tasks is called process based multitasking. eg- os level, 
+  facebook, music.
+-> it is heavyweight. cost of communication between the process is high.
+
+ Thread based multitasking
+-----------------------------------
+-> executing several tasks simulteniously where is task is a separate independent part of the samee program is 
+  called thread based multitasking. and each independent 
+   part is called "thread" eg. edit text, thread.
+-> it is lightweight.
+-> the main purpose of multitasking is to improve performance of the system by reducing response time.
+-> cost of communication between the thread is low.
+
+ Multithreading
+-----------------------
+-> executing several thread simulteniously where each thread is a separate independent part of the same program
+  is called multithreading.
+-> the main impotant application area multithreading are 1> videogames 2> animation development 3> multimedia 
+  graphics.
+-> the main advantages of multithreading is reduces response time and improves performance of the system.
+
+ there are two ways to create thread class
+---------------------------------------------------
+ 1> by extending thread class
+-----------------------------------
+-> a thread can be created in java by extending thread class where we must override run().
+-> call start() to start executing the thread obj.
+
+  eg. class Multi extends threads{
+      public void run(){
+      sopln("thread is running");
+     }
+    public static void main(String[] args){
+     Multi e1=new Multi();
+      t1.start();
+}}
+
+ 2> by implementing Runable interface
+-------------------------------------------
+-> by implementing Runable interface you need to provide implementation for run().
+-> Runable interface have only one method run().
+     public void run() is used to perform action for a thread.
+
+ e.g class Multi implements Runable{
+      public void run(){
+ s.o.p.ln("thread is running");
+}
+ p s v main(String[] args)
+{
+Multi m1=new Multi();
+ Thread t1=new Thread(m1);
+ t1.start();
+}}
+output - thread is running.
+
+ Thread Schedular
+-----------------------
+-> if multiple threads are waiting to execute then which thread will execute first is decided by " thread 
+  schedular" which is the part of jvm.
+
+ Deadlock
+---------------
+-> if two threads are waiting for each other forever such type of situtaion is called deadlock.
+
+ Demon thread
+----------------------
+-> the threads which are running in the background are called demon thread eg garbage collector.
+
+ Lifecycle of threads.
+----------------------------
+-> once we create a thread obj then the thread is said to be in new state or born state.
+-> once we call start() then the thread will be entered into ready or runnable state.
+-> if thread schedular allocated cpu then the thread will be entered into running state.
+-> once run() completes then the thread will entered into dead state.
+
+ t.start()
+----------------
+-> in case of t.start() a new thread will be created which is responsible for the execution run() method. 
+
+ t.run()
+------------
+-> in case of t.run() no new thread will be created and run() will be executed just like a normal method by 
+  the main().
+
+ Method to prevent a thread from execution
+---------------------------------------------------
+-> we can prevent (stop) a thread execution by using the following methods.
+  1> yield() 2>. join() 3 sleep().
+
+ InterThread Communication
+--------------------------------------
+-> two threads will communicate with each other by using wait(), notify(), notify all().
+-> these methods are defined in obj class but not in thread class becoz threads are calling this method.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+0
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,479 @@
+
+  spring boot
+-------------------
+-> The problem with Spring and Spring MVC is the big amount of configuration that is needed for
+   developing a spring based application.to over come this problem Spring Boot is come in to picture.
+-> Spring Boot is a easiest way to create spring based application with minimal or zero configurations. 
+-> Its follows convention over configuration software design paradigm that means it decrease the effort of developer.
+-> It provides default configurations which help you to avoid a lot of boilerplate code which 
+   is difficult to maintain.
+-> But with spring Boot we can avoid all these boilerplate code, writing XML configurations and annotations. 
+-> Spring Boot comes with inbuilt apache tomcat or jetty server. 
+
+ advantages
+------------------
+-> It provides Embedded HTTP servers like Tomcat, Jetty etc. to develop and test our web 
+   applications very easily.
+-> It provides CLI tool to develop and test Spring Boot Applications from command prompt very
+   easily and quickly.
+-> It is very easy to integrate Spring Boot Application with any technology like Spring JDBC, 
+   Spring ORM,Spring Data, Spring Security etc.
+
+ disadvantage.
+-----------------
+-> it is very tough and time consuming process to convert existing or legacy Spring Framework
+   projects into Spring Boot Applications.
+
+ What is the use of @SpringBootApplication annotation.
+-------------------------------------------------------------
+-> @SpringBootApplication annotation was introduced in Spring Boot 1.2.0. This annotation is
+   equivalent to declaring these 3 annotations.
+   @Configuration
+   @EnableAutoConfiguration
+   @ComponentScan
+
+-> @SpringBootApplication annotation, means this is the starting point for our Spring Boot application.
+-> SpringApplication.run(class name.class, args); it is the boot strapping of the application.
+-> for every spring boot application we have to create a main class and that need to be annotated with 
+   @SpringBootApplication and bootstrap it.
+
+   Spring Boot Actuator.
+--------------------------------
+-> Spring Boot provides actuator tools features to monitor and manage our application.
+-> Actuator is a tool which has HTTP endpoints. we can enable this feature
+   by adding it to the pom.xml file.
+-> It is used to access current state of running application in production environment.
+-> when application is pushed to production, you can choose to manage and monitor your application 
+   using HTTP endpoints.
+
+ What is DevTools in Spring boot
+------------------------------------
+-> one of the main challenge for the java developers is to deploy the apps and restart the server
+   whenever there is a code change.
+-> it eliminates the process of manually deploying the changes. DevTools will auto restart the 
+   server when we have changes. 
+-> In Spring Boot this can be achieved by adding a DevTools module, just add the following dependency 
+   in your Spring Boots pom.xml and build it. 
+   <dependency>
+     <groupId>org.springframework.boot</groupId>
+     <artifactId>spring-boot-devtools</artifactId>
+     <optional>true</optional>
+   </dependency>
+
+  How to configure datasource in Spring boot
+------------------------------------------------------
+-> Add Spring Boot JDBC dependency in POM.xml file.
+-> Add datasource information in application.properties file.
+-> Get JDBCTemplate object in your DAO with @Autowired annotation and use it.
+
+-> Step 1 - Add dependency for mqsql connector to pom.xml.
+-> Step 2 - Remove H2 Dependency from pom.xml
+-> Step 4 - Configure your connection to My SQL Database
+
+ Configure application.properties
+
+• Declare properties (mysql)
+
+ spring.datasource.url=jdbc:mysql:
+ spring.datasource.username=dbuser
+ spring.datasource.password=dbpass
+ spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+
+ Oracle DB Configuration (how to connect multiple datasource in spring boot)
+-------------------------------------------------------------------------------------------
+-> Sometimes its our application requirement to deal with multiple databases.Spring Boot helps us to 
+   configure multiple datasources with multiple databases in a single application.
+
+ spring.oraclesql.datasource.url=jdbc:oracle:thin:@localhost:1521:empdb
+ spring.oraclesql.datasource.username=my_prod_user
+ spring.oraclesql.datasource.password=my_db_password
+ spring.oraclesql.datasource.driver-class-name=oracle.jdbc.driver.OracleDriver
+
+ @Bean
+ @Primary
+ @ConfigurationProperties(prefix="spring.datasource")
+ public DataSource primaryDataSource() {
+    return DataSourceBuilder.create().build();
+ }
+ @Bean
+ @ConfigurationProperties(prefix="spring.secondDatasource")
+ public DataSource secondaryDataSource() {
+    return DataSourceBuilder.create().build();
+ }
+
+ How to Deploy Spring Boot Applications on External Tomcat Server.
+---------------------------------------------------------------------------
+-> Generally in the real-time projects we wont use inbuilt servers provided by the frameworks because 
+   of many reasons like security, maintenance and control.
+   . in pom.xml, add the dependency and packaging to war.
+   . Extend your main class with SpringBootServletInitializer and override its configure method.
+   . Generate WAR and deploy into the external server like (jboss,tomcat or weblogic).
+
+  How to generate a WAR file with Spring Boot.
+----------------------------------------------------
+-> Right click on pom.xml -> Run as -> Maven install, this will generate a WAR file in your target folder. 
+   Just copy that WAR file into your tomcat’s webapps folder and start the server ( or ) you can deploy and 
+   test from your IDE (eclipse/sts) by importing that WAR into your work space and run that in the external server.
+-> step-1 You need to extend SpringBootServletInitializer in your @SpringBootApplication.
+          and override its configure method.
+-> Step 2 Update your build configuration so that your project produces a war file rather than a jar file.
+          If you’re using Maven and using spring-boot-starter-parent all you need to do is modify pom.xml 
+          to change the packaging to war:
+          <packaging>war</packaging>
+-> step 3 Ensure that the embedded servlet container doesn’t interfere with the servlet container to which 
+          the war file will be deployed
+
+ How to change default tomcat server port number in spring boot.
+-------------------------------------------------------------------------
+-> when we start the Spring Boot application inbuilt tomcat server by default will take 8080 as its port number.
+-> In Spring Boot, we can change tomcat’s port number in 2 ways…
+   1. Using application.properties
+     application.properties
+     server.port = 2017
+
+   2. Using Java code change
+----------------------------------
+-> In this approach, we will create a simple java class which implements EmbeddedServletContainerCustomizer interface
+   of Spring Boot, this is a strategy interface for customizing auto-configured embedded servlet containers, and we
+   need to override customize() method of that interface that’s it.
+   @Component
+   public class Server implements EmbeddedServletContainerCustomizer {
+
+	@Override
+	public void customize(ConfigurableEmbeddedServletContainer container) 
+	{
+		container.setPort(2018);
+	}
+   }
+
+ what are the key component of spring boot :-
+-----------------------------------------------
+ spring boot CLI (command line interface)
+---------------------------------------------------
+-> it is responsible for run and test Spring Boot applications from command prompt. 
+-> You can also run Spring Web Applications from a command prompt.
+ 
+ Spring Boot Starter.
+--------------------------------------
+-> Spring Boot Starters are just JAR Files.
+-> Spring Boot provides a number of Starters that make easy to manage dependencies for your project. 
+   which you can include in your pom.xml.
+   e.g- spring-boot-starter-web, spring-boot-starter-tomcat etc.
+-> For example: Let’s say you want to work Spring MVC application, you can simply include
+   “spring–boot–starter–web” as dependency in pom.xml .
+
+ spring-boot-starter-parent
+----------------------------------------
+-> The spring-boot-starter-parent is a special starter that makes Maven or Gradle 
+   dependency-management easier by adding jars to your classpath.
+
+ What is Spring Boot Initilizr
+-------------------------------------
+-> Spring Boot Initilizr is a Spring Boot tool to bootstrap Spring Applications very easily.
+
+  If you want to change server, from tomcat to jetty server
+--------------------------------------------------------------
+-> <dependencies>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.springframework.boot</groupId>
+                    <artifactId>spring-boot-starter-tomcat</artifactId>
+                </exclusion>
+            </exclusions>
+		</dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jetty</artifactId>
+        </dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+		</dependency>
+	</dependencies>
+
+
+ spring boot data jpa curd example 
+-----------------------------------------
+-> Spring Boot provides spring-boot-starter-data-jpa starter to connect Spring application 
+   with relational database efficiently. 
+-> pring data provides the abstract repositories, which are implemented at run-time by the spring 
+   container and perform the CRUD operations. As a developer we have to just provide the abstract methods 
+   in the interface. This reduces the amount of boilerplate code required to write data access layers.
+
+ Repository
+------------------
+-> It is the central interface in the spring data repository abstraction.it is a marker interface.
+-> if u are extending this interface u have to declare your own methods and the implementation will 
+   be provided by the spring runtime for this interface also we have to pass two parameteres type of 
+   the entity and type of the entity id field. this is the super interface for curd repositry.
+
+ CrudRepository
+----------------------
+-> CrudRepository provides methods for the CRUD operations. This interface extends the Repository interface. 
+   If you are extending the CrudRepository, there is no need for implementing your own methods. 
+   Just extend this interface and leave it as blank.required implementation are provided at runtime.
+-> when u define curd repositry, u have to pass the two parameters type of the entity and types of the 
+ 
+
+ Spring Data JPA and Spring Boot Application
+---------------------------------------------------
+-> Here I am going make at REST API application for providing the booking information of train ticket 
+  and also we can the book the train ticket using API. 
+
+ Booking.java (model class).
+-------------------------------
+ @Entity
+ @Table(name = "BOOKING")
+ public class Booking implements Serializable{
+ private static final long serialVersionUID = 1L;
+ @Id
+ @GeneratedValue(strategy = GenerationType.AUTO)
+ Long bookingId;
+ @Column
+ String psngrName;
+ @Column
+ String departure;
+ @Column
+ String destination;
+ @Column
+ Date travelDate;
+
+ BookingRepository.java (Repositry class)
+----------------------------------------------
+ @Transactional
+ public interface BookingRepository extends CrudRepository {
+ public Booking findByDeparture(String departure);
+ }
+ 
+ BookingController.java
+-----------------------------
+-> Adding Rest Controller Here adding one more file for accessing Rest APIs is RestController .
+  it provide me some URLs for CRUD operation the booking table.
+
+  @RestController
+  @RequestMapping("/booking")
+  public class BookingController {
+ 
+  @Autowired
+  BookingRepository bookingRepository;
+ /**
+  * GET /create  --> Create a new booking and save it in the database.
+  */
+ @RequestMapping("/create")
+ public Booking create(Booking booking) {
+ booking.setTravelDate(new Date());
+ booking = bookingRepository.save(booking);
+ return booking;
+ }
+ 
+ /**
+  * GET /read  --> Read a booking by booking id from the database.
+  */
+ @RequestMapping("/read")
+ public Booking read(@RequestParam Long bookingId) {
+  Booking booking = bookingRepository.findOne(bookingId);
+     return booking;
+ }
+ 
+ /**
+  * GET /update  --> Update a booking record and save it in the database.
+  */
+ @RequestMapping("/update")
+ public Booking update(@RequestParam Long bookingId, @RequestParam String psngrName) {
+  Booking booking = bookingRepository.findOne(bookingId);
+  booking.setPsngrName(psngrName);
+  booking = bookingRepository.save(booking);
+     return booking;
+ }
+ 
+ /**
+  * GET /delete  --> Delete a booking from the database.
+  */
+ @RequestMapping("/delete")
+ public String delete(@RequestParam Long bookingId) {
+  bookingRepository.delete(bookingId);
+     return "booking #"+bookingId+" deleted successfully";
+ }
+}
+ Creating New Record:
+ /booking/create?psngrName=Dinesh&departure=Noida&destination=Pune create a new booking with an auto-generated.
+
+
+ spring boot security
+--------------------------
+-> Spring Boot applications are spring bases web applications.So,it is secure by default with basic authentication 
+   on all HTTP endpoints. A rich set of Endpoints are available for develop a secure Spring Boot application.
+   
+ steps
+---------
+-> first add spring secirity depenedency in pom.xml.
+-> SpringSecurityConfig.java
+
+ @Configuration
+ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    // Authentication : set user/password details and mention the role
+ protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+ auth.inMemoryAuthentication().passwordEncoder(org.springframework.security.crypto.password.NoOpPasswordEncoder.getInstance())
+            .withUser("user").password("pass").roles("USER")
+            .and()
+            .withUser("admin").password("pass").roles("USER", "ADMIN");
+    }
+
+    // Authorization : mention which role can access which URL
+    protected void configure(HttpSecurity http) throws Exception {
+        http.httpBasic().and().authorizeRequests()
+            .antMatchers("/userlogin").hasRole("USER")
+            .antMatchers("/adminlogin").hasRole("ADMIN")
+            .and()
+            .csrf().disable().headers().frameOptions().disable();
+    }
+}
+
+ SpringJava4sController.java
+------------------------------------
+ @RestController
+ public class SpringJava4sController {
+
+    @RequestMapping("/userlogin")
+    public String userValidation() {
+        return "User: Successfully logged in!";
+
+    }
+
+    @RequestMapping("/adminlogin")
+    public String adminValidation() {
+        return "Admin: Successfully logged in!";
+
+    }
+
+ with database Aethentication
+---------------------------------
+
+@Configuration
+public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    @Autowired
+    private DataSource ds;
+
+    @Bean
+    @ConfigurationProperties("spring.datasource")
+    public DataSource ds() {
+        return DataSourceBuilder.create().build();
+    }
+
+    /* Spring Security Configurations Start */
+    @Autowired
+    public void configureAMBuilder(AuthenticationManagerBuilder auth) throws Exception {
+        auth.jdbcAuthentication().dataSource(ds)
+            .authoritiesByUsernameQuery("select email, role FROM USERS where email=?")
+            .usersByUsernameQuery("select email,userPassword, 1 FROM USERS where email=?");
+    }
+
+    @Override
+    protected void configure(HttpSecurity http) throws Exception {
+        http
+            .httpBasic()
+            .and()
+            .authorizeRequests()
+            .anyRequest().authenticated();
+        http.csrf().disable();
+    }
+
+ java4s.controller
+----------------------
+ @RestController
+public class SpringJava4sController {
+
+    @RequestMapping("/login")
+    public String userValidation() {
+        return "User: Successfully logged in!";
+    }
+}
+
+ YAML for Properties
+-------------------------
+-> Spring Boot support YAML for Properties
+–> An alternative to properties files.Provided by spring-boot-starters.
+   application.properties
+
+   database.host = localhost
+   database.user = admin
+
+ application.yml
+------------------
+  database:
+  host: localhost
+  user: admin
+
+-> YAML is convenient for hierarchical configuration data
+–> Spring Boot properties are organized in groups
+–> Examples: server, database, etc.
+
+ Spring Boot can control the logging level
+----------------------------------------------------
+-> logging.level.org.springframework=DEBUG
+   logging.level.com.acme.your.code=INFO
+
+  if you want to change a version to tomcat 8, 
+--------------------------------------------------------
+-> please add the below code in pom.xml
+   <properties>
+   <tomcat.version>8.0</tomcat.version>
+   </properties>
+
+
+ Microservices
+--------------------
+ What is a microservices architecture.
+-----------------------------------------
+-> Microservices architecture allows to avoid monolith application for large system. It provide loose coupling between 
+   collaborating processes which running independently in different environments with tight cohesion.
+
+ advantages
+-----------------
+-> Smaller code base is easy to maintain.
+-> Independent deployment
+-> Deployment time reduce
+
+ Spring Cloud annotations and configuration
+------------------------------------------------------
+ @EnableEurekaServer
+-------------------------
+-> annotation allows us to register microservices to the spring cloud.
+
+ @EnableDiscoveryClient 
+------------------------------
+-> annotation also allows us to query Discovery server to find miroservices.
+-> Spring provide smart RestTemplate for service discovery and load balancing by 
+   using @LoadBalanced annotation with RestTemplate instance.
+
+ How do you access a RESTful microservice
+---------------------------------------------
+-> Load Balanced RestTemplate
+-> If there are multiple RestTemplate you get the right one.
+-> It can used to access multiple microservices
+
+  What is Eureka
+---------------------
+-> Eureka is the Netflix Service Discovery Server and Client. Eureka Server is using Spring Cloud.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

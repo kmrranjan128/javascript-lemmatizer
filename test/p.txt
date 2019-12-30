@@ -1,0 +1,550 @@
+
+ 
+ How to find duplicate element in arraylist.
+-----------------------------------------------
+
+ public class ArrayList {
+
+ public static void main(string[] args) {
+
+ ArrayList<string> names=new ArrayList<>();
+
+ names.add("navin");
+ names.add("mohan");
+ names.add("mohan");
+
+ set<string> s= new Hashset<>();
+
+ for(string name:names)
+ {
+ if(S.add(name) ==false)
+ s.o.p.ln (name);
+ }
+}
+
+  How to iterate hashmap.
+--------------------------------------
+-> public class Map {
+
+    public static void main(String a[]){
+
+    HashMap<String, String> hm = new HashMap<String, String>();
+        
+    hm.put( 1,"one");
+
+    hm.put( 2, "two");
+
+    hm.put( 3,"THree");
+
+    hm.put( null,null); //HashMap can have one null key and multiple null values
+
+    hm.put( 4,null);
+
+   System.out.println ("Size Of The Map : "+ hm.size());
+
+   System.out.println("-----------------");    //Displaying the elements
+         
+   System.out.println("The elements are :");
+
+   Set set = hm.keySet();
+         
+   Iterator it = set.iterator();
+         
+    while (it.hasNext()) 
+    {
+    Object obj = it.next();
+             
+    System.out.println(key+"  : "+ hm.get(obj));
+
+    }
+    System.out.println("-----------------");
+         
+        //Checking the map for a particular key/value
+         
+        System.out.println("Does this map has 1 as key? "+hm.containsKey("1"));
+         
+        System.out.println("Does this map has two as value? "+hm.containsValue(two));
+         
+        System.out.println("-----------------");
+
+     System.out.println("Value removed from the map : "+map.remove("2"));
+    }    
+}
+
+ output : -
+
+ Size Of The Map : 5
+—————–-----------------
+ The elements are :
+
+ null : null
+  1 : one
+  2 : two
+  3 : three
+  4 : null
+ —————–
+ Does this map has 1 as key? true
+ Does this map has two as value? true
+ —————–
+ Value removed from the map : two
+ 
+
+
+
+
+
+
+
+
+
+
+
+    for(Integer i: hm.keySet()){
+    System.out.println("Iterating using keyset for each"+ "key"+i " value"+ "+hm.get(i));
+        }
+    }
+ }
+ 
+  method overloading.
+---------------------------
+ 
+  class Addition
+ {
+ public void sum(int a, int b)
+ {
+ System.out.println(a+b);
+ }
+ public void sum(float a, float b)
+ {
+ System.out.println(a+b);
+ }
+ public static void main(String args[])
+ {
+ Addition obj=new Addition();
+ obj.sum(10, 20);
+ obj.sum(10.05, 15.20);
+ }
+ }     output- 30
+               25.25
+
+  
+ method overriding.
+----------------------
+
+ class Animal {
+ {  
+ public void eat()
+ {
+ System.out.println("Animal is eating");
+ }  
+ }  
+ class Dog extends Animal
+ {  
+ public void eat()
+ {
+ System.out.println("Dog is eating");
+ }
+  }
+ public static void main(String args[])
+ {  
+ Animal animal1 = new Animal();  
+        animal1.eat();          // animal is eating
+
+ Animal animal2 = new Dog();
+        animal2.eat();         // dog is eating
+
+ }
+ } 
+  
+ how to reverse reverse a string.
+-----------------------------------
+->     class Reverse {   
+          
+       public static void main(String[] args) {       length() -> total number of character.
+
+       String name = "capgemini" ;    
+         
+       int leng = name.length();                       charAt() -> which index position character are exist.
+      
+       String rev ="" ;
+ 
+      for(int i = leng- 1; i>= 0; i--)
+ {
+       rev = rev+name.charAt(i);
+ }
+
+    System.out.print("Reverse of "+name+" is "+rev);    
+}
+}
+  w.a.p palindrome number
+--------------------------------
+
+ public class palindrome {
+       public static void main(String[] args) {
+                                    
+             Scanner sc=new Scanner(System.in);
+             System.out.println("Enter a string");
+             String str=sc.nextLine();
+             int l=str.length();
+             String reverse="";
+             for(int i=l-1;i>=0;i--) { 
+                   reverse = reverse + str.charAt(i);
+             }                             
+             if(str.equals(reverse)) {
+                   System.out.println("Palindrome");
+             }
+             else{
+                 System.out.println("Not palindrome");
+             }
+       }
+}
+
+
+  how to reverse a number.
+---------------------------------
+ 
+ class Reverse {
+
+ public static void main (string[] args) {
+
+ int no=5432, rem, rev=0;
+
+ while (no !=0) {
+ 
+ rem = no % 10;
+
+ rev = rev * 10 + rem ;
+
+ no=no/10;
+ }
+ s.o.p.ln(rev);
+ }
+  }
+
+ w.a.p to find the duplicate character and thier number of Occurrences Of Each Character In String :
+-----------------------------------------------------------------------------------------------------
+
+ eg. "java2ee" a=2, e=2.
+ 
+ class Duplicate {
+ 
+ static void duplicate (String str) {
+
+ HashMap<character,Integer> hm = new Hashmap<character,Integer>();
+ 
+ char[] charArray = str.toCharArray();
+
+ for(char c : charArray)
+ {
+ if(hm.contains(C))
+ {
+ hm.put(C,hm.get(C)+!);
+ {
+ else
+ {
+ hm.put(c,1);
+ }
+ }
+ Set<character> s = hm.keySet();
+
+ s.o.pln("Duplicate is " +str);
+
+ for(charcater c : s)
+ {
+ if(hm.get(C)>1)
+ {
+ s.o.pln ( c+""hm.get(C));
+ }
+}
+}
+public static void main(String[] args) {
+ {
+  duplicate("javaj2ee")
+ }
+  a =2 , e=2
+
+
+ w.a.p to find duplicate words and their number of occurence in a string.
+---------------------------------------------------------------------------
+
+ e.g here i am i am here friend.
+
+ friend repeted 1 times
+ here repeated 2 times
+ i repeated 2 times
+ am repeated 2 times
+
+ public class Duplicate {
+
+ public static void main(String[] args) {
+
+ s.o.p.ln ("enter the string");
+
+ Scanner sc = new Scaner(System.in);
+
+ String input = sc.nextLine();
+
+ String[] words = input.spilit("");
+
+ Map<String,Integer) hm = new HashMap<String,Integer>();
+
+ for(String str:words) {
+ 
+ if (hm.get(str)!=null) {
+
+ hm.put (str, hm.get(str)+1);
+ }
+  else {
+      
+      hm.put(str,1);
+  }
+ }
+ 
+
+ 
+ write a program to swap two numbers.
+---------------------------------------
+
+ public class Swap {
+
+ public static void main(String a[]){
+        int x = 10;
+        int y = 20;
+        System.out.println("Before swap:");
+        System.out.println("x value: "+x);
+        System.out.println("y value: "+y);
+        x = x+y;
+        y=x-y;
+        x=x-y;
+        System.out.println("After swap:");
+        System.out.println("x value: "+x);
+        System.out.println("y value: "+y);
+    }
+ }
+ output : Before swap:
+          x value: 10
+          y value: 20
+          After swap:
+          x value: 20
+          y value: 10
+
+how to sort arraylist in java
+-----------------------------------
+
+ class ArrayList {
+ public static void main(String args[]){
+
+ ArrayList al=new ArrayList();
+  al.add("Dinesh");
+  al.add("Sweetu");
+  al.add("Adesh");
+  al.add("Vinesh");
+
+  Collections.sort(al);
+  Iterator itr=al.iterator();
+
+  while(itr.hasNext()){
+  System.out.println(itr.next());
+ }
+ }
+ }
+
+
+
+
+
+ pattern programs.
+---------------------
+
+ class Star 
+ {
+ public static void main(String[] args)   
+ {
+ int i,j;
+
+ for(i=1; i<=6; i++)
+ {
+ for(j=1; j<i; j++)
+ {
+ System.out.print("*");
+ }
+ System.out.println();
+ }
+ }
+ }  output
+
+   *
+   * *
+   * * *
+   * * * * 
+   * * * * *
+
+ second pattern program
+---------------------------
+
+ class Star 
+ {
+ public static void main(String[] args) 
+ {
+ int i, j;
+ for(i=5;i>=1;i--)
+ {
+ for(j=1;j<=i;j++)
+ {
+ System.out.print("*");
+ }
+ System.out.println();
+ }
+ }
+  }
+    output
+
+    * * * * *
+    * * * *
+    * * *
+    * *
+    *
+
+ pattern program third
+--------------------------
+
+ class Star 
+ {
+ public static void main(String[] args) 
+ {
+int i, j, k;
+for(i=5;i>=1;i--)
+{
+for(j=5;j>i;j--)
+{
+System.out.print(" ");
+}
+for(k=1;k<=i;k++)
+{
+System.out.print("*");
+}
+System.out.println();
+}
+}
+}  output
+
+      * * * * *
+        * * * * 
+          * * * 
+            * * 
+              *
+    
+
+
+
+create deadlock between two threads.
+------------------------------------------
+
+public class MyDeadlock {
+ 
+    String str1 = "Java";
+    String str2 = "UNIX";
+     
+    Thread trd1 = new Thread("My Thread 1"){
+        public void run(){
+            while(true){
+                synchronized(str1){
+                    synchronized(str2){
+                        System.out.println(str1 + str2);
+                    }
+                }
+            }
+        }
+    };
+     
+    Thread trd2 = new Thread("My Thread 2"){
+        public void run(){
+            while(true){
+                synchronized(str2){
+                    synchronized(str1){
+                        System.out.println(str2 + str1);
+                    }
+                }
+            }
+        }
+    };
+     
+    public static void main(String a[]){
+        MyDeadlock mdl = new MyDeadlock();
+        mdl.trd1.start();
+        mdl.trd2.start();
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

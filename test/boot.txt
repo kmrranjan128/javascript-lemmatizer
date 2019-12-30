@@ -1,0 +1,341 @@
+
+ spring boot
+-------------------
+-> The problem with Spring and Spring MVC is the amount of configuration that is needed.
+-> First of all Spring Boot is not a framework, it is a easiest way to create spring based application with 
+   minimal or zero configurations. 
+-> It follows convention over configuration.
+-> to create real-time spring applications. It includes writing so many XML configurations, server setting, 
+   adding dependencies…etc.
+-> But with spring Boot we can avoid all these boilerplate code, writing XML configurations and annotations. 
+-> We can create a real-time production ready applications with in minutes. Spring Boot comes with inbuilt 
+   apache tomcat, or jetty server. 
+
+ Advantage.
+-----------------
+-> main advantage of Spring Boot is, we can create spring based applications easily in very less time, without
+  need of any XML configurations.
+-> It reduces lots of development time and increases productivity of an application.
+-> It avoids writing lots of boilerplate Code, Annotations and XML Configuration.
+-> It provides a lot of default configurations which help you to create Spring application faster.
+-> It comes with embedded http server like tomcat or jetty server. to develop and test our web applications 
+ very easily.
+-> It is very easy to integrate Spring Boot Application with its Spring Ecosystem like Spring JDBC, Spring ORM,
+   Spring Data, Spring Security etc.
+-> t provides CLI (Command Line Interface) tool to develop and test Spring Boot (Java or Groovy) Applications 
+  from command prompt very easily and quickly.
+-> It provides lots of plugins to develop and test Spring Boot Applications very easily using Build Tools like 
+  Maven and Gradle
+
+ disadvantage.
+-----------------
+-> it is very tough and time consuming process to convert existing or legacy Spring Framework projects into 
+  Spring Boot Applications.
+
+ What is the use of @SpringBootApplication annotation.
+-------------------------------------------------------------
+-> @SpringBootApplication annotation was introduced in Spring Boot 1.2.0. This annotation is equivalent to 
+  declaring these 3 annotations.
+   @Configuration
+   @EnableAutoConfiguration
+   @ComponentScan
+-> For example:
+-> When you create your main class with Spring boot, you have to use below annotations before Spring boot 1.2.0.
+   @Configuration
+   @EnableAutoConfiguration
+   @ComponentScan
+   public class SpringBootHelloWorldApplication {
+    ...
+    }
+-> @SpringBootApplication annotation, means this is the starting point for our Spring Boot application.
+-> SpringApplication.run(class name.class, args); it is the boot strapping of the application.
+-> for every spring boot application we have to create a main class and that need to be annotate with 
+  @SpringBootApplication and bootstrap it.
+
+@Autoconfiguration :
+---------------------
+Autoconfiguration is enabled with @EnableAutoConfiguration annotation. Spring boot auto configuration scans the
+ classpath, finds the libraries in the classpath and then attempt to guess the best configuration for them, and
+ finally configure all such beans.
+
+Auto-configuration tries to be as intelligent as possible and will back-away as you define more of your own 
+configuration.
+
+ what are the key component of spring boot :-
+-----------------------------------------------
+
+1.> spring boot CLI
+--------------------
+-> CLI stands for Command Line Interface, it is responsible for run and test Spring Boot applications from
+   command prompt. 
+-> You can also run Spring Web Applications from a command prompt.
+-> When you run Spring Boot applications using CLI, then it internally uses Spring Boot Starter and Spring Boot
+   AutoConfigurate components to resolve 
+   all dependencies and execute the application.
+ 
+2.> Spring Boot Starter.
+--------------------------------------
+-> Spring Boot provides a number of Starters that make easy to manage dependencies for your project. which you 
+   can include in your pom.xml.
+   e.g- spring-boot-starter-web, spring-boot-starter-data-rest, spring-boot-starter-hateoas, spring-boot-starter
+    -jdbc, spring-boot-starter-tomcat etc.
+-> For example: Let’s say you want to work Spring MVC application, you can simply include “spring–boot–starter
+   –web” as dependency in pom.xml .
+-> For example, if you want to get started using Spring and JPA for database access, just include the 
+   spring-boot-starter-data-jpa dependency 
+   in your project, and you are good to go.
+-> If you want to develop a web application or an application to expose restful services, Spring Boot Start Web
+   is the starter to pick.
+-> Dependency for Spring Boot Starter Web
+   <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-starter-web</artifactId>
+   </dependency>
+ 
+3.> spring-boot-starter-parent
+----------------------------------------
+-> The spring-boot-starter-parent is a special starter that makes Maven or Gradle dependency-management easier 
+  by adding jars to your classpath.
+
+ 4.> spring-boot-starter-web.
+--------------------------------------
+-> This starter will add Tomcat and Spring MVC dependency to our application and its default configuration.
+
+5.>.Spring Boot AutoConfigurator 
+--------------------------------------
+-> It also reduces the number of annotations. For example.
+
+   @SpringBootAnnotation = @Configuration + @ComponentScan + @EnableAutoConfiguration.
+
+6.> Spring Boot Actuator.
+--------------------------------
+-> Spring boot actuator is one of the most important features of Spring boot. 
+-> It is used to access current state of running application in production environment.
+
+   How can you run Spring boot application on custom port.
+-------------------------------------------------------------
+-> You can simply put server.port properties in application.properties.
+      
+    For example:server.port=8050
+
+  How can you configure logging in Spring boot application.
+-----------------------------------------------------------------
+-> Spring Boot comes with support for Java Util Logging, Log4J2 and Logback and it will be pre-configured as 
+  Console output.
+   Hence,You can simply specify logging.level in application.properties.
+   
+    logging.level.spring.framework=Debug.
+
+-> It will set Spring framework logs to debug level.
+   Let’s say you want to put logs to the file.You can specify logger.file in application.properties.
+  
+   logging.file=${java.io.tmpdir}/application.log.
+
+  How to write custom log configuration in spring boot.
+---------------------------------------------------------
+-> You can force Spring Boot to use a particular logging system using the 
+ org.springframework.boot.logging.LoggingSystem system property.
+-> You can also disable Spring Boot’s logging configuration entirely by using a value of none.
+     
+     logging.level.org.springframework=DEBUG.
+     logging.level.com.acme.your.code=INFO.
+
+  How spring boot handles error in application.
+--------------------------------------------------
+-> Spring Boot provides an error mapping by default that handles all errors in a sensible way and it is register
+  -ed as a ‘global’ error page in the servlet container.
+
+  19. How to configure datasource using Spring boot.
+-------------------------------------------------------
+->  se either spring-boot-starter-jdbc or spring-boot-starterdata-jpa and include a JDBC driver on classpath.
+-> • Declare properties.
+
+   spring.datasource.url=jdbc:mysql://localhost/test
+   spring.datasource.username=dbuser
+   spring.datasource.password=dbpass
+   spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+
+-> Spring Boot will create a DataSource with properties set
+–> Will even use a connection pool if the library is found on the classpath.
+
+   What is YAML.
+-------------------
+-> it stands for Yaml Ain’t a Markup Language.
+-> it is Alternative to .properties files.
+–> it Allows hierarchical configuration.
+-> Spring Boot support YAML for Properties.
+-> application.properties.
+   database.host = localhost
+   database.user = admin
+-> YAML is convenient for hierarchical configuration data
+–> Spring Boot properties are organized in groups
+–> Examples: server, database, etc
+
+  How do you change JDK version in spring boot.
+-------------------------------------------------
+-> Java 1.6 as the default compiler level.
+-> You can overwrite it by adding java.version property tag as shown below.
+   <properties>
+    <java.version>1.8</java.version>
+   </properties>
+
+  How do you run and stop spring boot executable jar.
+---------------------------------------------------------
+-> Open cmd or and use java -jar as shown below
+
+   $ java -jar myproject-0.0.1-SNAPSHOT.jar
+
+   To stop use ctrl+C
+
+  How to create an executable jar using spring boot.
+------------------------------------------------------
+-> Use mvn clean package to create executable jar file
+-> Add this below plugin to pom.xml.
+   <build>
+    <plugins>
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+    </plugins>
+  </build>
+
+ How To Implement Security For Spring Boot Application .
+-------------------------------------------------------------
+-> Implementation of Spring security in Spring boot application requires very little configuration. 
+-> You need to add spring-boot-starter-security starter in pom.xml.
+-> You need to create Spring config class which will extend WebSecurityConfigurerAdapter and override required 
+  method to achieve security in Spring boot application.
+
+<dependency>
+
+   <groupId>org.springframework.boot</groupId>
+
+   <artifactId>spring-boot-starter-security</artifactId>
+
+  </dependency>
+
+ How To Implement Spring Web Using Spring Boot.
+--------------------------------------------------------
+-> Web Application Convenience 
+-> Boot automatically configures
+-> A DispatcherServlet & ContextLoaderListener
+-> Spring MVC using same defaults as @EnableWebMvc
+-> Plus many useful extra features:
+-> Static resources served from classpath
+-> /static, /public, /resources or /META-INF/resources
+-> Templates served from /templates
+-> If Velocity, Freemarker, Thymeleaf, or Groovy on classpath
+-> Provides default /error mapping
+-> Easily overridden
+-> Default MessageSource for I18N
+
+ How To Configure Datasource Using Spring Boot.
+--------------------------------------------------
+-> Use either spring-boot-starter-jdbc or spring-boot-starterdata-jpa and include a JDBC driver on classpath
+
+   Declare properties:
+
+   spring.datasource.url=jdbc:mysql://localhost/test
+
+   spring.datasource.username=dbuser
+
+   spring.datasource.password=dbpass
+
+   spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+
+   Spring Boot will create a DataSource with properties set
+   Will even use a connection pool if the library is found on the classpath.
+
+ How Can You Override Default Properties In Spring Boot Project.
+-------------------------------------------------------------------------
+-> Spring boot provides a lot of properties which can be overridden by specifying them in 
+ application.properties.
+
+  For example: You want to specify prefix and suffix in Spring MVC applications. You can simply do it by 
+  putting below properties in application.properties.
+
+  spring.mvc.view.prefix: /WEB-INF/
+
+  spring.mvc.view.suffix: .jsp
+
+ What Is Name Of The Configuration File Which You Use In Spring Boot.
+---------------------------------------------------------------------------
+-> Configuration file used in Spring boot projects is application.properties. It is very important file as it 
+  is used to override all default configurations.
+
+ What Is Devtools In Spring Boot.
+-------------------------------------
+-> Spring boot comes with DevTools which is introduced to increase the productivity of developer. You don’t 
+   need to deploy your application every time 
+   you make the changes.Developer can simply reload the changes without restart of the server. It avoids pain 
+  of deploying application every time when 
+   you make any change. This module will be disabled in production environment.
+
+ How can I enable auto reload of my application with Spring Boot.
+----------------------------------------------------------------------
+-> Use Spring Boot Developer Tools. Adding Spring Boot Developer Tools to your project is very simple.
+-> Add this dependency to your Spring Boot Project pom.xml
+
+   <dependency>
+    <groupId>org.springframework.boot</groupId>
+    <artifactId>spring-boot-devtools</artifactId>
+    <scope>runtime</scope>
+  </dependency>
+  Restart the application. You are all Set.
+
+ Have You Used Activemq In Spring Boot Application. Do You Know How To Configure External Active mq.
+------------------------------------------------------------------------------------------------------
+-> Spring Boot comes with embedded ActiveMQ. We need to use “spring–boot–starter–activemq” dependency in 
+   pom.xml and it will take care of all 
+   defaults and will configure ActiveMQ in the project.
+-> If you want to configure external ActiveMQ then you need to just put “spring.activemq.broker-url” in 
+   application.properties and provide the URL of external ActiveMQ.
+
+ How does Spring enable creating production ready applications in quick time .
+----------------------------------------------------------------------------------------------
+-> Spring Boot aims to enable production ready applications in quick time. Spring Boot provides a few non 
+  functional features out of the box like caching, 
+   logging, monitoring and embedded servers.
+
+ spring-boot-starter-actuator - To use advanced features like monitoring & tracing to your application out of 
+  the box.
+ spring-boot-starter-undertow, spring-boot-starter-jetty, spring-boot-starter-tomcat - To pick your specific 
+ choice of Embedded Servlet Container.
+ spring-boot-starter-logging - For Logging using logback.
+ spring-boot-starter-cache - Enabling Spring Framework’s caching support.
+
+ What is the difference between RequestMapping and GetMapping.
+-------------------------------------------------------------------------
+-> RequestMapping is generic - you can use with GET, POST, PUT or any of the other request methods using the 
+  method attribute on the annotation.
+-> GetMapping is specific to GET request method. It’s just an extension of RequestMapping to improve clarity.
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,59 @@
+
+ Hi good morning ,
+
+ -> my name is mohan gandhi. i am basically from patna bihar.
+ -> i completed mca from pondichery central university last 2016.
+ -> i have 3 plus years of experience in open source technolgy & distributed world like java, j2ee, spring, hibernate, restfull webservices and 
+    some design patterns like singletone, factory, dao.
+ -> i have ability to learn new technology with minimum time period.
+ -> i am permannet employee of softmind informatics pvt ltd he is located in hyderbad as a position of software engineer.
+ -> i 
+ -> apart from my experience i involved in two projects my current project is epds system (enterprise provider database system). it is health insurance related project.
+
+ project objective :-
+-------------------------
+
+-> main objective of this project is to implement a computer based health insurance informarion.
+-> this system will help the how user to get the benefit of agewise, castism wise, rural area wise, urban area wise .
+
+ role and responsibility.
+-----------------------------
+-> apart from my project objective we are taking the buisness requirement or change request from the client.
+-> and by these buisness requirement we are preparing data mapping sheet and and we the scheema file.and by using xsd file we generate wsdl. 
+-> i mainly involved in the design aspect and learn these thing with the help of my team lead and proj manager.  
+
+ Apart from my project role & responsbility i am working as a provider side in provider side 3 layers.
+
+ 1.> service/ buisness layer.
+ 2.> presentation layer.
+ 3.> integration layer.
+
+-> i involved in buisness layer of the project by writting service class, controller class, and dao class.
+
+ how to handle exception in your project.
+-----------------------------------------------
+-> in my project having 3 layers service layer, presentation layer, integration layer.
+-> we handle user defined exception based on the buisness requirement we have cateogarised user defined exception into diff type of exception like 
+   buisness exception, system exception, service exception.
+-> user send the req like first name, last name, dob, mob no, etc. if the data is not valid then we are throwing the some user defined exception .
+   this data is not sending the process layer here we are handle the exception. 
+
+ version.
+-------------
+  java- 1.7.
+ spring- 4.x.
+hibernate- 3.6.
+ restfull- 2.x.
+ maven - 3.5.
+ jnuit - 4.1.
+ svn - 1.5.2.
+ log 4j- 1.2.
+
+
+ 
+ 
+
+
+
+ 
+ 

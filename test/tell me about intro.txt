@@ -1,16 +1,21 @@
  
  tell me about yourself
 ----------------------------
--> my name is supriya kumari.i completed MCA from NIT jamshedpur.
+-> my name is Kumar Ranjan.i completed MCA from Pondichery university.
 -> cureently i am working in cognizant TCO campus thoraipakam as a position of Associate.
+
 -> i have around 3 years of experience in open-source technology & distributed world
    like java,j2EE,Spring,hibernate and Restful webservices.
+
 -> i have an experience in development as well production support and involved in small 
    small enhancement as per our buisness requirement & fixing defects like SIT and UAT.
--> apart from technical work experience i inlvolved in two projects one is Banking domain
+
+-> apart from technical work experience i inlvolved in two domain one is Banking domain
    and another is healthcare domain.
--> my current project is from Banking domain which is SMART and client is American Express
-   & my role is application developer.
+
+-> my current project is from healthcare  domain which is Retail Medical Store And Healthcare. 
+and client is  Cromwell Hospital, U K.
+  
 -> main objective of this project is to provide reporting through analysis of the data which
    we are gathering based on country,region and language.After that the detailed analyzed report 
    will generated for that locale.
@@ -20,4 +25,4 @@
 -> in my projects my role & responsbilities is i Involved in Client interaction on regular basis
    to understand the Business requirement or chnage request of the Client.
 -> i mainly involved in analysis,design aspect coding modification and implementation of user requirements 
-   in the applicationlearn and learn these thing with the help of my team lead and proj manager.  
+   in the application and learn these thing with the help of my team lead and proj manager.  

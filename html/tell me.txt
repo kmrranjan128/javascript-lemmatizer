@@ -1,0 +1,191 @@
+
+Singtel Optus Pty Limited - Optus mostly own network infrastructure, It provides services both directly
+to end users and also acts as a wholesaler to other service providers such as Exetel and Amaysim.
+Through its Optus 'Yes' brand, it provides broadband, and wireless internet services. Other wholesale
+services include Satellite and 4G and 5G Mobile.
+
+
+ tell me about yourself
+----------------------------
+-> my name is Kumar Ranjan.i have completed MCA from pondicherry central university.
+-> cureently i am working in Nokia as a position of Sr software developer.
+-> i have experince in healthcare insurence domain,banking domain and telecommunication.
+-> i have around 4 years of experience in open-source technology & distributed world
+   like java,j2EE, Spring, spring boot hibernate and Restful webservices and microservices
+   and i have recently cross trained in angular8.
+-> i have an experience in development as well production support and involved in small 
+   small enhancement as per our the buisness requirement.and fixing defetcs in SIT and UAT.
+   
+   
+-> apart from technical work experience i inlvolved in 3 projects and my current project is 
+   Optus and client is Singtel Optus .it is telecommunication
+   project and my role is application developer.
+
+ Role & Responsbilities:-
+-----------------------------
+-> in my current projects my role & responsbilities is i Involved in Client interaction on 
+   regular basis to understand the Business requirement or chnage request of the Client.
+-> i mainly involved in analysis,design aspect coding modification and implementation of user
+   requirements in the application and learn these thing with the help of my team lead.
+-> i have Developed business components and configured as beans using Spring DI.
+-> 1 have Developed persistence logic in DAO layer and developed DAO & DAO Implementation classes 
+   using HibernateTemplate from SPRING with HIBERNATE API to fetch and mainupulate the data from Database.
+-> i have involved in development of buisness,transaction and security related logic in service layer 
+-> i have Developed annotation based controllers by using Spring MVC framework to handles
+   http methods and contains endpoints.
+-> i have published and conusmes RestFul webservices for tranfering the data between different
+   application using SPRING with REST API.
+-> i have wrote junit test cases using core mockito and powermockito for different different modules.
+-> i have managed Declartive transaction using spring AOP. 
+-> i have Handled exceptions using ThrowsAdvice in Spring AOP.
+
+ overview of Aetna banking application.
+-------------------------------------------
+-> Aetna is a one of the fastest growing health insurence domain company.they are selling 
+   self-insured plans to the small groups.due to high data volumes and other factors,aetna 
+   want to develop a new application named aetna banking application which is more effective.
+-> basically Aetna is providing the healthcare policies to the customers and ABA is managing 
+   the billing reports kind of activities for aetna & customers (policy holder).
+-> main purpose of this application is to provide health insurence to the customer and also 
+   update the status of customer renewal poliies.like(medical billing,patient engagement,
+   health records etc).
+-> it keeps the information of the cusomers,customers bank information,contract period and 
+   invoice related informaion.there are diff modules in this project as customer enrollment,
+   adding bank information,invoice generation,report generation and billing.
+
+-> currently under ABA we have six projects:
+   1> ABA - UI
+   2> ABA - Service
+   3> ABA - Batch
+   4> ABA - Notification Service
+   5> ABA - Reporting tool
+   6> ABA - Data migration.
+
+-> first five of them are developed by cognizant and the data migration is handled by infosys.
+-> there are three teams that handle the five projects.and each team have 7 members working
+   and all team are assigned with equal story points for every sprint release.
+
+ 1.> ABA batch.
+---------------------
+-> ABA batch is mainly used to perform bulk related operations on regular interval basis.
+   it is used for tranfering funds among different account by Aetna and also to generate different 
+   reports on given internal like every month,week or last buisness day of the month etc.
+-> to work with batch related task we are using spring batch.
+-> we have one major batch job that manage all transactions related task is NACHA process.
+-> Nacha process consists of so many steps some important and well known as -
+   1.> prenote transaction - it includes bank account validation for the customers.
+   2.> Invoice/payment plan - it is one time payment plan.it will run once for each customer on every months.
+       payment plan - it is for installment plan.
+   3.> Revenue Transaction - it will debit from AFA account to aetna revenue account.
+   4.> SAMP Transaction - it will debit from AFA to samp account.it will happened when claim comes.
+
+  2.> ABA service
+---------------------
+-> it is basically a web application. it has their own interactice UI designed by using angular6.
+-> through this web application we can manage all the functionlities like : 
+   1.> managing customers.
+   2.> managing customers contracts (agreement between company and plansponsor.it is for 12 months.
+   3.> managing customers bank informations
+   4.> managing customers bill package.
+
+ 1.> managing customers
+------------------------------
+-> As part of this feature,we can add cutomers to ABA and we can perform view and edit operations.
+-> to manage these operations,we have dedicated seperate controller to get the request and send back the response.
+-> And we have respective service,DTO, and DAO layer to manage buisness and database requirements.
+
+ 2.> managing customers contracts
+--------------------------------------
+-> here we are managing contract for customers.and customer can have more than one different contract.
+-> contract is nothing but one policy.each contract is having some tenure i.e start and end date.and 
+   contract end date is less than current date then that particular contracts has to be terminated.
+
+ 3.> managing customers bank informations
+------------------------------------------
+-> here we are managing customers bank account information.
+
+ 4.> managing customers bill package.
+--------------------------------------
+-> here we are managing bill package.there are different bill packages are that helps customer 
+   to select according to thier needs.
+-> plansponsor has some policy under which it provide the insurence to cover the members or group 
+   of members.each member has seperate bills and the collection of bill is called as bill package.
+
+ -> NACHA Process (payment gateway process) :- it is a batch process.it is group of transactions.
+   it contains four types of records:-
+   a> prenote - validate the bank account of a customer.
+   b> payment plan/invoice - it will pull whole premium amount from customer account to AFA account.
+      it is a daily activity as per the draft date.
+   c> revenue account - 
+   d> SAMP - it ia claim account.
+   e> DIP File - it is acknowledgement for success transaction.
+   f> RIP file - for fail transaction.again it will go for revise.it is a batch job.
+   g> Late fees- it will add the fine for the customers who has not paid the payment on time.
+
+   1> tranfer amount from customer bank account to aetna bank account.
+   2> tranfer amount from aetna bank account aetna revenue bank account.
+   3> tranfer amount from aetna bank account to aetna CRS bank account.
+   
+
+-> under ABA we have some important components such as -
+   EBS, SFDC - through which the customers and other customer related information coming into the ABA.
+   SFDC - it contains the customer information or customer claims.
+   EBS - enterprise billing system.it can have billing related information of customers.
+   SFDC + EBS = ABA
+
+
+-> the main purpose of this application is to pull & push the money between the bank accounts.
+-> pulling money from customer bank account to aetna bank account.for this purpose,the customers
+   bank details like customer name,PSUID,control number,and bank details like account number
+   routing number details are taken from the SFDC(it contains customer information and customer claims).
+
+-> All the details including the invoice due amount and all the invoice details are given to EBS.
+   EBS(enterprise billing system) it contains billing related information.
+   it has two reports :-
+   1> Triad report - BP details (BP Number,PSUID, Control Number).
+   2> LL Report - invoice details (Invoice Number, Invoice amount,BP NUMBER,PSUID,Control number).
+-> invoice amount is calculated and due date is given every month for the customers.due date is different
+   from the draft date.
+-> draft date is the date when the transaction is actually drafted and details are sent to the CITI bank 
+   to process the transaction using a NACHA file which has a certain format and is sent as per the schedule
+   to the bank.it is uploaded on one of our servers and CITI would hit the servers and access it.
+
+
+ terminology
+---------------
+-> termination date - date on which the contract of the customer should be terminated and to be active the
+   customer needs to go ahead and renew the policy.
+-> contract period - the period in which a policy of a customer ia active.
+-> constent form - forms stored in the fileNet and contain information of the customer and the bank details.
+-> PSUID - plan sponsor uniqeid.
+-> control number - number that is given to a group of people coming under one criterion.
+
+ Project Architecture
+====================
+MVC with four-tier architecture consisting of:
+	1) View Layer [Spring MVC]
+
+	2) Controller Layer [handles http methods and contains endpoints]
+
+	3) Service Layer [business classes]
+		-business logic
+		-Composition and Decomposition of business objects
+		-Security
+
+	4) Model Layer [Spring JDBC | Spring HIBERNATE | Spring JPA | Spring DATA]
+		-Data classes / POJOs
+		-Dao Interfaces
+		-Dao Implementation classes
+
+
+   
+
+  
+
+
+
+
+
+
+
+

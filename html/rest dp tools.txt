@@ -1,0 +1,338 @@
+
+ Design pattern
+--------------------
+
+ Singleton design pattern.
+-------------------------------------
+-> it is a s/w dp. it is a creational dp. it comes gang of 4 dp. means deal with the composition of classes & objects.
+-> if any java class which allow to create only one obj in whole application. such type of classes is called singleton classes.
+
+ To make a singleton class in following situations.
+------------------------------------------------------------
+-> if a class is not having any state.
+-> if a class has some state, but the state is read only in nature.
+-> if the requirement is same then instead of creating a separate obj for every person. we will create only one object and we can share that obj for every 
+   required person. we can achieve this by using singleton classes.
+
+ Advantages
+---------------
+-> performance of the application will be improved.
+-> memory utilization will be improved.
+-> singleton mainly uses in multithreaded enviroment and and database application. it is also using in logging, caching etc.
+
+ How to make a class as singleton
+-------------------------------------------
+-> declare a private static refrence variable to hold current class obj.
+-> declare all the constructor as private becoz other classes cannot create an obj of a singleton class.
+-> declare a static factory method becoz after declare the constructor as private no one from outside the class call the constructor to create the obj.
+-> declare a synchronized block with double checking to avoid multithreading issue.
+  
+ public class Singleton {
+   public static Singleton singleton;
+    private Singleton(){}
+     public static Singleton getInstance()
+    {
+     if(null==singleton)
+    {
+     Singleton= new singletone();
+}
+return singletone;
+}
+}
+-> if our application is a desktop/standalone application, then there is no need to make session factory obj as a singleton becoz only one user can access
+   the application at a time.
+-> if our application is web application then there is need to make session factory obj as a singleton. becoz at a time multiple clients can send a request 
+   to the server.if multiple session factory obj are created, then the burden on the server will be increased. so we should make session factory obj as a singleton.
+-> by default session factory obj of hibernate is not a singleton. it is the programmer responsbility to make it as a singleton.
+-> to create a session factory obj as a singleton, we need to create a separate utility(helper) class and we need to define factory() in that class, to return
+   the session factory object.
+-> all the other classes in the project will get a single session factory object by calling the factory() method.
+
+ Factory Design Pattern
+-----------------------------
+-> we want to create multiple obj for a class & the obj creation process is lenghty. to overcome this problem factory method comes into picture.
+-> bu using class name if we are calling a method and that method returns the same class obj such type of method is called factory method.
+-> main purpose is code resusability (crates a program once and execute it any number of times).
+-> security purpose we can use factory method dp.
+-> main purpose is to create an obj without using new operator.
+    eg. Runtime r= Runtime.getRuntime(); // getRuntime is a factory method.
+-> its provide abstraction on object creation process.
+-> factory method creates object through inheritance.
+-> the best eg of in jdbc application, DriverManager.getConnection() method is nothing but factory pattern logic.
+    Connection con=DriverManager.getConnection("jdbc:odbc:<username>",<password>");
+
+ DAO (data access object)
+---------------------------------
+-> it is a s/w design pattern. it is the best solution for recursive problem.
+-> in a real time project, if we mix buisness logic and persistence logic, then we may face the following problems.
+   1> if any changes are needed to the persistence logic, then we need to modify the multiple buisness classes.
+   2> we cannot test buisness logic seperetly and persistence logic seperetly.
+-> As the solution for the above problems, Dao dp is introduced.
+-> A Dao dp says that, it separates the persistency logic from buisness logic. it only contains persistency logic. and it defines persistence logic in separate class.
+-> for resusability and flexibility purpose we can separate one logic from another logic.
+-> we can write any DAO as part of our project.
+-> by applying DAO design pattern we will get the following benefits.
+   1.> multiple buisness logic can call a single persistence logic class. so we will get resuability.
+   2.> we can modify persistence logic independently, by without modifying buisness logic this is called loose coupling between buisness logic and persistence logic.
+   3.> we can test buisness logic and persistence logic both independentely.
+-> in realtime project, a DAo design pattern is created by implementing following three files.
+   1.> DAo interface
+   2.> DAO class
+   3.> DAO factory class.
+-> actual persistence logic will be defined in DAO persistence class.
+-> if a buisness class wants to call the methods of a DAO class, then a buisness class should know DAO class methods.
+-> in real time we prepare a DAO interface with a list of methods in DAO class and that DAO interface will be sent to buisness classes.
+-> in order to return a DAO class obj to the buisness classes, we create a DAO factory.
+
+ Ex. DAO interface
+-------------------------
+ public interface BookDAO {
+ void saveBook(Book b);
+  Book readBook(int bookID);
+ }
+
+ DAO class
+--------------
+ public class BookDAOImpl implements BookDAO {
+ @override
+  public void saveBook(Book b)
+ {
+  // logic
+ }
+ @override
+ public Book readBook(int bookID)
+{
+ // logic
+ }
+ @override
+ public Book readBook(int bookID)
+ {
+  //logic
+ }
+ }
+ DAO Factory class
+---------------------
+ public class BookDAOFactory {
+ public static BookDAO getInstance()
+ {
+  return new BookDAOImpl();
+ }
+ }
+ 
+
+ Decoraror Design Pattern
+--------------------------------------
+-> it is a structural s/w design pattern. it is widely used wrapper dp.
+-> if u want to add some common addition functionalities to an object at runtime without effecting the other obj is called decorator dp.
+-> eg ice cream is the obj which i already prepared and consider as a root/base obj.
+-> as requested by the customer we might need to add some additional toppings on it like dry/fruits or honey.important point is only for the icecream that the
+   customer requested without effecting other icecreams these addional functionalities should be added.
+-> you can consider these additions/toppings as additional responsbilities/functionalities added by decorater dp.
+
+ WebServices
+--------------------------
+ 
+ diff between soap and rest
+-------------------------------------
+-> we can develop a webservices in two ways one is soap based and another is restfull webservices.
+
+ soap webservices
+--------------------------
+-> in soap webservices transfering the data from consumer to provider and provider to consumer in the form of only xml.
+-> xml is a heavy weight format compare to json, so when we are tranfering the data in the form of xml it will take more time to rich the destination. so 
+   performance will be low.
+-> soap webservices are more secure compare to rest becoz its provide both application level security & server level security also.
+-> soap webservices follow soa (service oriented architecture).
+-> soap webservices are not depending the url concepts.
+-> soap requires more bandwidth resource than rest.
+-> its not support caching mechanism.
+-> SOAP is a protocol or a set of standards.
+-> SOAP cannot use REST because it itself is a protocol.
+-> SOAP is an XML-based protocol. The biggest advantage of using the SOAP Web Service is its own security.
+-> SOAP provides an envelope to send a web services messages over the Internet, using the HTTP protocol. The messages are generally in XML format.
+-> every application serving SOAP requests, has a WSDL file. WSDL is an XML, and it stands for Web Service Description Language. 
+   WSDL describes all the methods available in the web service, along with the request and response types. It describes the contract between service and client.
+-> If we look at the current software industry, you will find that, SOAP is being used in the enterprise applications, generally in the legacy code. 
+   Today the world is moving fast towards the RESTful Web Services.
+
+ Restful WebServices
+----------------------------
+-> in restful webservices tranfering the data from client to server and server to client in the form of xml, json, html, plain text, view etc.
+-> json is very lightweight format data compare to xml. so when we are tranfering the data in the form of json it will take very less time to rich the 
+   destination. thats'why performance is high compare to soap.
+-> security purpose rest is not recomended to use becoz its only provide server level security not application level.
+-> restful webservices follow representational state transfer architecture.
+-> rest is depend on url concept.
+-> rest required less bandwidth and resource than soap.
+-> rest support caching mechanism.
+-> REST is a style of software architecture.
+-> REST can use SOAP because it is a concept and can use any protocol like HTTP, SOAP etc.
+
+ What is a Rest Api.
+------------------------------
+-> Rest is an architectural style of developing webservices.
+-> Rest is an easiest way to our expose complex buisness logic over the network with distributed technology with interporable manner(means language independent
+   and platform independent).
+-> Restful webservices will use http protocol.
+-> Restful webservices always accesing by client by using url concept.
+-> The REST stands for Representational State Transfer. REST is not a set of standards or rules, rather it is a style of software architecture.
+
+ Advantages of rest api
+------------------------------------
+-> it supports multiple technology for data transfer like html, xml, json etc.
+-> no contract between server and client so loosly couple implementation.
+-> restful is lightweight protocol. so its easy to consume from mobile device also.
+-> it is stateless communication. so it is easy to expose.
+
+ Principles of rest api
+-----------------------------
+ -> uniquness.
+ -> uniform interface.
+ -> resource.
+ -> representational.
+ -> stateless.
+ -> easy to access.
+ -> scalable.
+ -> interperoble.
+
+ Restful webservices uses in two scenarios.
+----------------------------------------------------
+ -> if clients require caching means you have limited bandwidth.
+ -> if u want everything to be stateless. stateless means every single request from client to server will be consider as a fresh request. becoz of these 
+    reason rest always prefer to choose http is stateless.
+
+ -> to develop restful webservices jaxrs-api is given some annotations 
+-------------------------------------------------------------------------
+
+ 1.> @Queryparam
+--------------------
+ -> @Queryparam are input value those values always we are sending from client to server along with URL. it is optional.
+ -> http://localhost:8080/AppName/products/searchproduct?pid=101.
+ -> order of query parameter are not impoartant.
+ -> Queryparam are name and value pairs. query parameters are starts with "?" in the url.
+ -> if multiple parametres are there then we can separate with & symbol.
+
+ 2.> @Pathparam
+------------------------
+ -> it is also input value those value associated with URL.
+ -> it is mandatory parametres. order of the parameter are very important in the URL. parameters are start with /.
+ -> In JAX-RS, you can use @PathParam annotation to extract the parameter from the request URI and map it to any method.
+ -> Suppose the client wants the information for student with the roll number 1 or 2 and not for all the students. In such situation, 
+   we can use the @PathParam to map this to a method which will return only the requested student's record.
+   @GET
+   @Produces(MediaType.APPLICATION_XML)
+   @Path("/{rollno}")
+   public Student getStudentWithRollNo(@PathParam("rollno")int rollNo)
+   {
+	Student student = studentService.getStudentWithRollNo(rollNo);
+	return student;
+   }
+-> The @PathParam annotation will map the rollno from the resource URI to the rollNo argument of the method.
+
+ 3.> @Matrixparam
+-----------------------
+-> it is also optional parameter. matrix parameter are also associated with URL path with same name.
+-> order of the matrix parameter are not important.
+-> the matrix parameter are name value pairs.
+-> the matrix parameter are starts with semicolumn and if multiple parameters are there then started with semicolumn.
+
+ 4.> @Formparam
+----------------------
+-> formparam is used to get the requests data from html form page. it works only for http method post.
+
+ 5.> @Contextparam
+--------------------------
+-> it is used to get servlet related obj.
+
+ 6.> @Cookieparam
+---------------------------
+-> cookieparam is name-value pairs.
+-> in general cookie is tranfering from server to client and client to server.
+-> the cookie obj is creating in server system but stores in client system.
+
+ what is root resource class.
+------------------------------------
+-> root resource class are accessing by client applications through url.eg transaction resource, balance resource.
+
+ HTTP METHODS
+----------------------
+
+ 1.> GET()  READ-> it is used to retrieve the data or read the data from the given server.
+                -> this operation is idempotent i.e.they can be applied multiple times without changing the result.
+
+ 2.> POST() CREATE-> it is used to insert a new resource and also can be used to update an existing resource.
+                     it is used to send the data to the server. eg customer information .it is used to create new resource. it is not idempotent method. 
+
+ 3.> PUT () UPDATE-> it is used to update a resource or insert a new resource if the resource is already exist. eg customer details. it is idempotent methods.
+                  -> It is generally used for updating resource. It must also be idempotent.
+
+ 4.> DELETE()-> it is use to delete the resource. it is idempotent. It removes the resources. The operations are idempotent.
+             -> i.e. they can get repeated without leading to different results.
+
+ 5. What do you mean by Idempotent and which HTTP methods are idempotent?
+------------------------------------------------------------------------------------
+-> Idempotent means result of multiple successful request will not change state of resource after initial application
+   For example : Delete is idempotent method because when you first time use delete, it will delete the resource (initial application) but after that, 
+   all other request will have no result because resource is already deleted. Get, put and delete are HTTP Idempotent methods.
+
+ What are differences between Post and Put Http methods?
+-----------------------------------------------------------------
+ POST :It is used for creating a new resource. It is not idempotent.
+ PUT : It is generally used for updating resource. It is idempotent.
+ Idempotent means result of multiple successful request will not change state of resource after initial application.
+
+-> the key diff between put and post is that put is idempotent while post is not idempotent. no matter how many times u send a put request, the result will be same.
+-> post is not an idempotent method making a post multiple times may result in multiple resource getting created on the server.  
+
+
+ JUNIT test case.
+------------------------
+ -> junit is a java library used for unit testing. when u worked on project then in your project lots of classes and in each class have some methods.
+ -> now when we build an application if u have make sure that you have test an application in two ways . first one is you build an complete application then u tested.
+    this is not flexiable to test an application.
+ -> we test the small individual units of an application (what is unit small parts of an application) in terms of java units means class & methods we will test
+    of behaviour. we can test by junit.
+
+ assertEquals() method
+----------------------------
+ -> it is a static method. assertEquals is take two parametres first one is actual 2nd one is expected.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+       
+
+
+
+
+
+
+
+
+

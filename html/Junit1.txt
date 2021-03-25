@@ -1,0 +1,141 @@
+Stub- In order to test application , we have to create fake object, which wil behave like real object .
+
+Q: What is Junit , why developer should use?
+Ans:-> JUnit is a unit testing framework for Java programming language. JUnit has been important in the development of test-driven development.
+Testing is the process of checking the functionality of an application to ensure it runs as per 
+requirements. 
+From Developer point of view , in order to test single entity (class or method)or functionality;Unit testing comes into picture at the developers’ level, which we usually  do using junit framework.
+To do this we have used Mockito and power-Mockito.
+Steps to wite test class
+
+-------------------
+
+
+Example:
+
+public TestClass{
+ str="this is for test";
+  public void test(){
+  sysout("this is for test"");
+ 
+ }
+ @Test
+ public void testMethod{
+ AssertEquals(str,TestClass.test());---> returns true
+ }
+}
+Important assert  method:
+-------------------------------
+->void assertEquals(boolean expected, boolean actual)->Checks that two objects are equal.
+
+->assertTrue(boolean condition)->Checks that a condition is true.
+
+_>AssertFalse(boolean condition)
+
+->AssertNull(Object object)-> returns true if two objects are null.
+->AssertNotNull(Object object)-returns true if two objects are ot null.
+
+important annotation in mockito as well as power mockito.
+---------------------
+@RunWith(Runner.class)-> mockitoJunit Runner, etc.
+@prepareForTest(Fuuly qulified classNames; :)
+@before-> annotation is use for initial setUp, like initialization of object, injecting dependencies etc.
+@Test
+@InjectMock: In mockito, we need to create the object of class to be tested and than insert it’s dependencies (mocked) to completely test the behavior.
+ To do this, we use @InjectMocks annotation.
+@Mock; Annotate to the dependencies; Ex: Service needs repository then in ServiceTest{ @Mock Repository}.
+---------------------------------------------
+how to mock static class ?
+
+Suppose there is connectionutility class which is static , and our service is using connectionUtilty in order to get connect with Db.
+public abstract class Connectionutility {
+ 
+   public Static final Connection getConnection() {
+   //logic get Object named dbObject;
+      return dbObject;
+   }
+   private Connectionutility();
+}
+ 
+public class Service(){
+
+ public connection dbConn(){
+ return Connectionutility.getConnection();
+ }
+ 
+}
+
+@RunWith(PowerMockRunner.class)
+@PrepareForTest( Connectionutility.class )--> 1)wite static class here
+public class CalculatorTest {
+ 
+   /** Unit under test. */
+   private Service service;
+ 
+   @Before 
+   public void setUp() {
+      service = new Service();
+ 
+      PowerMockito.mockStatic(Connectionutility.class);2) After use mockstatic to get mock object
+	  Connection conn=powerMockito.mock(Connection.class)- > as return type is Object which is  built-in , so mocked that also.
+      PowerMockito.when(Connectionutility.getConnection()).thenReturn(conn);3) use when then cookBook and set theinstruction as whenever there is any call like this 
+																					thenreturn specified object only.
+      
+   }
+ 
+   @Test 
+   public void getConnectiontest() {
+      assertEquals(conn,service.dbConn() );--> 4) Finally assert the object.
+     
+   }
+}
+
+
+-----------------------------------------------------------------------------------------------------
+How to write testcase for protected method?
+
+In java, protected method can be accessed within same packages or its subpackages. So ,we can create ame package undersrc/test/java, and start writing 
+like usually we write.
+-----------------------------------------------------------------------------------------------------
+how to write testcase for private method?
+If private method is called by public or protected method, then set the instruction before that private method gets happens .
+
+If we need to cover that private method , individually the use reflection API.
+
+Example:
+public class Employee {
+	
+private String getEmployeename(String name) {
+		
+		//some dummy logic
+		if(name.equals("ram")) {
+		return name;
+		}
+		
+		return "mohan";
+		
+	}
+}
+public class EmployeeTest {
+	
+	public static Employee employeeObj;
+	
+	@BeforeClass
+    public static void beforeClass() {
+		employeeObj = new Employee();
+    }
+	@Test
+	public void testPrivateSuccess() throws Exception {
+		String name = "mohan";
+ 
+		Method method = Employee.class.getDeclaredMethod("getEmployeename", String.class);
+		method.setAccessible(true);
+		String returnValue = (String) method.invoke(employeeObj, name);
+		assertEquals(returnValue, "mohan");
+		
+		//For case failure
+		assertEquals(returnValue, "Sohan");
+		
+	}
+}
+-----------------------------------------------------------------------------------------------------

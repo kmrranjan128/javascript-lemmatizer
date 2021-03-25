@@ -1,0 +1,387 @@
+
+ String related interview Qestions
+-----------------------------------------
+ why string is immutable
+--------------------------
+-> immutable means once you create a object we cannot change in the exsiting object.
+   if we are trying to perform any changes with those changes a new object will be created.
+   Immutable class are those whose objects cannot be changed after creation.
+
+-> If String is not immutable then it may cause multiple security issue.
+-> For example, while connecting to database,you provide username, password,Port and host name etc as String, 
+   if String is mutable, any hacker can change the reference value and cause security threats to application.
+-> If you simply assign a Value to String using double quotes, it is stored in area called SCP area.
+   and one string can be referenced by many reference variables.and if String Is mutable,then 
+   it will affect all reference variables.
+
+-> Because java uses the concept of string literal.Suppose there are 5 reference variables,all referes to one
+   object "sachin".If one reference variable changes the value of the object, it will be affected to all the 
+   reference variables.That's why string objects are immutable in java.
+-> synchronization - Immutable objects are by default thread safe.so you don’t need to put synchronisation for it 
+   and String instance can be safely shared among multiple threads.
+-> in terms of hasmap why String is a popular key in hash-map. Because String is final and it can be safely shared 
+   between multiple threads without any extra synchronization.
+-> The hashcode of a string is frequently used in Java. For example, in a HashMap or HashSet. Being immutable
+   guarantees that hashcode will always be the same so that it can be cashed without worrying about the changes.That means, there is no need 
+   to calculate hashcode every time it is used. This is more efficient.
+
+ why String is final
+-------------------------
+-> if someone override the functionality of string class that's a reason string class is marked as final so that 
+   nobody can override the behaviour of its method.
+
+ SCP (string constant pool)
+-----------------------------
+-> a specially designed memory area for the String literals/objs.
+-> instead of creating a separate obj for every requirement we can create only one obj and we can 
+   reuse same obj for every requirement.
+-> this approch improves performance and memory utilization. we can achieve this bu using "scp".
+-> When a string is created and if the string already exists in the pool, the reference of the existing string
+   will be returned, instead of creating a new object.
+-> when we create a string object string s1 = "hello".then an object will created in SCP area and s1 will be pointing to hello.
+   now if again we do string s2 = "hello". then another object will not be created but s2 will point to hello because jvm will 
+   first check if the same object is present in string pool or not.if not present then only a new one is created else not.
+
+-> Whenever an object is created, it’s always stored in the Heap space and stack memory contains the reference to it. 
+   Stack memory only contains local primitive variables and reference variables to objects in heap space.
+
+ How to create immutable class
+------------------------------------
+-> class is public & final.
+-> properties are private & final.
+-> must initialize the all the properties through constructor.
+-> setter are not allwed.
+-> getter are allowed.
+
+  How to create immutable class
+------------------------------------
+
+  final public class Employee {           //  class is public & final.
+ 
+  private final String panCardNumber;     //  properties are private & final.
+
+   public Employee(String pancardNumber) {   //  must initialize the all the properties through constructor.
+    
+   this.pancardNumber = pancardNumber;
+    }
+    public String getpancardNumber;        // only getter are allowed, setter are not allowed.
+       
+    return pancardNumber;
+ }
+  }
+
+  String.
+----------------
+-> if the content is fixed and wont change frequntly then we should go for String.
+-> it is an immutable. once String obj is creates its state cannot be changed eg.all wrapper classes.
+-> the obj is created as a String is stored in Scp.
+-> every immutable obj in java is threadsafe. String is also threadsafe & synchronized.
+-> performance wise it is very fast.
+
+ StringBuffer
+--------------------
+-> if the content will change frequntly but threadsafety is required then we should go for StringBuffer.
+-> the obj is created as a StringBuffer is stored in heap area.it is mutable.
+-> it is also threadsafe & synchronized.so at a time only one thread can we access.
+-> performance wise it is very slow.
+
+ StringBuilder
+--------------------
+-> if the content will change frequntly and threadsafety is not required then we should go for StringBuilder.
+-> the obj is created as a StringBuilder is stored in Heap area.it is mutable.
+-> it is not threadsafe. performance wise very fast.so at a time multiple thread can access.
+
+ 
+
+ object class method.
+------------------------
+-> tostring()
+->.equals()
+-> hashcode()
+-> clone()
+-> wait()
+-> notify()
+-> notifyall().
+-> finalize()
+-> getclass()
+
+ To String() method
+------------------------
+-> it is present in object class.
+-> To String() is used to represent of any obj in String format.
+-> the entire java whenever we are printing the obj refrence variable one method is called i.e toString() method.
+-> when we override toString(). it will give our own specified values.
+
+ Hascode()
+----------------
+-> it is present in obj class.
+-> for every obj jvm will generate a unique number which is nothing but hashcode.
+-> hashcode differs from one obj to another obj.
+-> hashcode is an integer which repersent internals address of an obj.
+-> hascode is used to store, remove, search in set and map collections (eg hashset, hashmap).
+-> the hashcode() returns a hash code value(an integer number).
+-> the hashcode() returns the same integer number,if two keys by calling equals() are same.
+-> but it is possible that two hashcode numbers can have diff or same keys.
+
+ .equals() method
+-----------------------
+-> it is present in obj class.
+-> .equals() method meant for content comparision.
+-> it is a method applicable only for obj refrence but not for primitive.
+-> we can override .equals() for content comparision.
+    
+    String s1=new String("durga");
+    String s2=new String("durga");
+    s.o.p.ln(s1==s2); false
+    s.o.p.ln(s1.equals(s2));true
+
+ == operator
+----------------------
+-> == operator meant for refrence or address comparision.
+-> it is an operator applicable for both both primitive and obj refrence.
+-> we cannot override == operator for content comparision in obj refrence.
+
+  clone() method
+-------------------
+-> it is the present in object class.
+-> the process of creating exactly duplicate object is called cloning.
+-> the main purpose of cloning is to maintain backup purpose.
+-> Java supports two type of cloning: – Deep and shallow cloning.
+
+ shallow cloning.
+--------------------
+-> The process of creating bitwise copy of an object is called Shallow Cloning.
+-> if primitive values are avialble then it copies that values to new obj and for refrence variable it copy 
+   refrence to the new obj.in shallow cloning if one obj perform any operation own obj then it reflects to another one.
+-> if the object contain only primitive variable then shallow cloning is the best choice. it is fast and also expensive less.
+-> ==operator performs a shallow comparission. 
+-> ==operator compares two objects refrences to check wheather they refer to the same instance or not.
+
+ Deep cloning.
+------------------
+-> The process of creating exactly independent duplicate object(including contained objects also) is 
+   called deep cloning.
+-> if the obj contain refrence variable then deep cloning is the best choice.it is slow and very expensive.
+-> the equals method can be considered to perform a deep comparision of the value of an object .
+-> equals method compares the characters inside a string object.
+
+
+
+ how to compare two String
+----------------------------------
+
+ public class Example
+ {
+ public static void main(String args[]){
+ String a = "AVATAR";
+ String b = "avatar";
+
+ if(a.equals(b)){
+            System.out.println("Both strings are equal.");
+        } else {
+            System.out.println("Both strings are not equal.");
+        }
+
+        if(a.equalsIgnoreCase(b)){
+            System.out.println("Both strings are equal.");
+        } else {
+            System.out.println("Both strings are not equal.");
+        }
+    }
+ }
+  output :  Both strings are not equal.
+            Both strings are equal.
+
+ equals() method is used to compare strings.
+ equalsIgnoreCase() method can ignore the case.
+ We cannot use == operator to compare two strings.
+
+
+
+
+   Static keyword
+-------------------
+-> Static is a keyword it is used for methods label, variables label and block label.
+-> it is a free access/common properties/no restrictions to access this properties.
+-> whenever a load a static variable a memory allocated in the method area(context area).
+-> the scope of static variable is throughout of the program.
+-> static variable are not associated with the objs it is associated with the class.
+-> we can access the static member(variable,method) directly using class name.
+   syntax classname.variablename
+          Employee.company
+-> lets assume one e.g when we developing a bank application it is completely based on account holder.
+   i.e bank is completly depened on account holder.in a bank so many accounts holders are there. and 
+   every account holder have some specific properties and some common properties e.g bank name, branch,
+   ifsc code these are the common properties such type of properties we should declare as a static variable.
+   and these are the free access so no restriction to acces thesse properties or variable. all the accound 
+   holders will share these variables.
+-> variables or properties which are the common for all the accounts holder and free access no restriction.
+
+ why we cannot override static method
+------------------------------------------
+-> becoz the static method is the part of class and its associated with the class.
+-> where as nonstatic method or instance method is associated with the object and static 
+   gets memory in class area and instance gets memory in heap area.
+
+ Non static variables or instance variables
+-----------------------------------------------
+-> the prperties or variable which are specific to every account holder or every obj and permission are 
+   restricted to access this properties.
+-> account number, account balance these are not a common properties. some time account number is not same 
+   but balnce may be same but we will access these properties by account number.these properties are non static
+   restricted access permission is required.
+
+-> In the case of instance variables for every object a separate copy will be created but in the case of 
+   static variables a single copy will be created at class level and shared by all objects of that cla
+
+
+
+
+
+ 
+
+  synchronization
+--------------------
+-> Synchronized is a modifier applicable only for methods and blocks level. but not for classes and variables.
+-> If multiple threads are trying to access simultaneously on the same java object then there may be a chance
+   a data-inconsistency a problem occurs. To overcome this problem we should go for the synchronized keyword.
+-> If a method or block declared as synchronized then at a time only one thread is allowed to execute that
+   method or block on the given object so that data-inconsistency will be resolved.
+-> The main advantage of the synchronized keyword is we can resolve data-inconsistency problems but the main 
+   disadvantage of the synchronized keyword is it increases waiting time of thread and creates performance
+   problems, hence if there is no specific requirement then it is not recommended to use synchronized keyword.
+
+  Transient.
+------------------
+-> it is a modifier applicable only for variable not class and methods.
+-> in the process of serialization if u want to hide some of the details of the obj 
+   state such type of variable we should declare as a transient. eg emp ssn no.
+-> At the time of serialization, JVM ignores the original value of transient value
+   variable and save default value to the file.
+-> TransientÂ keyword plays an important role to meet security constraints.
+-> transient modifier are not be searliaized.
+-> transient keyword cannot be used along with static keyword.
+-> transient keyword is used to searilazation process.
+
+ Volatile 
+------------
+-> it is also a modifier applicable for variable but not class & methods. using volatile keyword 
+   along with class and method it throw  compile time error.
+-> If the value of a variable keeps on changing by multiple threads then there may be a chance of 
+   data inconsistency problem. We can solve this problem by using the volatile modifier.
+-> it is maily uses in multithreding enviroment.if a variable declared as a volatile then for every
+   thread a separate local copy will be created by the jvm.
+-> The main advantage of volatile keyword is we can resolve the data inconsistency problem but 
+   the main disadvantage of volatile keyword is creating and maintaining a separate copy for every
+   thread increases the complexity of programming and creates performance problem hence if there is
+   no specific requirement it is never recommended to use volatile keyword 
+
+ Serialization
+-------------------
+-> serialization is the process of converting object state into persistent state or file 
+   supported format over the network is called serialization. it is a marker interface.
+-> by using Fileoutput stream and obj output stream classes we can achieve serialzation process.
+-> serialization is the best choice if we want to save total obj to the file.
+
+ Deserialization
+-------------------
+-> it is the  process of converting file into the obj.
+-> by using fileinput stream and obj input stream we can achieve deserialization.
+-> It is the reverse operation of serialization.
+
+ Diff between Serialzation & Externalization
+--------------------------------------------------
+ Serialization
+---------------------
+-> it is meant for default serialzation.
+-> in serialization evrything is takecare by jvm and programmer does't have any control.
+-> serilazation is the best choice if we want to save total obj to the file.
+-> it does't contain any method. becoz it is a marker interface.
+
+-> Serialization in Java is a mechanism of writing the state of an object into a byte Stream. It is mainly used in Hibernate, 
+   RMI, JPA, EJB and JMS technologies.The reverse operation of Serialization is called De-Serialization.
+
+ Externalization
+---------------------
+-> it is meant for customized serialzation.
+-> in externalization everything is takecare by programmer and jvm does't have any control.
+-> Externalization is the best choice if we want to save some part of the object.
+-> it contains two methods writeExternal(), readExternal().
+
+ serilalVersionUID
+-------------------------
+-> to perform serializtion & deserialization internally jvm will use a unique identifier,
+   which is nothing serialVersionUID.
+-> at the time of serialization jvm will save serialVersionUID with object.
+-> at the time of deserialzation jvm will compare serialVersionUID and if is matched then only 
+   object will be deserialized otherwise we will get runtime excetion. invalidClassException.
+   private static final long serialVersionUID=1L.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+
+
+
+
+ 
+ void main (){
+ 
+ int number_1 = 10;
+ int number_2 = 20;
+ int result;
+ clrscr();
+ printf("hello world");
+
+ result = number_1 + number_2;
+
+ printf (" the addition of two number is : ",result);
+
+ getch();
+
+ }
+
+
+
+
+
+
+

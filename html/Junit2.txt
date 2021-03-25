@@ -1,0 +1,50 @@
+How to throw exception using test case?
+
+public Class TestException{
+public void method(){
+try{
+  int a = 0;
+   int b = 1/a;
+   }
+   }catch(ArithmaticException e){
+   sysout("Arithmatic Exception Caught.");
+   }
+}
+@Runwith(PowerMockRunner.class)
+
+public Class ExceptionTest{
+TestException obj;
+public void setUP(){
+obj=new TestException();
+mockito.doThrow(new ArithmaticException("Exception caught")).when(obj.method());---> set the instruction on which there is any chance
+																					of throwing Exception in order to handle Exception.
+
+}
+ @Test
+   public void testException(){
+   obj.method();
+   assertTrue("Arithmatic Exception Caught",obj.method();)
+   }
+}
+------------------------------------------------
+What is Spy in Mockito, when to use it?
+Mockito provides option to create spy on real objects. When spy is called, then actual method of real object is called.
+
+class Controller{
+// some operation on service and inturn that service method is calling other and so on(like method Chainning)then we can use spy..
+In that case we can use spy.
+Syantax:
+@Mock
+Service service;
+Spy spy=Mockito.spy(service);
+
+ 
+
+}
+------------------------------
+What is difference between @Mock and @Spy?
+Mockito creates a mock – it does so from the Class of a Type, not from an actual instance. The mock simply creates a bare-bones shell 
+instance of the Class, in order to interact with it.
+
+On the other hand, the spy will wrap an existing instance. It will  behave in the same way as the normal instance –
+ the only difference is that it will also be instrumented to track all the interactions with it.

@@ -1,0 +1,496 @@
+
+ Without Spring BOOT.
+------------------------
+-> spring boot has been built on top of spring framework.which helps to build spring based application easily.
+-> The problem with Spring based application is the big amount of configuration is needed for
+   develop a application.so developer point of view it is quite difficult to manage becoz we 
+   need to add all the compatible jars or libraries for the specific spring version.
+-> Most of the times we have to configure DataSource,jdbc template,Rest template,Transaction Mnager,
+   Dispatcher Servlet,Handler mapping,view resolver etc beans in the same way.
+-> we should always deploy application in external server.
+-> the problem with spring component-scanning and autowiring is that its hard to see how all of the 
+   components in an application are wired together.
+
+ Advantages of spring Boot
+------------------------------
+-> Spring Boot is provide convinient way to create spring application with very less configurations.
+-> spring boot completly removes xml based configuration like web.xml, spring.xml.
+-> It provides convinient way to configure Java Beans, XML configurations,and Database Transactions.
+-> In Spring Boot, everything is auto configured; so no manual configurations are needed for developing application..
+-> it provides Easy dependency management.
+-> it provides production ready features like health checks.
+-> It is very easy to integrate Spring Boot Application with any technology like Spring JDBC, 
+   Spring ORM,Spring Data, Spring Security etc.
+
+ Notes:-
+---------------
+-> spring boot increases the speed of development becoz of starters and autoconfiguration.
+-> one of the great outcomes of spring boot is that it eliminates almost all the traditional xml configurations.
+
+ How internally Spring boot works.
+------------------------------------------
+-> Spring Boot automatically configures your application based on the dependencies you have added to the project 
+   by using @EnableAutoConfiguration annotation. For example, if MySQL database is on your classpath,but you have 
+   not configured any database connection, then Spring Boot auto-configures an in-memory database.
+-> The entry point of the spring boot application is the class contains @SpringBootApplication annotation and the main method.
+-> Spring Boot automatically scans all the components included in the project by using @ComponentScan annotation.
+
+ Features of Spring Boot
+----------------------------
+1.> Staters
+--------------
+-> Handling dependency management is a difficult task for big projects.Spring Boot resolves 
+   this problem by providing a set of dependencies for developers convenience.
+-> Spring boot provides number of starters that provides easy to manage dependencies in our application.
+   which we can include in our pom.xml file.e.g- spring-boot-starter-core,spring-boot-starter-jdbc.
+-> For e.g- if i want to work with Spring MVC application, we can simply add
+   'spring–boot–starter–web' as dependency in pom.xml.
+-> if you want to use Spring and JPA for database access, it is sufficient if you include
+   spring-boot-starter-data-jpa dependency in your project.
+
+ Spring-boot-starter-parent
+------------------------------
+-> if we created project in spring boot by default spring-boot-starter-parent tag is added in our pom.xml file.
+-> main advantage of Spring-boot-starter-parent pom file is that developers need not worry about 
+   finding the right compatible versions of different libraries such as spring,jursey,junit,hibernate.
+   the jar version defined in <artifactid> spring-boot-dependencies>.
+
+ 2.> Autoconfiguration.
+-------------------------------
+-> Spring boot provides default configurations which reduce a lot of boilerplate code which 
+   is difficult to maintain.
+-> with the help of autoconfiguration you can create a java application in easy way.it automatically
+   confugure the required configuration,required beans,controllers for the appliaction.
+-> for e.g if you have spring web mvc dependency in your classpath spring boot automatically
+   register dispacther servlet if it is not registered by you.
+-> if you have embeded database driver in classpath like H2 or HSQL and if you have not configured
+   any datasource bean explicitly then spring boot will automatically register a datasource bean 
+   using in memory database settings. 
+
+3.> Embeded Server
+---------------------
+-> Spring Boot comes with inbuilt apache tomcat or jetty server. to develop and test our web 
+   applications very easily.
+-> the spring-boot-starter-web automatically pulls spring-boot-starter-tomcat which starts as an 
+   embeded server.so we dont have to deploy our application on any externally installed tomcat server.
+
+ 4.> Actutors.
+------------------------
+-> With the help of Actutors you can see what is happening inside a running application.
+-> Actutators provides a convinient way to access the production ready rest end points and 
+   fetch all kinds of information from the web.
+-> the problem with autodiscovery and autoconfiguration is that its difficult to know which
+   beans were configured and how these beans were configured and how these beans wired together.
+-> it provides details such as which beans have been configured,bean dependencies,enviroment variables
+   health metrics,memory usage,garbage collection,web request and data source usage.
+-> we can eanble actutors to add spring-boot-starter-actutor dependencies in pom.xml file.
+-> Spring Boot Actuator provides secured endpoints for monitoring and managing your Spring Boot application.
+-> To enable Spring Boot actuator endpoints to your Spring Boot application, we need to add the
+   Spring Boot Starter actuator dependency in our pom.xml file.
+   <dependency>
+   <groupId>org.springframework.boot</groupId>
+   <artifactId>spring-boot-starter-actuator</artifactId>
+   </dependency>
+-> Some important Spring Boot Actuator endpoints are given below. You can enter them in your web browser
+   and monitor your application behavior.
+   ENDPOINTS	USAGE
+  /metric - To view the application metrics such as memory used, memory free, threads, classes, system uptime etc.
+  /env	  - To view the list of Environment variables used in the application.
+  /beans  - To view the Spring beans and its types, scopes and dependency.
+  /health - To view the application health
+  /info	  - To view the information about the Spring Boot application.
+  /trace  - To view the list of Traces of your Rest endpoints.
+   
+
+ Spring Initializer
+-----------------------
+-> One of the ways to Bootstrapping a Spring Boot application is by using Spring Initializer.To do this, 
+   you will have to visit the Spring Initializer web page www.start.spring.io and choose your Build,Spring Boot 
+   Version and platform. Also, you need to provide a Group, Artifact and required dependencies to run the application.
+
+ What is DevTools in Spring boot
+------------------------------------
+-> one of the main challenge for the java developers is to deploy the apps and restart the server
+   whenever there is a code change.
+-> suppoose i want to autorestart my application every time i do some code changes in spring boot application.
+-> it eliminates the process of manually deploying the changes. DevTools will auto restart the 
+   server when we have changes. 
+-> In Spring Boot this can be achieved by adding a DevTools module, just add the following dependency 
+   in your Spring Boots pom.xml and build it. 
+   <dependency>
+     <groupId>org.springframework.boot</groupId>
+     <artifactId>spring-boot-devtools</artifactId>
+     <optional>true</optional>
+
+  spring boot CLI (command line interface)
+---------------------------------------------------
+-> You can also create,run and test the spring boot application in command prompt itself.
+
+ @EnableAutoConfiguration
+---------------------------------
+-> it is used to enable auto-configuration and component scanning in our project.
+-> it is combination of @Configuration and @ComponentScan annotations.
+-> Spring Boot automatically configures your application based on the dependencies you have added to the project 
+   by using @EnableAutoConfiguration annotation. For example, if MySQL database is on your classpath,
+   but you have not configured any database connection, then Spring Boot auto-configures an in-memory database.
+
+ @ComponentScan
+-------------------
+-> In Spring Boot, we can use Spring Framework to define our beans and their dependency injection
+-> @ComponentScan annotation is used to find beans and the corresponding injected with @Autowired annotation.
+-> it is a stereotype annotation it indicates the our class is a spring component.
+-> it is a generic annotaion it is used to across the application.
+-> it is used to define a class as a bean class  and place to the ioc container.
+   <context:component-scan>
+-> whenever we adds the @Service or @Repositroy or @Controller annotation by default @Component 
+   annotation is going to existence on top of the class.
+
+ @SpringBootApplication annotation.
+----------------------------------------
+-> @SpringBootApplication annotation was introduced in Spring Boot 1.2.0. This annotation is
+   equivalent to declaring these 3 annotations.
+   @Configuration + @EnableAutoConfiguration + @ComponentScan.
+-> If you added @SpringBootApplication annotation to the class, you do not need to add the @EnableAutoConfiguration,
+   @ComponentScan and @SpringBootConfiguration annotation. The @SpringBootApplication annotation includes all other annotations.
+-> @SpringBootApplication annotation, means this is the starting point for our Spring Boot application.
+-> SpringApplication.run(class name.class, args); it is the boot strapping of the application.
+-> for every spring boot application we have to create a main class and that need to be annotated with 
+   @SpringBootApplication and bootstrap it.
+
+ @RequestMapping
+------------------------
+-> it is used to provide the routing information and tells to spring that any http request must be mapped to the respective method.
+-> to use this annotation we have to import org.springframework.web.bind.annotation.requestmapping.
+-> it Can be used at the class level and method level in controller class.
+-> REST Endpoints. We can define Request method to consume and produce object. The default request method is GET.
+   @RequestMapping(value = "/products")
+   public ResponseEntity<Object> getProducts() { }
+
+ @RestController
+------------------------
+-> It was introduced in Spring 4.0. it is used  of integrating spring with rest.it is a stereao type annotation.
+-> it is a combination if @Controller and @ResponseBody of the class.
+-> it is used to provide the routing information and tells to spring that any http request must be mapped to the respective method.
+-> The @RestController annotation is used to define the RESTful web services. It serves JSON, XML and custom response.
+   @RestController
+   public class ProductServiceController { 
+   }
+
+ @Request Body
+-------------------
+-> The @RequestBody annotation is used to define the request body content type.
+   public ResponseEntity<Object> createProduct(@RequestBody Product product) {
+   }
+
+ @Path Variable
+--------------------
+-> The @PathVariable annotation is used to define the custom or dynamic request URI. 
+   The Path variable in request URI is defined as curly braces {}  −
+   public ResponseEntity<Object> updateProduct(@PathVariable("id") String id) {
+   }
+
+ @RequestParam
+--------------------
+-> The @RequestParam annotation is used to read the request parameters from the Request URL. 
+   By default, it is a required parameter. We can also set default value for request parameters.
+   public ResponseEntity<Object> getProduct(
+   @RequestParam(value = "name", required = false, defaultValue = "honey") String name) {
+   }
+ 
+ How to Change port Number
+--------------------------------
+-> we can change the the port number of the embeded tomcat server by using the application.properties file.
+-> for e.g if you want to assign it 8081 then you have to write server.port = 8081.
+
+ how to deploy spring boot web application as jar and war files ?
+----------------------------------------------------------------
+-> to deploy spring boot web application, you just have to add the following plugins in the pom.xml file.
+   @<plugin>
+   <groupid> org.springframework.boot<groupid>
+   <artifactid> spring-boot-maven-plugin> </artifactid>
+   </plugin>
+   <packaging> jar </packaging>
+   <packaging> war </packaging>
+
+ How to Deploy Spring Boot Applications on External Tomcat Server.
+---------------------------------------------------------------------------
+-> Generally in the real-time projects we wont use inbuilt servers provided by the frameworks because 
+   of many reasons like security, maintenance and control.
+   . in pom.xml, add the dependency and packaging to war.
+   . Extend your main class with SpringBootServletInitializer and override its configure method.
+   . Generate WAR and deploy into the external server like (jboss,tomcat or weblogic).
+
+   How to generate a WAR file with Spring Boot.
+----------------------------------------------------
+-> Right click on pom.xml -> Run as -> Maven install, this will generate a WAR file in your target folder. 
+   Just copy that WAR file into your tomcat’s webapps folder and start the server ( or ) you can deploy and 
+   test from your IDE (eclipse/sts) by importing that WAR into your work space and run that in the external server.
+-> step-1 You need to extend SpringBootServletInitializer in your @SpringBootApplication.
+          and override its configure method.
+-> Step 2 Update your build configuration so that your project produces a war file rather than a jar file.
+          If you’re using Maven and using spring-boot-starter-parent all you need to do is modify pom.xml 
+          to change the packaging to war:
+          <packaging>war</packaging>
+-> step 3 Ensure that the embedded servlet container doesn’t interfere with the servlet container to which 
+          the war file will be deployed
+
+ what is the default logging spring boot provides and how i can use another logging frameworks.
+-----------------------------------------------------------------------------------------------------
+-> logback is default logging provided by spring boot.
+-> if i want to use another logging then remove default support for logback in pom.xml file.
+-> add dependency for logging framework in pom.xml file.
+-> add configuration file for logging framework in classpath under src/main/resource e.g log4j.xml.
+
+ Yaml file over properties file
+----------------------------------------
+-> in yaml file data is stored in a hierarchihal format so it becomes very easy for the developers to debug if there is an issue.
+
+ How to configure datasource in Spring boot
+-------------------------------------------------
+-> create a databse in mysql.
+   create database example;
+-> create table inside the database.
+-> create spring boot project and provide required details.
+-> add jdbc,mysql connector, and web dependency in pom.xml file.
+-> Remove H2 Dependency from pom.xml
+-> once the project is created you have to configure the database into application.properties file.
+   spring.datasource.url=jdbc:mysql://localhost3306/example.
+   spring.datasource.username= system
+   spring.datasource.password=system
+   spring.datasource.driver-class-name=com.mysql.jdbc.Driver
+
+  Oracle DB Configuration (how to connect multiple datasource in spring boot)
+-----------------------------------------------------------------------------------
+-> Sometimes we need to deal with multiple databases.Spring Boot helps us to 
+-> spring boot provides to configure multiple datasources with multiple databases in a single application.
+-> You need to implement two different beans,one for each datasource and make them take the corresponding 
+   configuration properties respectively:
+-> First bean will be responsible for the first datasource configuration,and should be daclared as primary
+   datasource with @Primary, so it can be setup as the main datasource for the project.The second bean will 
+   configure the second datasource.
+   
+   # Oracle DB Configuration
+ spring.oraclesql.datasource.url=jdbc:oracle:thin:@localhost:1521:empdb
+ spring.oraclesql.datasource.username = system
+ spring.oraclesql.datasource.password = system
+ spring.oraclesql.datasource.driver-class-name=oracle.jdbc.driver.OracleDriver
+ 
+ # MySql DB configuration
+ spring.mysql.datasource.url=jdbc:mysql://localhost:3306/branch_db?autoReconnect=true&useSSL=false
+ spring.mysql.datasource.username = system
+ spring.mysql.datasource.password = system
+ spring.mysql.datasource.driver-class-name=com.mysql.jdbc.Driver
+
+ @Bean
+ @Primary
+ @ConfigurationProperties(prefix="spring.datasource")
+ public DataSource primaryDataSource() {
+    return DataSourceBuilder.create().build();
+ }
+ @Bean
+ @ConfigurationProperties(prefix="spring.secondDatasource")
+ public DataSource secondaryDataSource() {
+    return DataSourceBuilder.create().build();
+ }
+
+ JDBCTemplate
+---------------------
+-> To access the Relational Database by using JdbcTemplate in Spring Boot application,
+   we need to add the Spring Boot Starter JDBC dependency in our build configuration file.
+-> if you @Autowired the JdbcTemplate class, Spring Boot automatically connects the Database
+   and sets the Datasource for the JdbcTemplate object.
+
+ Spring Boot Data JPA
+------------------------
+-> in tradional approach for persistence layer we will write a DAO interface and we will write DaoImpl class 
+   to perform persistence operation.in this appraoch lot of DaoImpl classes will contain boiler-plate code.
+-> Spring Boot provides spring-boot-starter-data-jpa starter to connect Spring application 
+   with relational database efficiently. 
+-> Spring data provides the abstract repositories, which are implemented at run-time by the spring 
+   container and perform the CRUD operations. As a developer we have to just provide the abstract methods 
+   in the interface. This reduces the amount of boilerplate code required to write data access layers.
+
+ Repository
+------------------
+-> It is the central interface in the spring data repository abstraction.it is a marker interface.
+-> if u are extending this interface u have to declare your own methods and the implementation will 
+   be provided by the spring runtime for this interface also we have to pass two parameteres type of 
+   the entity and type of the entity id field. this is the super interface for curd repositry.
+
+ CrudRepository
+----------------------
+-> CrudRepository provides methods for the CRUD operations. This interface extends the Repository interface. 
+   If you are extending the CrudRepository, there is no need for implementing your own methods. 
+   Just extend this interface and leave it as blank.required implementation are provided at runtime.
+-> when u define curd repositry, u have to pass the two parameters type of the entity and types of the 
+
+ Dockers
+-----------
+-> Dockers is a s/w to build images and create containers which can run on any machine.i.e portable across 
+   any enviroment such as develepment or testing or production or cloud etc.
+
+ Microservices
+--------------------
+-> microservices is an architectural style which says decompose big applicaion into smaller servives.
+-> the microservices projects are developed by using spring boot.
+ 
+ 
+ Microservices
+--------------------
+ What is a microservices architecture.
+-----------------------------------------
+-> Microservices architecture allows to avoid monolith application for large system. It provide loose coupling between 
+   collaborating processes which running independently in different environments with tight cohesion.
+   
+-> Microservices are an architectural style that develops a single application as a set of small services.
+ Each service runs in its own process. The services communicate with clients, and often each other, using lightweight protocols, 
+ often over messaging or HTTP.
+
+ advantages
+-----------------
+-> Smaller code base is easy to maintain.
+-> Independent deployment
+-> Deployment time reduce
+
+ Spring Cloud annotations and configuration
+------------------------------------------------------
+ @EnableEurekaServer
+-------------------------
+-> annotation allows us to register microservices to the spring cloud.
+* eureka.client.register-with-eureka = false
+http://localhost:8761
+
+ @EnableDiscoveryClient 
+------------------------------
+-> annotation also allows us to query Discovery server to find miroservices.
+-> Spring provide smart RestTemplate for service discovery and load balancing by 
+   using @LoadBalanced annotation with RestTemplate instance.
+   
+eureka.instance.hostname=${vcap.application.uris[0]:localhost}
+eureka.instance.nonSecurePort=80
+eureka.instance.metadataMap.instanceId=${vcap.application.instance_id:${spring.application.name}:${spring.application.instance_id:${server.port}}}
+eureka.instance.leaseRenewalIntervalInSeconds = 5
+
+eureka.client.region = default
+eureka.client.registryFetchIntervalSeconds = 5
+eureka.client.serviceUrl.defaultZone=${vcap.services.pwa-eureka-service.credentials.uri}/eureka/
+
+zuul proxy
+-----------
+Microservices architecture is Netflix Zuul. Zuul is a gateway service that provides dynamic routing, monitoring, resiliency,
+zuul.routes.car-service.path=/cars
+zuul.routes.car-service.url=http://localhost:8090
+
+zuul.routes.home.path=/home
+zuul.routes.home.url=http://localhost:8090
+
+zuul.sensitive-headers=Cookie,Set-Cookie
+
+ How do you access a RESTful microservice
+---------------------------------------------
+-> Load Balanced RestTemplate
+-> If there are multiple RestTemplate you get the right one.
+-> It can used to access multiple microservices
+
+  What is Eureka
+---------------------
+-> Eureka is the Netflix Service Discovery Server and Client. Eureka Server is using Spring Cloud.
+
+Powermock
+----------
+Powermock dose the mock in more aggressive way,  it uses custom class loader and manipulates class byte code so that testers can do the mock on a lot more things like static method, private method, constructors and even static initializer. Powermock is actually superset of Mockito, Powermock shares same usage style as Mockito, most of the time
+
+Mockito
+--------
+Mockito created a proxy object to intercept the operations that sent originally to the real object,  there is no class or object manipulation involved, it uses cglib or byte buddy as mocker to help managing the proxy object, because it dose not do any lass or object manipulation, it has some limitations like can not mock final class, can not mock static method etc. 
+
+//@InjectMocks annotation is used to create and inject the mock object
+//@Mock annotation is used to create the mock object to be injected
+
+Benefits of Mockito
+-------------------
+No Handwriting − No need to write mock objects on your own.
+
+Refactoring Safe − Renaming interface method names or reordering parameters will not break the test code as Mocks are created at runtime.
+
+Return value support − Supports return values.
+
+Exception support − Supports exceptions.
+
+Order check support − Supports check on order of method calls.
+
+Annotation support − Supports creating mocks using annotation.
+
+-----------------------------------
+
+Portfolio − An object to carry a list of stocks and to get the market value computed using stock prices and stock quantity.
+
+Stock − An object to carry the details of a stock such as its id, name, quantity, etc.
+
+StockService − A stock service returns the current price of a stock.
+
+mock(...) − Mockito created a mock of stock service.
+
+when(...).thenReturn(...) − Mock implementation of getPrice method of stockService interface. For googleStock, return 50.00 as price.
+
+portfolio.setStocks(...) − The portfolio now contains a list of two stocks.
+
+portfolio.setStockService(...) − Assigns the stockService Mock object to the portfolio.
+
+portfolio.getMarketValue() − The portfolio returns the market value based on its stocks using the mock stock service.
+
+
+
+spring boot security
+--------------------------
+-> Spring Boot applications are spring bases web applications.So,it is secure by default with basic authentication 
+   on all HTTP endpoints. A rich set of Endpoints are available for develop a secure Spring Boot application.
+   
+ steps
+---------
+-> first add spring secirity depenedency in pom.xml.
+-> SpringSecurityConfig.java
+
+ @Configuration
+ public class SpringSecurityConfig extends WebSecurityConfigurerAdapter {
+
+    // Authentication : set user/password details and mention the role
+ protected void configure(AuthenticationManagerBuilder auth) throws Exception {
+ auth.inMemoryAuthentication().passwordEncoder(org.springframework.security.crypto.password.NoOpPasswordEncoder.getInstance())
+            .withUser("user").password("pass").roles("USER")
+            .and()
+            .withUser("admin").password("pass").roles("USER", "ADMIN");
+    }
+
+    // Authorization : mention which role can access which URL
+    protected void configure(HttpSecurity http) throws Exception {
+        http.httpBasic().and().authorizeRequests()
+            .antMatchers("/userlogin").hasRole("USER")
+            .antMatchers("/adminlogin").hasRole("ADMIN")
+            .and()
+            .csrf().disable().headers().frameOptions().disable();
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,130 @@
+
+ Collection programs
+--------------------------
+ How to iterate Hasmap in java
+----------------------------------------
+ public class Employee {
+ public static void main( String args[] ){
+ HashMap<String, Integer> hm = new HashMap<>()>;
+ hm.put("one", 1);
+ hm.put("two", 2);
+ hm.put("three", 3);
+
+ for(Map.Entry<String,Integer> entry : hm.entrySet()){
+            
+ System.out.println("Key: " + entry.getKey());      //use getKey method to get a key from entry
+            
+ System.out.println("Value: " + entry.getValue()); //use getValue method to get a value from entry
+        }
+      // map.forEach((k,v)-> System.out.println("key" + k +" value=" + v));
+    }
+ }   
+ output :
+ Key: one
+ Value: 1
+ Key: two
+ Value: 2
+ Key: three
+ Value: 3
+
+
+
+
+How to iterate all keys of HashMap using for loop
+
+ public class Employee {
+ public static void main( String args[] ){
+ HashMap<Integer, String> hm = new HashMap<Integer, String()>;
+ hm.put( 1,"Mohan");
+ hm.put( 2, "rakesh");
+ hm.put( 3,"balvir");
+
+ for(Integer key : hm.keySet()){             
+            System.out.println(key);
+        }
+  }
+} output : 1
+           2
+           3
+How to iterate all values of HashMap using for loop
+-----------------------------------------------------------
+ for(String value : hm.values()){
+            System.out.println(value);
+        }
+ 
+    }
+}
+
+ How to convert list to map objects
+--------------------------------------------
+class Employee{
+private Integer ID;
+private String name;
+public Employee(){}
+setters & getters
+
+public class Example {
+public static void main(String[] args) {
+
+//the List object of Employee objects
+List<Employee> listEmployees = new ArrayList<Employee>();
+        
+listEmployees.add( new Employee(1, "Aakash") );
+listEmployees.add( new Employee(2, "John") );
+listEmployees.add( new Employee(3, "Emily") );
+listEmployees.add( new Employee(4, "Jack") );
+listEmployees.add( new Employee(5, "Mary") );
+        
+System.out.println("List contains: " + listEmployees);
+
+// To convert List to HashMap, iterate over,the list and add the elements to the HashMap,using the put method.
+         
+
+Map<Integer, Employee> mapEmployees = new HashMap<Integer, Employee>();
+        
+for( Employee employee : listEmployees ){
+ 
+mapEmployees.put( employee.getID(), employee);            
+  }
+System.out.println("HashMap contains: " + mapEmployees);
+        }
+}
+
+
+ How to iterate hashmap.
+--------------------------------------
+-> public class MyHashMapRead {
+
+    public static void main(String a[]){
+
+        HashMap<String, String> hm = new HashMap<String, String>();
+        
+        hm.put("first", "FIRST INSERTED");
+        hm.put("second", "SECOND INSERTED");
+        hm.put("third","THIRD INSERTED");
+        System.out.println(hm);
+        Set<String> keys = hm.keySet();
+        for(String key: keys){
+            System.out.println("Value of "+key+" is: "+hm.get(key));
+        }
+    }
+ }
+
+ Output:
+ {second=SECOND INSERTED, third=THIRD INSERTED, first=FIRST INSERTED}
+ Value of second is: SECOND INSERTED
+ Value of third is: THIRD INSERTED
+ Value of first is: FIRST INSERTED
+
+
+ 
+
+
+
+
+
+
+
+
+
+

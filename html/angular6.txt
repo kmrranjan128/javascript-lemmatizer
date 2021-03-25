@@ -1,0 +1,519 @@
+﻿
+A Promise handles a single event when an async operation completes or fails.
+
+Note: There are Promise libraries out there that support cancellation, but ES6 Promise doesn't so far.
+
+Observable
+============
+
+An Observable is like a Stream (in many languages) and allows to pass zero or more events where the callback is called for each event.
+
+Often Observable is preferred over Promise because it provides the features of Promise and more. With Observable it doesn't matter if you want to handle 0, 1, or multiple events. You can utilize the same API in each case.
+
+Observable also has the advantage over Promise to be cancellable. If the result of an HTTP request to a server or some other expensive async operation isn't needed anymore, the Subscription of an Observable allows to cancel the subscription, while a Promise will eventually call the success or failed callback even when you don't need the notification or the result it provides anymore.
+
+
+
+
+Angular js implementation happened on javascript.
+angular 2,4 development is typescript based.
+angular is modular based design javascript.
+angular 2,4,6 is component baesd design.it is strongly types language.
+angular js have scope controllers.in angular 2,4,6 no more controllers and scope.here components injectable.
+-> It uses the OOPS concept which aids TypeScript to optimize the code.
+
+-> One more major difference between both versions is that Angular JS does not support mobile devices, 
+   while Angular 2 does support all mobile devices.
+-> It is the best framework for single-page web applications that have extended the interface.
+-> in angular 6 It uses a new method of connecting modules and services. It helps to eliminate them if no required in the application.
+
+
+
+
+ Diff between == operator and === in javascript
+======================================================
+-> == comparison operator will match only values.where === comparision operator will check values and data types together.
+-> So, when you compare string with a number, JavaScript converts any string to a number.
+-> == operator in javascript means it will check for the equality condition with automatic type conversion of data.
+-> == operator is an equality operator. It checks whether its two operands are the same or not by changing expression 
+  from one data type to others. You can use == operator in order to compare the identity of two operands even though, 
+  they are not of a similar type.
+
+-> === operator will not do the conversion,so if two values are not the same type it simply returns false.
+-> === in javascript means it will check for the equality condition without automatic type conversion of data.
+-> === operatot is a strict equality comparison operator in JavaScript, which returns false for the values which
+  are not of a similar type. This operator performs type casting for equality. If we compare 2 with "2" using ===, 
+  then it will return a false value.
+-> === is called as strict equality operator which returns true when the two operands are having the 
+  same value without any type conversion.
+
+-> = is used for assigning values to a variable, == is used for comparing two variables, but it ignores the
+  datatype of variable whereas === is used for comparing two variables, but this operator also checks 
+  datatype and compares two values.
+-> = does not return true or false, == Return true only if the two operands are equal while === returns true only 
+  if both values and data types are the same for the two variables.
+
+ Differnce == operator
+---------------------------
+-> == in JavaScript is used for comparing two variables, but it ignores the datatype of variable.
+-> Checks the equality of two operands without considering their type.
+-> Return true if the two operands are equal. It will return false if the two operands are not equal.
+
+
+-> === is used for comparing two variables, but this operator also checks datatype and compares two values.
+-> Compares equality of two operands with their types.
+-> It returns true only if both values and data types are the same for the two variables.
+
+
+
+ <script>
+ var x = "4";
+ var y = "4";
+ console.log(y==x); // true
+ console.log(y===x); // false
+ </script>
+ 
+
+ Diff between javascript and typescript
+-----------------------------------------------
+-> JavaScript is a scripting language which helps you create interactive web pages whereas Typescript is a superset of JavaScript.
+-> Typescript code needs to be compiled while JavaScript code doesn’t need to compile.
+-> TypeScript code is not understandable by the browsers. Thats why if the code is written in TypeScript then it is compiled 
+   and converted the code i.e. translate the code into JavaScript.The above process is known as Trans-piled. By the help of JavaScript code, 
+   browsers are able to read the code and display.
+-> Whatever code is written in JavaScript can be converted to TypeScript by changing the extension from .js to .ts.
+-> TypesScript is known as Object oriented programming language whereas JavaScript is a scripting language.
+-> TypeScript gives support for modules whereas JavaScript does not support modules.
+-> TypeScript has Interface but JavaScript does not have Interface.
+-> TypeScript support optional parameter function but JavaScript does not support optional parameter function.
+-> TypeScript always point out the compilation errors at the time of development only. Because of this at the run-time the chance
+   of getting errors are very less whereas JavaScript is an interpreted language.
+-> JavaScript is not purely Object Oriented.it is a scripting language It is prototype based. It does not have interfaces.
+-> TypeScript is an Object-Oriented Programming language and it is class based. Can use classes, Inheritance, interfaces, and modifiers.
+-> Javascript does not allow supporting modules.
+
+ Var vs Let in java script
+---------------------------------
+-> var and let are both used for variable declaration in javascript but the difference between them is that var is a global scope 
+   which can access anywhere from the script. var is function label scoped.
+   and let is block label scoped. It can be said that a variable declared with var is defined throughout the program as compared to let.
+
+-> var is global scope which can access anywhere from the script.
+-> let is a block lebel scope we can use inside the declared block only.
+-> const once the value was declared we cannot assign.Typescript can import files and modules.
+
+
+ how to pass the value(data) from parent component to child component in angular 6 (https://www.tektutorialshub.com/angular/angular-passing-data-child-component/)
+============================================================================================
+-> in Angular Passes the data to the child component. The Angular Components communicate with each other using @Input Annotation.
+-> In Angular,the Parent Component can communicate with the child component by setting its Property.To do that the Child 
+  component must expose its properties to the parent component. The Child Component does this by using the @Input decorator
+-> The Child Component decorates the property using the @Input annotation. In the Parent Component, we use property binding
+   to bind it to the Property or method of Parent Component.We can also track changes made to the Input Property either by\
+   Using hooking to ngOnChanges life cycle hook. Or using the Property setter
+
+ @Input - Angular provides us @Input decorator by using that we can pass data from parent component to child component.
+
+ In the Child Component
+ Import the @Input module from @angular/Core Library
+ Mark those property, which you need data from parent as input property using @Input decorator
+
+ In the Parent Component
+ Bind the Child component property in the Parent Component when instantiating the Child
+
+
+ @Input Decorator
+
+ The @Input Decorator is used to configure the input properties of the component. This decorator as also supports change tracking.
+ When you mark a property as input property, then the Angular injects values into the component property using Property Binding. 
+ The Property Binding uses the [] brackets. The Binding Target (Property of the child component) is placed inside the square brackets.
+ The Binding source is enclosed in quotes. Property binding is one way from Component to the Target in the template
+
+
+ Building blocks of an angular apploication
+=================================================
+-> Modules
+   Components
+   Templates
+   Metadata
+   Data binding
+   Directives
+   Services
+   Dependency injection -> Dependency Injection is a coding pattern in which a class takes the instances of objects it needs which is called dependencies.
+
+
+ How angular application starts
+===========================================
+
+-> To install Angular 6, the Angular team came up with Angular CLI which eases the installation.
+   You need to run through a few commands to install Angular 6.
+-> To get started with the installation, we first need to make sure we have nodejs and npm installed with the latest version. 
+   The npm package gets installed along with nodejs.
+-> Once nodejs is installed, you can check the version of node in the command line using the command, node -v, as shown below −
+-> Once nodejs is installed, npm will also get installed along with it.To check the version of npm, type command npm -v in the terminal.
+-> Now that we have nodejs and npm installed, let us run the angular cli commands to install Angular 6. 
+  You will see the following commands on the webpage −
+-> To start with, we will create an empty directory wherein, we will run the Angular CLI command.
+   npm install -g @angular/cli //command to install angular 6
+-> When you create an Angular app and run it by using ng serve command,
+-> Whenever ng-serve builds the application, it creates "bundles" and automatically adds these to index.html file at runtime. 
+   So, from these bundles, the first code has to be executed from "main.ts" file, i.e., "main.ts" file is the main file from
+   where the execution of an Angular application starts.
+
+
+ pipes in Angular
+---------------------------
+-> Pipes are used to transform the data in the template itself.
+-> Pipes are applied in presentation logic (view) so that we can display formatted results to end-user.
+-> We can convert component data in customized format like uppercase, lowercase, etc..
+-> We need to use  pipe symbol to apply pipe options in view on component data.
+
+--------------------------------------------------------------
+Built-in Pipes
+~~~~~~~~~~~
+-> Angular provides  following pipes to format the data:
+		1. uppercase
+		2. lowercase
+		3. titlecase
+		4. currency
+		5. date
+		6. slice
+
+ Note:  Pipes does not modify the original data, it generates formatted results.		
+ Usage:
+ {{ sname | uppercase}}
+ {{ item.ename | titlecase}}		
+ {{item.salary | currency}}	
+
+
+ custome pipe
+----------------------
+
+ Developing Custom Pipes in Angular
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+-> If the pre-defined pipes does not support your requirement, then we can go for custom pipes.
+
+-> Custom Pipes are used to develop our own pipes functionality.
+
+-> We need to define require functionality in a separate class and then apply in template as pipe.
+
+Steps
+~~~~~
+1. Define custom pipe class.
+		-  implement PipeTransform interfaces 
+2. Register in AppModule
+3. Apply custom pipes in template.
+-----------------------------------------------------------------		
+
+Sample Usage
+~~~~~~~~~~~~
+import  {Pipe,  PipeTransform} from "@angular/core";
+
+@Pipe({  name:  "pipename"  })
+export  class  PipeClass implements  PipeTransform
+{ 
+    public transform() : type
+	{
+		// Logic
+	}
+}			
+
+
+ Component
+======================
+-> Every application in Angular has at least one component called a root component.
+-> Components are basically classes that interact with the .html file of the component, which gets displayed on the browser.
+-> how to generate component - ng generate component componentname.
+  The file structure has the app component and it consists of the following files −
+
+  app.component.css
+
+  app.component.html
+
+  app.component.spec.ts
+
+  app.component.ts
+
+  app.module.ts
+
+
+ Module
+------------------
+-> Module in Angular refers to a place where you can group the components, directives, pipes, and services, which are related to the application.
+-> -> Each and every Angular app has at least one module called AppModule. The NgModule provides a bootstrap mechanism 
+   to launch different applications. Commonly, every Angular App contains many functional modules to do things. 
+   The key features of Angular 8 modules are as follows:
+   . Own functionality of the NgModule can be exported and can also be used by other NgModules.
+   . Angular 8 NgModule can import functionalities from other NgModules.
+
+ Directives
+---------------
+
+
+
+ Data Binding
+---------------------
+-> it is mainly used to build the communication between the DOM and the TypeScript code of your component. 
+-> Data-binding in AngularJS apps is the automated synchronization of data between each model and view elements.
+-> We use curly braces for data binding - {{}}; this process is called interpolation.
+-> this feture reduce lot of client side coding which is related to data(presentation) views.
+-> Data binding is the connection bridge / linking between business logic model and view components
+   of the application.
+-> data binding is the automatic synchronization of data between model and view components.
+-> -> So whenever you make changes in one entity the other entity also gets updated.
+-> in two-way data binding means controller can modify the data as well as user can 
+   assigned or update new value.
+-> in angular js we can achieve two-way data binding by using ng-model directives. 
+   e.g- login page.
+
+ -> Data binding is a concept of binding component data with view(template).
+ 
+-> If you change component data, view will updates automatically.		
+			
+-> We can implement these data binding in different ways.
+		1.  Interpolation   ----  {{}}
+		2.  Property Binding  ---    [ ]
+		3.  Event Binding ----     ()
+		4.  NgModel (2-way)		  -----    [()]
+
+ 1. Interpolation
+~~~~~~~~~~~~
+->  Interpolation is used to implement 1-way data binding.
+
+->  It is simple and easiest way of implementing one way binding.
+
+->  If any changes happens to component data , it will reflect the view.
+
+Syntax:
+				{{variable}}
+Eg:
+				Student Id  :  {{sid}}		
+				Student Name  :  {{sname}}	
+
+
+
+ Directive 
+--------------------
+-> We have 3 directives in Angular. The directives are listed below −
+  Component Directives
+  These form the main class having details of how the component should be processed, instantiated and used at runtime.
+
+  Structural Directives
+  A structure directive basically deals with manipulating the dom elements. Structural directives have a * sign before the directive. For example, *ngIf and *ngFor.
+
+  Attribute Directives
+  Attribute directives deal with changing the look and behavior of the dom element. You can create your own directives.
+
+ How to Create Custom Directives
+------------------------------------------
+-> In this section, we will discuss about Custom Directives to be used in components. Custom directives are created by us and are not standard.
+
+-> Let us see how to create the custom directive. We will create the directive using the command line. The command to create the directive using the command line is −
+
+ng g directive nameofthedirective
+e.g
+ng g directive changeText
+
+-> directive are used to add new attributes of html.
+-> angular js directive are used to extened the html functionality and DOM element behaviour.
+-> they are special attribute starting with ng-prefix.
+-> angular js comes with some inbuilt directive such as ng-app,ng-model, ng-init, ng-repeat, ng-controller etc.
+
+ in Angularjs we can create custom directives in 4 different ways
+---------------------------------------------------------------------
+-> in angular u can access the dom within directive only, so if u want to access the dom 
+   directly u need to write custom directive.
+-> Custom Directive are used in angular js to extends the functinality of html inside angular.
+-> Custom directive are created by directive() funcation of module object.
+-> based on our buisness requirement we can create our own custom directive i.e called custom directive.
+-> But how can we instruct angular to choose which type (Attribute, Element, CSS Clsss, Comment) of 
+   directive can be used in the page.here we have a property called ‘restrict‘, by using this we can easily 
+   intimate angular how our custom directive is going to be displayed in the page.
+
+ 1.> Element directives 
+----------------------------
+-> an element directive associated with angularjs find matching element in the html template(view).
+                      EX::<directive>Content</directive>
+
+ 2.> Attribute directives
+----------------------------
+-> An attribute directive activated when angularjs find matching attribute in the HTML Layout(view).
+		 <tag directive></tag>
+ 3.> CSS class directives
+ 4.> Comment directives
+
+-> a custom directive simply replaces the element for which it is activated. angular js application 
+   during bootstrap finds the matching elements and do one time activity using its compile()method of 
+   the custom directive then process the element using link() of the custom directive based on the scope of the directive.
+    var app=angular.module("myApp",[]);
+    app.directive("directiveName" funcation(){
+    var obj={};
+   //attach the required properties
+   return onj;
+   });		
+   Properties assign to directive
+   a)restrict="EA"/"E"/"A"
+   b)template=""      <==>html content to display
+   c)templateUrl=""    url of file
+
+
+  				
+ Services in Angular (https://investmentnovel.com/angular-6-http-get-example/)
+------------------------------	
+-> We might come across a situation where we need some code to be used everywhere on the page. It can be for data connection
+   that needs to be shared across components, etc. Services help us achieve that. With services, we can access methods and
+   properties across other components in the entire project.
+-> To create a service, we need to make use of the command line. ng g service myservice.
+-> Http Service will help us fetch external data, post to it, etc. We need to import the http module to make use of the http service.
+-> services are singleton objects that can be used to store and share data accross the application.e.g user details.
+-> angular has some inbuilt services such as $http 
+-> A Service is a functionality that can be shared across multiple Components. 
+-> Services are chosen whenever we find some common functionality in our components, we usually separate it out as a Service.
+-> Service can be reusable across multiple components.
+-> Services are helps us to implement Dependency Injection.
+-> All Services should be injectable.  
+-> To inject the service into component, Angular provides an decorator called @Injectable().
+-> In app.component.ts, using the subscribe method we will call the display data method and pass the data fetched as the parameter to it.
+-> In the display data method, we will store the data in a variable httpdata. The data is displayed in the browser using for 
+   over this httpdata variable, which is done in the app.component.html file.
+
+-> Using the HttpClient to Make HTTP Requests
+
+
+
+Steps to develop Services
+~~~~~~~~~~~~~~~~~~~~~
+1. Create a Service with Injectable decorator and register.
+
+		--->  register in app.module under providers section.
+				[OR]
+		--->   Use providerIn property of Injectable decorator
+		
+				@Injectable({
+							providedIn: 'root'
+				})
+   
+2. Inject Service in Components
+	
+	 constructor(private  objName:ServiceClass)	{}
+
+3. Access service members.
+
+
+ import { Injectable } from '@angular/core';
+
+ @Injectable({
+  providedIn: 'root'
+ })
+ export class UseraccountService
+ {
+  public isValidUser(uid:string,  pwd:string) :  string
+  {
+    if(uid == "admin" && pwd  == "admin123")
+    {
+        return "Welcome to Admin";
+    }
+    else
+    {
+      return "Invalid user id or password";
+    }
+  }
+ }
+
+
+ how to get a single object from list of objects using department in angular 6
+-------------------------------------------------------------------------------------------
+
+ var lst = [
+  {
+    name: "foo", 
+    value: "fooValue"
+  }, 
+  {
+    name: "bar", 
+    value: "barValue"
+  }
+];
+
+ Is there a simple way to find an object in a list based on an attribute value, without looping on the list?
+
+For example given a list like the following :
+
+var lst = [
+  {
+    name: "foo", 
+    value: "fooValue"
+  }, 
+  {
+    name: "bar", 
+    value: "barValue"
+  }
+];
+Is there some kind of "find" method, such that lst.find("name", "foo") would return the object which has a "name" attribute with the value "foo"?
+
+ answer
+-------------
+-> You can use the $filter service:
+
+angular.module('app', [])
+
+function ParentCtrl($scope, $filter){
+    var lst = [{name : "foo", value : "fooValue"}, {name: "bar", value: "barValue"}, { name: 'foo', value: 'something else'}];
+    var newTemp = $filter("filter")(lst, {name:'foo'});
+    console.log(newTemp);
+}
+
+
+ how to remove duplicate object from an array in angular 6
+------------------------------------------------------------------------
+
+ addComp(Names,c){   
+ this.item.push({ name: Names, componentid: c});
+ this.uniqueArray = this.removeDuplicates(this.item, "name"); //this line issue
+ this.item=this.uniqueArray; //this line issue
+ }
+
+ answer
+
+ addComp(Names,c){
+  let item = {name: Names, componentid: c};
+  if (this.item.find((test) => test.name === Names) === undefined) {
+    this.item.push(item);
+  }
+}
+
+
+ what is scope.
+-----------------
+-> scope is the javascript objects.they act as mediater between controller and view.
+   and contains model data.in controller model data is accessed via scope.
+-> scope contains model data. model data is accessed by $scope obj.
+-> each angular js application can have only one rootscope but can have multiple child scope.
+
+ what is $scope.
+-------------------
+-> $scope is a javascript obj which is used to communicate between controller and view.
+-> $scope is a JavaScript object that is used to assign & access data between controller and view. 
+   With the help of $scope object we can assign any type of data to view either a string variable or any JSON data.
+-> each controller will have one $scope object.But every Angular application can have only one $rootScope.
+-> we can attached all types of data with $scope eg numbers, string, objects, function etc.
+-> ‘N’ no. of controllers in application = ‘N’ no. of $scope objects
+    One Angular Application = 1 $rootScope
+
+ what is $rootscope.
+------------------------
+-> $rootscope is a parent of all the scope and it refers to an object which is acceseble from anywhere in of the app.
+-> $rootscope is global variable and scope is a local variable.
+-> this method can be useful when u have multiple controllers on a page which need to be share data.
+-> Every application have only one $rootScope provided by AngularJS and every other scope is its child scope.
+-> Using $rootscope we can set the value in one controller and read it from the other controller.
+
+
+
+
+
+
+
+
+
+

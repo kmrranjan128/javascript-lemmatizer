@@ -1,0 +1,541 @@
+ java 8 features
+ https://nodejs.org/en/
+https://code.visualstudio.com/#alt-downloads
+
+-----------------------
+ Functional Interface 
+--------------------------
+-> An interface, which contains exactly one and only one abstract method is called functional interface.
+-> Lambda Expression is a Functional Interface. Whereever we use Lambda Expressions that means
+   we are using Functional Interfaces.
+-> we can define our own Functional Interface by using @FunctionalInterface annotation.
+-> @FunctionalInterface annotation is added so that we can mark an interface as functional interface.
+   It is not mandatory to use it, but it’s best practice to use it.
+-> The major benefit of java 8 functional interfaces is that we can use lambda expressions to 
+   instantiate them and avoid using bulky anonymous class implementation.
+-> Comparable and Runnable interface is some of the examples of functional interface.
+-> comparable interface contains only one abstract method compareTo() method.Runnable interface contains 
+   only one abstract method run method.
+
+ What are the rules to define a Functional Interface.
+---------------------------------------------------------
+-> Define an interface with one and only one abstract method.We cannot define more than one abstract method.
+-> Use @FunctionalInterface annotation in interface definition.
+-> We can define any number of other methods like Default methods,Static methods.
+-> If we override java.lang.Object class’s method as an abstract method, 
+   which does not count as an abstract method.
+
+ Lambda expression
+-------------------
+-> Lambda Expression is just a (nameless) function. That means the function which doesn’t
+   have the name,return type and access modifiers. You can call it function without name,
+-> Lambda Expression is an anonymous function which accepts a set of input parameters and returns results.
+-> It is a function that does not belong to any class.
+-> Lambda Expression is a block of code without any name, with or without parameters and with or without results. 
+   This block of code is executed on demand.
+-> This Lambda Expression does not have parameters and does return any results. So it’s type is “java.lang.Runnable” Functional Interface.
+-> Lambda expressions are the method without name i.e Anonymous method
+-> Lambda Expression is an anonymous function that accepts a set of input parameters and returns results.
+-> The Lambda expression provides the implementation of an interface which has functional interface, 
+   which reduce lots of code.
+-> a lambda expression is a function that can be referenced and passed around as an object.
+-> A lambda expression consists of three parts :
+a. Parameter List - A Lambda Expression can contain zero or one or more parameters. It is optional.
+b. Lambda symbol -> operator -  is known as Lambda Arrow operator. It separates parameters list and body
+c. Expression - It contains expressions and statements.
+
+ (Parameter List) -> {expression;} 
+
+ () -> System.out.println("Hello World");
+
+ using lamda expression hello world example
+------------------------------------------------
+
+ public interface HelloWorld {
+       void sayHello();
+}
+ 
+
+public class HelloWorldMain {
+ 
+ public static void main(String args[])
+ {
+     // Lambda Expression 
+     HelloWorld helloWorld=()->System.out.println("Hello using Lambda Expression");
+    helloWorld.sayHello();
+ }
+}
+   output : Hello using Lambda Expression
+
+ how to sort string using java 8
+------------------------------------------
+
+ private void sortUsingJava8(List<String> names) {
+  Collections.sort(names, (s1, s2) -> s1.compareTo(s2));
+}
+
+ Reduced Lines of Code
+--------------------------
+-> One of the clear benefit of using lambda expression is that the amount of code is reduced,we have already seen that
+   how easily we can create instance of a functional interface using lambda expression rather than using anonymous class.
+
+ Sequential and Parallel Execution Support
+----------------------------------------------
+-> Another benefit of using lambda expression is that we can benefit from the Stream API sequential and parallel operations support.
+
+ Default method or defender method
+---------------------------------------
+-> Designing interfaces have always been a tough job because if we want to add additional methods in the interfaces, 
+   it will require change in all the implementing classes.
+-> it is a non abstract method i.e have body, which can be declared inside interface.
+-> Default Methods feature that allows developers to add new methods to the interfaces 
+   without breaking their existing implementation.
+-> For creating a default method in java interface, we need to use “default” keyword with the method signature.
+-> Java interface default methods will help us in extending interfaces without having the fear of breaking implementation classes.
+-> Java interface default methods will help us in removing base implementation classes, we can 
+   provide default implementation and the implementation classes can chose which one to override.
+-> A default method cannot override a method from java.lang.Object.
+-> By adding default method in interface, you can provide default implementation of it without affecting implementing classes as
+
+ Java Interface Static Method
+------------------------------------
+-> Java interface static method is similar to default method except that we can’t override them in the implementation classes. 
+-> Java interface static method is part of interface, we can’t use it for implementation class objects.
+-> We can’t define interface static method for Object class methods, we will get compiler error as
+  “This static method cannot hide the instance method from Object”. 
+
+ Stream API (Why do we need to use Java 8 Stream API in our projects)
+------------------------------------------------------------------------
+-> it is a special iterator class that allows processing collections of objects in a functional manner.
+-> When we want perform Database like Operations. For instance, we want perform groupby operation, 
+   orderby operation etc.
+-> Stream represents a sequence of objects from a source, which supports aggregate operations.
+-> When want to Perform operations Lazily.
+-> When we want to write Functional Style programming.
+-> When we want to perform Parallel Operations.
+-> When we want to achieve better performance.
+-> We can use Java Stream API to implement internal iteration, that is better because java framework is in control of the iteration.
+-> Internal iteration provides several features such as sequential and parallel execution, filtering based on the given criteria, mapping etc.
+-> Most of the Java 8 Stream API method arguments are functional interfaces, so lambda expressions work very well with them.
+   Let’s see how can we write above logic in a single line statement using Java Streams.
+-> Whereas a java Stream is a data structure that is computed on-demand.
+-> Java 8 Stream support sequential as well as parallel processing, parallel processing can be very helpful in achieving
+   high performance for large collections.
+-> All the Java Stream API interfaces and classes are in the java.util.stream package.Since we can use primitive data types 
+   such as int, long in the collections using auto-boxing and these operations could take a lot of time, there are specific
+   classes for primitive types – IntStream, LongStream and DoubleStream.
+-> Java Streams are consumable, so there is no way to create a reference to stream for future usage. Since the data is on-demand, 
+   it’s not possible to reuse the same stream multiple times.
+-> We can use Stream.of() to create a stream from similar type of data. For example,we can create Java Stream of integers
+   from a group of int or Integer objects.
+
+Stream<Integer> stream = Stream.of(1,2,3,4);
+
+-> We can use Stream.of() with an array of Objects to return the stream. Note that it doesn’t support autoboxing, 
+   so we can’t pass primitive type array.
+
+Stream<Integer> stream = Stream.of(new Integer[]{1,2,3,4}); 
+//works fine
+
+Stream<Integer> stream1 = Stream.of(new int[]{1,2,3,4}); 
+//Compile time error, Type mismatch: cannot convert from Stream<int[]> to Stream<Integer>
+
+-< We can use Stream.generate() and Stream.iterate() methods to create Stream.
+
+Stream<String> stream1 = Stream.generate(() -> {return "abc";});
+Stream<String> stream2 = Stream.iterate("abc", (i) -> i);
+
+-> Using Arrays.stream() and String.chars() methods.
+
+LongStream is = Arrays.stream(new long[]{1,2,3,4});
+IntStream is2 = "abc".chars();
+
+-> We can use java Stream collect() method to get List, Map or Set from stream.
+
+Stream<Integer> intStream = Stream.of(1,2,3,4);
+List<Integer> intList = intStream.collect(Collectors.toList());
+System.out.println(intList); //prints [1, 2, 3, 4]
+
+intStream = Stream.of(1,2,3,4); //stream is closed, so we need to create it again
+Map<Integer,Integer> intMap = intStream.collect(Collectors.toMap(i -> i, i -> i+10));
+System.out.println(intMap); //prints {1=11, 2=12, 3=13, 4=14}
+
+-> We can use stream toArray() method to create an array from the stream.
+
+Stream<Integer> intStream = Stream.of(1,2,3,4);
+Integer[] intArray = intStream.toArray(Integer[]::new);
+System.out.println(Arrays.toString(intArray)); //prints [1, 2
+
+ What is the purpose of forEach method of stream in java 8
+-----------------------------------------------------------------
+-> Stream has provided a new method 'forEach' to iterate each element of the stream.
+
+ Differences between Collection API and Stream API.
+------------------------------------------------------
+ Collection API
+---------------------
+-> It’s available since Java 1.2.
+-> It is used to store Data(A set of Objects).
+-> It is used to store limited number of Elements.
+-> Collection Object is constructed Eagerly.
+-> We can iterate and consume elements from a Collection Object at any number of times.
+
+ Stream API
+---------------------
+-> it is introduced in java 1.8.
+-> It is used to calculate data(Computation on a set of Objects).
+-> It is used to store either Limited or Infinite Number of Elements.
+-> Stream Object is constructed Lazily.
+-> We can iterate and consume elements from a Stream Object only once.
+
+ Difference between Iterator and Spliterator
+---------------------------------------------------
+ Iterator
+--------------
+-> It is available since Java 1.2.
+-> It is used for Collection API.
+-> We can use Iterator to iterate Collections only in Sequential order.
+-> We can get Iterator by calling iterator() method on Collection Object.
+
+ Spliterator
+-------------------
+-> it is introduced in java 1.8.
+-> It is used for Stream API.
+-> We can use Spliterator to iterate Streams in Parallel and Sequential order.
+-> We can get Spliterator by calling spliterator() method on Stream Object.
+
+ Date and Time API
+---------------------------
+-> Thread Safety: 
+-> Performance:
+-> More Readable: 
+-> LocalDate, LocalTime, and LocalDateTime are the Core API classes for Java 8. 
+-> You can simply use now method of LocalDate to get today’s date.
+   LocalDate currentDate = LocalDate.now();
+   System.out.println(currentDate);
+   2017-09-09
+
+-> You can use now method of LocalTime to get current time.
+   LocalTime currentTime = LocalTime.now();
+   System.out.println(currentTime);
+   23:17:51.817
+
+-> Collections API Enhancements
+-> Concurrency Utils Enhancements
+
+ Differnece between Function and predicate in java 8
+-------------------------------------------------------------
+1. Return Type : Function returns an Object and it is a single argument function.
+Predicate return type is boolean (i.e true or false) and it is also a single argument function.
+
+2. Similarities:
+-> Both are functional interfaces i.e both contain single abstract method.
+
+
+ Optional
+-----------------
+-> Instead of using null values Optional class is used for representing Optional values.
+-> Null checks is not required.It is used to avoid NullPointerException at run-time.
+-> If the value is present then it will return the true value otherwise it will show the false value.
+-> Optional.ofNullable() - if value is present in the given object, it returns a non-empty Optional
+   else returns empty Optional.
+-> Optional.empty() method is useful to create an empty Optional object.
+
+ a>. Here is an Empty Optional
+ Optional<Soundcard>  sc = Optional.empty();
+
+b. Here is an Optional with non-null value.
+
+ Soundcard soundcard = new Soundcard();
+
+ Optional<Soundcard> sc = Optional.of(soundcard);
+
+-> The Optional class have various utilities method such as isPresent() which help develper 
+   to avoid making use of null value checks.
+
+-> Optional is a final Class introduced as part of Java SE 8. It is defined in java.util package.
+-> It is used to represent optional values that is either exist or not exist. It can contain either
+   one value or zero value. If it contains a value, we can get it. Otherwise, we get nothing.
+-> It is an alternative to “null” value.
+ Main Advantage of Optional is:
+
+It is used to avoid null checks.
+It is used to avoid “NullPointerException”.
+
+ without lamda expression
+-----------------------------------
+
+ interface Paint{
+    public void color();
+}
+public class Example {
+    public static void main(String[] args) {
+        String color="red";
+
+        //without lambda, Paint implementation using anonymous class  
+        Paint p=new Paint(){
+            public void color(){System.out.println("coloring "+red);}
+        };
+        p.color();
+    }
+}
+
+ with lambda expression
+------------------------------
+
+@FunctionalInterface
+interface Paint{
+    public void color();
+}
+
+public class Example {
+    public static void main(String[] args) {
+        String color="red";
+
+        //with lambda expression 
+        Paint p=()->{
+            System.out.println("Coloring "+color);
+        };
+        p.color();
+    }
+}  
+
+ Default method example
+---------------------------------
+interface DefaultInterfaceExample
+{
+    // abstract method 
+    public void add(int a);
+
+    // default method 
+    default void display()
+    {
+      System.out.println("Default Method");
+    }
+}
+
+class CalculationClass implements DefaultInterfaceExample
+{
+    // implementation of add abstract method 
+    public void add(int a)
+    {
+        System.out.println(a+a);
+    }
+
+    public static void main(String args[])
+    {
+        CalculationClass c = new CalculationClass();
+        c.add(6);
+
+        // call default method 
+        c.display();
+    }
+}
+
+
+-------------------------------------------------------
+OUTPUT
+-------------------------------------------------------
+12
+Default Method
+
+
+ How to sort Arraylist using java 8
+---------------------------------------------
+public class TestNotes {
+
+    public static void main(String[] args) {
+
+        List<Notes> noteLst = new ArrayList<>();
+        noteLst.add(new Notes(1, "aa", 11));
+        noteLst.add(new Notes(3, "cc", 33));
+        noteLst.add(new Notes(4, "bb", 44));
+		noteLst.add(new Notes(2, "dd", 34));
+        noteLst.add(new Notes(5, "zz", 32));
+
+		// java 8 sort according to id 1,2,3,4,5
+        noteLst.sort((n1, n2)->n1.getId()-n2.getId());
+
+		//java 8 print the notes using lamda
+		noteLst.forEach((note)->System.out.println(note));
+    }
+}
+//Output 
+
+Notes [id=1, tagName=aa, tagId=11]
+Notes [id=2, tagName=dd, tagId=34]
+Notes [id=3, tagName=cc, tagId=33]
+Notes [id=4, tagName=bb, tagId=44]
+Notes [id=5, tagName=zz, tagId=32]
+
+ What is predicate function interface.
+-------------------------------------------
+-> Predicate is single argument function which returns true or false. It has test method which returns boolean.
+
+ What is consumer function interface.
+--------------------------------------------
+-> Consumer is single argument functional interface which does not return any value.
+
+ What is supplier function interface.
+----------------------------------------------
+-> Supplier is function interface which does not take any parameter but returns the value using get method.
+
+
+ Functional interface example
+----------------------------------
+-> public interface Printable {
+ 
+	void print();
+	default void printColor()
+	{
+		System.out.println("Printing Color copy");
+	}
+}
+ public class FunctionalIntefaceMain {
+ 
+	public static void main(String[] args)
+	{
+		FunctionalIntefaceMain pMain=new FunctionalIntefaceMain();
+		pMain.printForm(() -> System.out.println("Printing form"));
+	}
+	
+	public void printForm(Printable p)
+	{
+		p.print();
+	}
+}
+ 
+    When you run above program, you will get below output: Printing form
+->  As you can see, since Printable has only one abstract method called print(), we were able to call it using lambda expression.
+
+ Functional interface and lamda expression example
+--------------------------------------------------------
+
+ public class Movie {
+ 
+	String movieName;
+	long duration;
+	
+	public Movie(String movieName, long duration) {
+		super();
+		this.movieName = movieName;
+		this.duration = duration;
+	}
+
+         setters & getters 
+
+ public class ComparatorLambdaMain {
+ 
+  public static void main(String[] args) {
+    
+    Movie m1=new Movie("Inception",110);
+    Movie m2=new Movie("GodFather",200);
+    Movie m3=new Movie("Forest Gump",130);
+    Movie m4=new Movie("Avengers",150);
+    
+    List<Movie> listOfMovies = new ArrayList<>();
+    listOfMovies.add(m1);
+    listOfMovies.add(m2);
+    listOfMovies.add(m3);
+    listOfMovies.add(m4);
+ 
+    System.out.println("Before Sort by name : ");
+    for (int i = 0; i < listOfMovies.size(); i++) {
+      Movie movie = (Movie) listOfMovies.get(i);
+      System.out.println(movie);
+          
+    }
+    // Sort by movieName
+    // Anonymous Comparator
+    // old way
+    Collections.sort(listOfMovies, new Comparator<Movie>() {
+      @Override
+      public int compare(Movie o1, Movie o2) {
+        return o1.getMovieName().compareTo(o2.getMovieName());
+      }
+    });
+    
+    // Using lambda expression
+    Collections.sort(listOfMovies, (o1, o2) -> o1.getMovieName().compareTo(o2.getMovieName()));
+ 
+    System.out.println("After Sort by name: ");
+    for (int i = 0; i < listOfMovies.size(); i++) {
+      Movie movie = (Movie) listOfMovies.get(i);
+      System.out.println(movie);
+    }
+  }
+}
+ 
+
+Output:
+Before Sort by name :
+Movie Name: Inception|| Movie duration: 110
+Movie Name: GodFather|| Movie duration: 200
+Movie Name: Forest Gump|| Movie duration: 130
+Movie Name: Avengers|| Movie duration: 150
+After Sort by name:
+Movie Name: Avengers|| Movie duration: 150
+Movie Name: Forest Gump|| Movie duration: 130
+Movie Name: GodFather|| Movie duration: 200
+Movie Name: Inception|| Movie duration: 110
+
+ What are static default methods
+-----------------------------------------
+-> An interface can also have static helper methods from Java 8 onwards.
+
+public interface vehicle {
+   default void print() {
+      System.out.println("I am a vehicle!");
+   }
+ 
+   static void blowHorn() {
+      System.out.println("Blowing horn!!!");
+   }
+}
+
+ How will you call a default method of an interface in a class.
+---------------------------------------------------------------------
+ Using super keyword along with interface name.
+
+interface Vehicle {
+   default void print() {
+      System.out.println("I am a vehicle!");
+   }
+}
+class Car implements Vehicle {
+   public void print() {
+      Vehicle.super.print();                  
+   }
+}
+
+ How will you call a static method of an interface in a class.
+-----------------------------------------------------------------
+
+Using name of the interface.
+
+interface Vehicle {
+   static void blowHorn() {
+      System.out.println("Blowing horn!!!");
+   }
+}
+class Car implements Vehicle {
+   public void print() {
+      Vehicle.blowHorn();                  
+   }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

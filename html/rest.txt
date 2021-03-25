@@ -1,0 +1,332 @@
+
+ diff between soap and restfull webservices.
+-------------------------------------------------
+-> we can develop webservices in two ways :
+
+ soap webservices.
+----------------------
+-> in soap webservices transfer the data from consumer to provider and provider to consumer in the form of only xml.
+-> xml is a heavy weight format compare to json, so when we are tranfering the data in the form of xml 
+   it will take more time to rich the destination. so performance will be low.
+-> soap webservices are more secure compare to rest becoz its provide both application level 
+   security & server level security also.
+-> soap webservices are not depending the url concepts.
+-> soap requires more bandwidth resource than rest.
+-> its not support caching mechanism.
+-> SOAP cannot use REST because it itself is a protocol.
+
+  Restful WebServices
+----------------------------
+-> in restful webservices tranfer the data from client to server and server to client in the form of xml, 
+   json, html, plain text, view etc.
+-> json is very lightweight format data compare to xml. so when we are tranfering the data in the form of 
+   json it will take very less time to rich the destination. thats'why performance is high compare to soap.
+-> security purpose rest is not recomended to use becoz its only provide server level security not application level.
+-> rest is depend on url concept.
+-> rest required less bandwidth and resource than soap.
+-> rest support caching mechanism.
+
+  What is a Rest Api.
+------------------------------
+-> Rest is an architectural style of developing webservices.
+-> Rest is an easiest way to expose our complex buisness logic over the network with interporable manner
+   (means language independent and platform independent).
+-> Restful webservices will use http protocol.
+-> Restful webservices always accesing by client by using url concept.
+
+  Principles of rest api
+-----------------------------
+ -> uniquness.
+ -> uniform interface.
+ -> resource.
+ -> representational.
+ -> stateless.
+ -> easy to access.
+ -> scalable.
+ -> interperoble.
+
+ Restful webservices uses in two scenarios.
+----------------------------------------------------
+-> if u want everything to be stateless. stateless means every single request from client to server will be consider as 
+   a fresh request. becoz of these reason rest always prefer to choose http is stateless. so it is easy to expose.
+-> no contract between server and client so loosly couple implementation.
+
+  HTTP METHODS
+----------------------
+
+ GET() method
+---------------
+-> it is used to retrieve/read information from the server.
+-> by using get request we can send only character data and we cannot send binary data like images.
+-> by using get request we can send only limited amount of data information becoz it is varry from 
+   browser to browser.
+-> security is very less and we cannot send sensitive information becoz end-user provided data is 
+   always visible in the form of url.
+-> bookmarking of get request is possible.
+-> get request is idempotent becoz if u provide request multiple times then response is always giving same.
+-> get request is safe.
+
+ POST() create
+-----------------
+-> it is used to create a new resource from the server.
+-> by using post request we can send both binary and character data to the server.
+-> by using post request we can send huge amount of inforamtion from the server.
+-> security is more and hence we can send senstive information like user name & password 
+   becoz end user information won't be visible in the url.
+-> bookmarking of post request is not possible.
+-> it will creates a new resource for each and every req in the server side hence it is not Idempotent. 
+   becoz the response is varry from request to request.
+-> post request is not safe.
+-> For Example if we are creating account for first time we can use post method.but if we want to update our 
+   account information then we have to send that account-no with the request;so here we can use put.
+-> POST is used to create a new entity, but it can also be used to update an entity.
+-> Create a new address:
+   POST /addresses
+
+ PUT () UPDATE
+-------------------
+-> It is generally used for updating a resource. 
+-> It is idempotent because sending the same PUT message more than once has no effect on the underlying service.
+-> For example if we wanted to update the order we need to send the order-id and to do this update we need to 
+   send PUT request with order-id over the URL.
+-> PUT can create a new entity or update an existing one.
+-> Modify the address with an ID of 1:
+
+   PUT /addresses/1
+
+  DELETE() method
+--------------------
+-> it is use to delete the resource. it is idempotent. 
+
+  What do you mean by Idempotent and which HTTP methods are idempotent?
+------------------------------------------------------------------------------------
+-> Idempotent means for every request same response will come.
+
+ jax-rs annotation.
+-----------------------
+
+ @Path 
+---------
+-> This annotation will configure the path of the resource.
+
+ @GET annotation
+-----------------
+-> This annotation will configure that which method will be called at the corresponding path.
+
+ @Produces annotation 
+------------------------
+-> This annotation will configure in which all formats this method can return the response.
+   @Produces({MediaType.APPLICATION_XML})
+
+ @pathparam
+-------------
+-> if u want to send the data trough url then data is mandatory then we used @pathparam. parameters are start with /.
+-> Suppose the client wants the information for student with the roll number 1 or 2 and not for all the students. 
+   In such situation, we can use the @PathParam.
+
+ @Queryparam
+--------------
+-> if u want to send the data through  URL then data is optional the we will used @queryparam.
+-> query parameters are starts with "?" in the url.
+-> if multiple parametres are there then we can separate with & symbol.
+
+  @Matrixparam
+-----------------------
+-> it is also optional parameter. matrix parameter are also associated with URL path with same name.
+-> order of the matrix parameter are not important.
+
+ @Formparam
+----------------------
+-> formparam is used to get the requests data from html form page. it works only for http method post.
+
+ @Cookieparam
+---------------------------
+-> in general cookie is tranfering from server to client and client to server.
+-> the cookie obj is creating in server system but stores in client system.
+
+ Syntax :
+
+ Base URL :
+
+ http://localhost:(port)/<YourApplicationName>/<UrlPattern In Web.xml>/<path>
+
+ 
+ HTTP STATUS CODE
+--------------------
+
+ 200 - sucsess
+ 201 - when a resource is successfull created using post or put.
+ 204 - no content, when response body is empty. for e.g delete request.
+ 304 - not modified.
+ 3x - redirection
+ 4x - client error
+ 400 - bad request e.g validation error, missing data.
+ 401 - unauthorised , state that user is using invalid or wrong authentication token. 
+ 403 - forbidden  delete access without admin rights.
+ 404 - not found method is not avialable.
+ 409 - conflict adding, duplicate entry.
+ 500 - internal server error.
+
+ Singleton design pattern.
+-------------------------------------
+-> singletone is one of the most popular creational s/w design pattern 
+   in enterprise level java application almost in every project we see some implementaion of singletone.
+-> if any java class which allow to create only one obj in whole application.such type of classes is called 
+   singleton classes.
+
+ To make a singleton class in following situations.
+------------------------------------------------------------
+-> if the requirement is same then instead of creating a separate obj for every person. we will create only one 
+   object and we can share that obj for every required person. we can achieve this by using singleton classes.
+-> if our application is a desktop/standalone application, then there is no need to make session factory obj as a 
+   singleton becoz only one user can access the application at a time.
+-> if our application is web application then there is need to make session factory obj as a singleton. 
+   becoz at a time multiple clients can send a request to the server.if multiple session factory obj are created, 
+   then the burden on the server will be increased. so we should make session factory obj as a singleton.
+-> by default session factory obj of hibernate is not a singleton. it is the programmer responsbility to make 
+   it as a singleton.
+-> to create a session factory obj as a singleton, we need to create a separate utility(helper) class and we need to 
+   define factory() in that class, to return the session factory object.
+-> all the other classes in the project will get a single session factory object by calling the factory() method.
+ 
+ Advantages
+---------------
+-> performance of the application will be improved.
+-> memory utilization will be improved.
+-> singleton mainly uses in multithreaded enviroment and and database application.
+
+ How to make a class as singleton
+-------------------------------------------
+-> declare a private static refrence variable to hold current class obj.
+-> declare all the constructor as private becoz other classes cannot create an obj of a singleton class.
+-> declare a static factory method becoz after declare the constructor as private no one from outside of 
+   the class call the constructor to create the obj.
+-> declare a synchronized block with double checking to avoid multithreading issue.
+
+ Factory Design Pattern
+-----------------------------
+-> if we want to create multiple obj for a class & the obj creation process is difficult.to overcome 
+   this problem factory method comes into picture.it is one of the best ways to create an object.
+-> bu using class name if we are calling a method and that method returns the same class obj such type 
+   of method is called factory method.
+-> In Factory pattern, we create object without exposing the creation logic to the client and refer to 
+   newly created object using a common interface. & this pattern provides loose coupling.
+-> main purpose is factory design pattern is code resusability (crates a program once and execute it any number of times).
+   and without new operaor we create a obj.
+-> the best eg of in jdbc application, 
+   DriverManager.getConnection() method is nothing but factory pattern logic.
+   Connection con=DriverManager.getConnection("jdbc:odbc:<username>",<password>");
+
+  DAO (data access object)
+---------------------------------
+-> it is a s/w design pattern. it is the best solution for recursive problem.
+-> in a real time project, if we mix buisness logic and persistence logic, then we may face the following problems.
+   1> if any changes are needed to the persistence logic, then we need to modify the multiple buisness classes.
+   2> we cannot test buisness logic seperetly and persistence logic seperetly.
+-> As the solution for the above problems, Dao dp is introduced.
+-> it separates the persistency logic from buisness logic. it only contains persistency logic. 
+   and it defines persistence logic in separate class.
+-> for resusability and flexibility purpose we can separate one logic from another logic.
+-> we can write any DAO as part of our project.
+-> in realtime project, a DAo design pattern is created by implementing following three files.
+   1.> DAo interface
+   2.> DAO class
+   3.> DAO factory class.
+-> actual persistence logic will be defined in DAO persistence class.
+-> if a buisness class wants to call the methods of a DAO class, then a buisness class
+   should know DAO class methods.
+-> in real time we prepare a DAO interface with a list of methods in DAO class and that DAO 
+   interface will be sent to buisness classes.
+-> in order to return a DAO class obj to the buisness classes, we create a DAO factory.
+
+
+
+-> suppose we have diff message type like (sms,email,notification).
+-> First we can create one abstract class or an interface. MessageBuilder is an abstract class having one abstract method build.
+   public abstract class MessageBuilder {
+             public abstract void build () ;
+    }
+-> in the above class build is not fully implemented so next we can create particular message type builder so 
+   that can extends the Messagebuilder and you can implement the build method according to that message type.
+-> In the below codes, there are three mesage type builder,SMSMessageBuilder,EMAILMessageBuilder and NotificationMessageBuilder.
+-> and each can extends MessageBuilder abstract class and to implements the build methods. Each MessageBuilder of build method 
+   is implemented differently according to their requiremen
+
+ class SMSMessageBuilder extends MessageBuilder {   
+            public void build () {   
+                      System.out.println("This is SMS message Type");   
+                      // do processing SMS message type
+            }
+    }
+
+    class EMAILMessageBuilder extends MessageBuilder {   
+             public void build() {   
+                       System.out.println("This is Email Message Type");    
+                       //do proceessing EMAIL things.
+             }
+    }
+
+   class NotificationMessageBuilder extends MessageBuilder {   
+            public void build () {   
+                   System.out.println("This is Notification Message Type");    
+                   // do processing Notification things.
+           }
+   }
+
+-> Next step is to define the Factory class, in this case which is a MessageBuilderFactory. As you can see in the below code, 
+  the static getBuilder method will return particular "MessageBuilder" object based on the parameter messageType. 
+  
+ class MessageBuilderFactory {
+       
+      public static MessageBuilder getBuilder(String messageType) {   
+              if (messageType.equals("SMS")) {           
+                       return new SMSMessageBuilder();           
+              } else if (messageType.equals("EMAIL")) {           
+                       return new EMAILMessageBuilder();       
+              } else if (messageType.equals("NOTIFICATION")) {           
+                       return new NotificationMessageBuilder();       
+              } else {
+                       return new SMSMessageBuilder();         //default MessageBuilder.
+
+              }
+       }
+ }
+
+-> Next step is to create the main class to test the above the Factory class to passing the messageType.
+   you can pass any type of messageType and check it. 
+
+-> class MessageManager {
+       public static void main(String[] args) {       
+              String messageType = "SMS";       
+              MessageBuilder builder = MessageBuilderFactory.getBuilder(messageType);
+              builder.build();   
+      }
+ }
+
+ Output:-This is SMS message Type.
+
+-> If you want to add new message type in the above existing code then you have to create one Implemented MessageBuilder 
+   class that can extends abstract MessageBuilder class. In the MessageBuilderFactory you can add one else if condition 
+   and to pass messageType as parameter.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

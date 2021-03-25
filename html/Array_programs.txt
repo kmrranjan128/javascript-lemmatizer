@@ -1,0 +1,85 @@
+
+ W.A.P to find a maximum number in given array
+-------------------------------------------------------
+ e .g = 2,3,12,7,4,13 
+ output = 13
+
+ public class Example
+ {
+ public static void main String(String []  args) 
+ {
+ int findMax(int [] arr){
+ int max = arr[0];
+ for (int i =0 ; i<arr.length; i++)
+ {
+ if(max < arr[i])
+ max = arr[i];
+
+
+ W.A.P to find duplicate element in array
+-----------------------------------------------------------
+ public class Example
+ {
+ public static void main String(String []  args)
+ {
+ int[] arr = {1,2,4,6,7,6,5,9};
+
+ for(int i=0; i<arr.length-1; i++)
+ {
+ for(int j=i+1; j<arr.length; j++)
+ {
+ if(arr[i]==arr[j])
+ {
+ system.out.pritln(" the duplicate element is :" + arr[j]);
+ } 
+   }
+     }   
+        }
+
+  W.A.P to sort an array assending and decending order
+-----------------------------------------------------------
+ public class Example
+ {
+ public static void main String(String []  args)
+ {
+ int[] arr = {1,23,34,45,67,11};
+ int temp;
+
+ for(int i=0; i<arr.length; i++)
+ {
+ for(int j=i+1; j<arr.length; j++)
+ {
+ if(arr[i] < arr[j])
+ {
+ temp = arr[i];
+ arr[i] = arr[j];
+ arr[j] = temp;
+ }
+   }
+ system.out.pritln(arr[i]);
+ }
+   }
+      }
+ 
+ 
+ 
+
+ 
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
+ 

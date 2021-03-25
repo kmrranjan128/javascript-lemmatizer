@@ -1,0 +1,565 @@
+
+ what is an Angular js.
+----------------------------
+-> AngularJS is an open-source mvc framework i.e built on top of JavaScript.
+-> and It is a structural framework for create single Web page application.
+-> and also we can use for multi paged dynamic web application.
+
+ model
+----------- 
+-> it is responsible to store data base related logic.in angular js model is implemented by using 
+   javascript variables, array and objects.
+-> at the time of execution database related logic model data will be exchanged between 
+   client and server using ajax
+
+ view 
+----------
+-> view is responsible for presentation(ui) logic. view will be take care of how to display model data end user. 
+-> in angular js view are implemented by using html, css, and angular js directives. 
+ 
+ controller 
+------------
+-> it is link between the model and view, to handle buisness logic and user intrection logic.
+-> it is responsible for application execution logic. it act as a mediator between model and view. 
+-> in angular js controller are developed by using javascript functions.
+-> controllers can communicate with server to get the db information from the server.
+-> controller is javascript function that is used to provide data and logic to the html UI.
+
+ angluar js features
+-----------------------
+-> It supports Dependency Injection.
+-> It supports two-way data binding.
+-> It provides routing feature.
+-> predefined form validations.
+-> the code is unit testable.
+
+ lifecycle of angular js
+-----------------------------
+-> three phases of lifecycle of angular js: bootstrap, compilation, and runtime. 
+
+ bootstrapping
+-----------------------
+-> The first phase of the AngularJS life cycle is the bootstraping phase,it occurs when the 
+   AngularJS JavaScript library is downloaded to the browser. ng-app directive will be used.
+
+ Compilation Phase
+---------------------------
+-> The second phase of the AngularJS life cycle is the HTML compilation stage. During the compilation 
+   phase the static DOM is replaced with a dynamic DOM that represents the AngularJS view.
+ 
+ Runtime Data Binding Phase
+-----------------------------
+-> The final phase of the AngularJS application is the runtime phase, which exists until the user reloads 
+   or navigates away from a web page.
+
+  Directives.
+---------------
+-> directive are used to add new attributes of html.
+-> angular js directive are used to extened the html functionality and DOM element behaviour.
+-> they are special attribute starting with ng-prefix.
+-> angular js comes with some inbuilt directive such as ng-app,ng-model, ng-init, ng-repeat, ng-controller etc.
+
+ in Angularjs we can create custom directives in 4 different ways
+---------------------------------------------------------------------
+-> in angular u can access the dom within directive only, so if u want to access the dom 
+   directly u need to write custom directive.
+-> Custom Directive are used in angular js to extends the functinality of html inside angular.
+-> Custom directive are created by directive() funcation of module object.
+-> based on our buisness requirement we can create our own custom directive i.e called custom directive.
+-> But how can we instruct angular to choose which type (Attribute, Element, CSS Clsss, Comment) of 
+   directive can be used in the page.here we have a property called ‘restrict‘, by using this we can easily 
+   intimate angular how our custom directive is going to be displayed in the page.
+
+ 1.> Element directives 
+----------------------------
+-> an element directive associated with angularjs find matching element in the html template(view).
+                      EX::<directive>Content</directive>
+
+ 2.> Attribute directives
+----------------------------
+-> An attribute directive activated when angularjs find matching attribute in the HTML Layout(view).
+		 <tag directive></tag>
+ 3.> CSS class directives
+ 4.> Comment directives
+
+-> a custom directive simply replaces the element for which it is activated. angular js application 
+   during bootstrap finds the matching elements and do one time activity using its compile()method of 
+   the custom directive then process the element using link() of the custom directive based on the scope of the directive.
+    var app=angular.module("myApp",[]);
+    app.directive("directiveName" funcation(){
+    var obj={};
+   //attach the required properties
+   return onj;
+   });		
+   Properties assign to directive
+   a)restrict="EA"/"E"/"A"
+   b)template=""      <==>html content to display
+   c)templateUrl=""    url of file
+
+ what is scope.
+-----------------
+-> scope is the javascript objects.they act as mediater between controller and view.
+   and contains model data.in controller model data is accessed via scope.
+-> scope contains model data. model data is accessed by $scope obj.
+-> each angular js application can have only one rootscope but can have multiple child scope.
+
+ what is $scope.
+-------------------
+-> $scope is a javascript obj which is used to communicate between controller and view.
+-> $scope is a JavaScript object that is used to assign & access data between controller and view. 
+   With the help of $scope object we can assign any type of data to view either a string variable or any JSON data.
+-> each controller will have one $scope object.But every Angular application can have only one $rootScope.
+-> we can attached all types of data with $scope eg numbers, string, objects, function etc.
+-> ‘N’ no. of controllers in application = ‘N’ no. of $scope objects
+    One Angular Application = 1 $rootScope
+
+ what is $rootscope.
+------------------------
+-> $rootscope is a parent of all the scope and it refers to an object which is acceseble from anywhere in of the app.
+-> $rootscope is global variable and scope is a local variable.
+-> this method can be useful when u have multiple controllers on a page which need to be share data.
+-> Every application have only one $rootScope provided by AngularJS and every other scope is its child scope.
+-> Using $rootscope we can set the value in one controller and read it from the other controller.
+
+ diff between ng-if and ng-show/ng-hide
+----------------------------------------------
+-> both are mainly used for show & hide purpose.
+-> ng-show/ng-hide will always insert the DOM element, but it will show/hide based on the condition. 
+-> ng-show/hide will only show or hide that element from dom if condition is true.
+   if condition is false then hide the element.
+
+ ng-if directive.
+-----------------------
+-> This directive can add/remove HTML elements from the DOM based on condition. 
+-> If the condition is true, it insert the elements to the DOM. 
+-> If the condition is false, it removes the HTML element from the DOM.
+-> ng-if creates a child scope while ng-show/ng-hide does not create child scope.
+-> ng-if and ng-show is that when using form controls it is better to use 
+   ng-if because it completely removes the element from the dom.
+
+ note:-
+----------
+-> ng-show/ng-hide will always insert the DOM element, but will display/hide it based on the condition. 
+-> ng-if will not insert the DOM element until the condition is not fulfilled.
+
+ use case of ng-if ng-hide/show
+-----------------------------------
+-> While we are working with ng-if, if the assigned value is false then the whole html elements will be
+  removed from DOM.and if assigned value is true, then the html elements will be visible on the DOM. 
+  And the scope will be different compared to the parent scope. But in case of ng-show, it wil just show and 
+  hide the elements based on the assigned value.But it always stays in the DOM. Only the visibility changes as 
+  per the assigned value.
+
+  e.g- ng-show=true/ng-hide=false:
+  Element will be displayed
+
+  ng-show=false/ng-hide=true:
+  element will be hidden
+
+  ng-if =true
+  element will be created
+
+  ng-if= false
+  element will be created in the dom. 
+
+ Diff between factory & services.
+---------------------------------------
+-> factory & services both are singletone obj in our application.it is sharable across the app.
+-> factory & services both are allow to create an object that can be used anywhere in our app.
+-> factory & service() and both are used to create a service. 
+-> A factory is a simple function which allows you to add some logic before creating the object. 
+   at the end,it returns the created object.the purpose of Factory is also the same as Service.
+
+  angular.module('app').factory('SomeService', function() {
+    return {
+        someFunction: function() {}
+    };
+ });
+
+ services
+-------------
+-> services are objects that can be used to store and share data accross the application.e.g user details
+-> services are constructor functions of the object which are instantiated with the new keyword.
+   angular.module('app').service('SomeService', function() {
+    this.someFunction = function() {};
+ });
+
+-> services are javascript function and are responsible to do specific task only.each service is responsible for a specific task .
+   for e.g is angular js has some inbuilt services such as $http.i.e used to make ajax call to get the server data. 
+-> $Route is used the define the routing information and so on
+
+ How to make Ajax call in angular js (Asynchronous java script and xml)
+---------------------------------------------------------------------------
+-> angular js comes with inbuilt services such as $http.i.e used to make xmlHttpRequest ajax call to 
+   read data from the server. the server makes a databse call to get the desired records.
+-> angular js needs data in json format. once the data is ready ,$http can be used to get the data 
+   from server in the following format.  
+          
+      $http{
+	   url:
+	   method:
+	   data:
+	   headers:{
+	  "content-type":"application/json"
+	 }
+	  }.success(funcation(response){
+	  //attach the reponse data to scope
+	});
+
+   function studentController($scope,$https:)
+   var url = "data.txt";
+   $https: .get(url).success(function (response){
+   $scope.students = response;
+});
+}
+
+ How to validate data in angular js.
+-----------------------------------------
+-> One of the coolest features in AngularJS is client-side validation.
+-> angular js comes inbuilt form validation. we can use $dirty and $invalid flags to do the validations 
+   in seamless way.use novalidate with a form declaration to disable any browser specific validations.
+   following track error.
+  $dirty -> it states that values has been changed.
+  $invalid -> states that value enterd is invalid
+  $error -> states the exact error.
+  $valid
+
+  <input type="email" name="email" ng-model="email" required>  
+    <span style="color:red" ng-show="myForm.email.$dirty && myForm.email.$invalid">   
+    <span ng-show="myForm.email.$error.required">Email is required.</span>  
+    <span ng-show="myForm.email.$error.email">Invalid email address.</span>  
+    </span>
+ 
+ Data Binding in angular js.
+----------------------------------
+-> it is the primary feature of an angular js.first time in client side framework angular js
+   introduced this data binding concept.
+-> this feture reduce lot of client side coding which is related to data(presentation) views.
+-> Data binding is the connection bridge / linking between business logic model and view components
+   of the application.
+-> data binding is the automatic synchronization of data between model and view components.
+-> In AngularJS data binding is a two-way process: When data is changed on a web page, the model
+   is updated, and when data is changed in the model, the web page is automatically updated
+-> binding directive in angular js.
+   1.> ng-bind.
+   2.> ng-model.
+ <div ng-app=""ng-init="quantity=10;cost=5">
+ <b> total cost:{{quantity*cost}}</b></div>
+
+ Angular js support one way as well as two-way data binding.
+----------------------------------------------------------------
+-> So whenever you make changes in one entity the other entity also gets updated.
+-> in two-way data binding means controller can modify the data as well as user can 
+   assigned or update new value.
+-> in angular js we can achieve two-way data binding by using ng-model directives. 
+   e.g- login page.
+
+ how to perform one way data binding in angular js.
+------------------------------------------------------
+-> it will bind the scope variable only one-time with view.
+   next time angular js does not update the changes in view.
+-> by using :: in front of scope variables.
+   usage{{:: uname}} // one time binding.
+
+ Routing support spa (single page application).
+----------------------------------------------------
+-> it is a concept of switching views. 
+-> angular js support spa concept. a/c to this concept we can display content of website 
+   in current page without reloading to another page.
+-> SPAs use AJAX and HTML to create quick and responsive web apps. 
+-> this reduce the number of round trips to the server.
+-> if u want to navigate to different pages in your application, but u also want the application 
+   to be a SPA, with no page reloading, u can use ng route module.
+
+ how to implement routing in angular js.
+-------------------------------------------
+-> Routing is a mechanism of switching views angular base controller decide which to render based 
+   on the buisness logic.This feature is useful in building SPA with multiple views.
+-> Routing helps us to divide our application in logical views and bind them with different controller.
+-> In SPA maintaining route detail is main challenging task that is manage by using routing concept.
+-> For this work we need a different module called ng-route that is injected into the main module
+   through dependency injection.then call the config function on object of main module.
+   In which we provice the routing information.
+
+ module in angular js.
+--------------------------- 
+-> it is a collection of components, directives and services.
+-> it is an entry point of application. Using module we can decide how the AngularJS application
+   should be bootstrapped.
+-> Each view or web page in AngularJS has a single module.it will assigned using the ng-app directive. 
+                          var myApp = angular.module(‘myModuleApp’,[]); .  
+
+ what are the services in angular js.
+----------------------------------------
+-> Services are one of the most important concepts in AngularJS. 
+-> Services are objects that can be used to store and share data across the application. 
+-> AngularJS comes with many in-built services e.g $http is used to make an Ajax call to get the server data.
+-> services are singleton objs which are created only once in whole application.
+
+-> it holds some buisness logic and these function can be called as controllers, directive, filters.
+
+ AngularJS services are designed based on two principles.
+------------------------------------------------------------
+
+ Lazily instantiated.
+----------------------------
+-> Angular only instantiates a service when an application component depends on it using 
+   dependency injection for making the Angular codes robust and less error free.
+
+ singletone.
+---------------------
+-> In Angular, the dependency injection and the services implement the singleton pattern.
+
+ Some of the commonly used services in any AngularJS application are as follows:
+---------------------------------------------------------------------------------------
+-> $http – used to make an Ajax call to get the server data.
+-> $window – Provides a reference to a DOM object.
+-> $Location – Provides reference to the browser location.
+-> $timeout – Provides a reference to window.set timeout function.
+-> $Log – used for logging.
+-> $Rootscope – Used for scope hierarchy manipulation.
+-> $Route – $route defines the routing information and so on. 
+-> $Filter – Used for providing filter access.
+-> $resource – Used to work with Restful API.
+-> $document – Used to access the window. Document object.
+-> $exceptionHandler – Used for handling exceptions.
+-> $cookies – Use this service for reading, writing and deleting the browser cookies.
+
+ what is depencies injection in angular js.
+--------------------------------------------------
+-> Dependency Injection is one of the best features of AngularJS. It is a software design pattern 
+   in which objects are passed as dependencies. 
+-> Using Dependency Injection, we can make components maintainable, reusable and testable.
+-> We can change the dependencies when we required.
+-> There are two big benefits of DI: - Decoupling and Testing.
+
+-> DI provides following core components which can be injected into each other as dependencies.
+-------------------------------------------------------------------------------------------------
+-> Value.
+-> Factory.
+-> Service.
+-> Provider.
+-> Constant.
+-> A common use for dependency injection is consuming services. For example, if you are defining a
+   module that requires access to the web server via HTTP requests, you can inject the HTTP service 
+   into the module, and the functionality is available in the module code. In addition, one AngularJS 
+   module consumes the functionality of another via dependency.
+
+-> A simple case of dependency injection in Angular js.
+--------------------------------------------------------
+-> AppModule.controller("AppController", function ($scope, $window, $log, $http)   
+   {   
+   });
+-> For example in the below code “$scope” and “$http” objects are created and injected by the angular js. 
+   The consumer i.e. 
+   “CustomerController” does not create these objects himself rather Angular injects these objects.
+
+   function CustomerController($scope,$http)
+{
+// your consumer would be using the scope and http objects
+}
+
+ filters in angular js.
+---------------------------
+-> in An AngularJS Filter changes or transforms the data before passing it to the view. 
+-> These Filters work in combination with AngularJS expressions or directives. 
+-> Filter does not modify the origional data,it genrated the formatted results.
+-> AngularJS uses pipe character (“|”) to add filters to the expressions or directives. For example:
+-> <p> {{ bid | currency }} </p>
+-> The above example is an expression enclosed in the curly braces. The filter used in this expression is currency.
+-> Also important to note that filters are case-sensitive.
+   "OrderBy", "filter", "limitTo" options are applicable on collections(Arrays).
+               
+    EX:: {{pname|uppercase}}
+       {{price|currency:"Rs"}}	
+
+   AngularJS provides following filters to transform data.
+---------------------------------------------------------------
+-> currency – It is used to format a number to a currency format.
+-> date – It is required to format a date to a specified format.
+-> filter – It chooses a subset of items from an array.
+-> json – It formats an object to a JSON string.
+-> limitTo – Its purpose is to create an array or string containing a specified number of elements.
+-> lowercase – This filter converts a string to lower case.
+-> number – It formats a number as a text.
+-> orderBy – It enables to sort an array. By default, sorting of strings happens alphabetically.
+-> uppercase – This filter converts a string to upper case.
+
+ Template.
+------------
+-> template consists of html,css,and angular js directive that are used to render dynamic view.
+-> it is used to render dynamic view with information from the controller and model.
+   thse can be a single file (such as index.html)or multiple view in one page.
+
+ Expression in angular js
+-------------------------------
+-> expression are uesed to bind application data to html. angular js expression are placed inside 
+   {{expression}}. e.g- {{1+1}}
+
+ Deep Linking
+---------------------
+-> deep linking allow u to encode the state of an application in the url so that it can be bookmarked.
+   the app can then be restrored from the url to the same state.
+
+ $Route provider
+--------------------
+-> it is the key service which set the configuration of urls,maps them with the corresponding html 
+   page or ng-template, and attaches a controller with the same.
+
+ Provider
+--------------
+-> provider is used by angular js internally to create services,factory etc.during config phase 
+  (phase during which angular js bootstraps itself).
+-> provider is a special factory method with a method get() which is used to return the value /service/factory.
+
+ Internationalzation
+-------------------------
+-> it is a way to show locale specific information on a website.for e.g display content of a website 
+   in english language in united states and in danish in france.
+-> angular js supports inbuilt internationalziation for three types of filters currency, date and numbers.
+-> we only need to incorporate corresponding js according to locale of the country. by default it handles 
+   the locale of the browser.
+
+ Injector
+-----------
+-> an injector is a service locator it used to retrieve object instance.
+-> there is a single injector per angular application it helps to look up an object instance by this name.
+
+ Factory method
+------------------
+-> factory method is used to creating the directive. it is invoked only once when compiler 
+   match the directive for the first time. by using $injector invoke the factory method. 
+
+ compile function
+---------------------
+-> it is used for template dom mainupulation and collect all of the directives. 
+
+ Linking function
+--------------------
+-> links combines the directives with a scope and produce a live view. for registering dom listners 
+   as well as updating the dom, link function is responsible.after the template is cloned it is executed.
+
+ pre-linking function
+------------------------
+-> it is executed before the child elements are linked, it is not considered as the safe way for dom transformation.
+
+ post-linking function
+---------------------------
+-> post linking function is executed after the child elements are linked.it is safe to do dom trnasformation
+   by postlinking function.
+
+ 
+
+  most commonly used directives.
+------------------------------------
+ 1.> ng-app.
+----------------
+-> it is used to start an angular js application.
+
+ 2.> ng-init.
+-------------------
+-> it is used to initialize the angular js variables. 
+
+ 3.> ng-model.
+-------------------
+-> it is used for binds an input, select,text area controls with variables (angular js model variable).
+-> it implements two-way data binding.
+-> it is responsible for providing validation behaviour.
+
+ ng-repeat.
+------------------
+-> It iterates over a collection of items and creates DOM elements.
+-> it is used to process the collections like arrays.
+-> it is used to Bind repeated data HTML elements. Its like a for loop.
+-> ng-repeat provides a special variable called $index to get index of current item.
+
+ ng-bind. {{expression}}.
+---------------------------------
+-> it is considered as a one-way data binding.
+-> generally it is used to display the data to the user.
+-> it work same as angular expression. it will bind html tags with variables. 
+   it allows only one variable to bind with tag. 
+   
+
+ ng-Controller.
+----------------------
+-> it is used to Attaches a controller class to view.
+
+ ng-class.
+-------------------------
+-> it is Used to assign CSS class.
+
+ how to call one controller to another controller
+-----------------------------------------------------------
+
+ function FirstController(someDataService) 
+{
+  // use the data service, bind to template...
+  // or call methods on someDataService to send a request to server
+}
+
+function SecondController(someDataService) 
+{
+  // has a reference to the same instance of the service
+  // so if the service updates state for example, this controller knows about it
+}
+
+ 
+
+ 
+ 
+ custom directive
+------------------
+->
+-> <script> 
+    var myapp = angular.module('Java4sApp', []); 
+    myapp.directive("java4sCustomDir",function(){ 
+          return ({               
+                 restrict : 'C',
+               //template: 'I am text from template', 
+                 templateUrl: '<your file path>/custDirHtml.html'
+          }); 
+    });
+  </script>
+ </head>
+ <body>
+     
+     <div class="java4sCustomDir"></div>
+ 
+ </body>
+ </html>
+
+
+
+
+    
+
+
+	                
+					
+					
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

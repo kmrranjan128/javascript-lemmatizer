@@ -1,0 +1,131 @@
+
+ String related logical programs
+-----------------------------------------
+
+  How to reverse a String using Recursion
+---------------------------------------------
+ class Recursion {
+ public static void main (String[] args){
+ String str = "java";
+ recursiveString(str);
+ }
+ private static Strig recursiveString(String str){
+ if(str==null || s.length()<=1){
+ return str;
+ }
+ return recursiveString(s.substring(1))+str.charAt(0);
+ }
+ output = avaj.
+
+
+ 
+  how to reverse a number.
+---------------------------------
+ class Reverse 
+ {
+ public static void main (string[] args) {
+
+ int number = 5432, rem, rev=0;
+
+ while (number !=0) {
+ 
+ rem = number % 10;
+
+ rev = rev * 10 + rem ;
+
+ number = number / 10;
+ }
+ s.o.p.ln(rev);
+ }
+  }
+
+
+ W.A.java program to count occorence of each character in a string.
+----------------------------------------------------------------------
+ class Accurence 
+ {
+ public static void main (String[] args)
+ {
+ String str = "programming";
+
+ Map<character,Integer> hm = new HasMap<>(); // create a map with character and string
+
+ for(character c:str.toCharArray()){         // convert a given string to charcter array
+
+ if (hm.containsKey(c)){  // loop through the character array if charater is not present in the map store it the map and its count.
+
+ hm.put(c,hm.get(c)+1);
+ }
+ else 
+ {
+  hm.put(c,1);
+  }
+     }
+  system.out.println(hm);
+ }
+  }
+    output : p=1, a=1, r=2, g=2, i=1, m=2, n=1, o=1
+
+
+ W.A.P to find duplicate in given Sting
+-----------------------------------------------
+
+ public class Example 
+ {
+ public static void main(String argu[]) 
+ {
+ String str = "w3schools";
+ int count = 0;
+ char[] input = str.toCharArray();
+ System.out.println("Duplicate Characters are:");
+ for (int i = 0; i < str.length(); i++) 
+ {
+ for (int j = i + 1; j < str.length(); j++) 
+ {
+ if(input[i] == input[j]) 
+ {
+ System.out.println(input[j]);
+ count ++;
+ break;
+ }
+   }
+     }
+       } 
+          }    output :  Duplicate Characters are: s o
+
+
+  w.a.p to find duplicate words and their number of occurence in a string.
+---------------------------------------------------------------------------
+
+ e.g here i am i am here friend.
+
+ friend repeted 1 times
+ here repeated 2 times
+ i repeated 2 times
+ am repeated 2 times
+
+ public class Duplicate {
+
+ public static void main(String[] args) {
+
+ s.o.p.ln ("enter the string");
+
+ Scanner sc = new Scaner(System.in);
+
+ String input = sc.nextLine();
+
+ String[] words = input.spilit("");
+
+ Map<String,Integer) hm = new HashMap<String,Integer>();
+
+ for(String str:words) {
+ 
+ if (hm.get(str)!=null) {
+
+ hm.put (str, hm.get(str)+1);
+ }
+  else {
+      
+      hm.put(str,1);
+   }
+ }

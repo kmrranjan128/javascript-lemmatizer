@@ -1,0 +1,139 @@
+
+ Collection material
+-----------------------------
+ How hashmap internally work in java
+----------------------------------------
+-> HashMap is an implementation of hash table data structure.and initial capacity of hashmap is 16.and
+   its bucket size is 0 to 15.
+-> HashMap holds the data in the form of key-value pairs where each key is associated with one value.
+-> hashmap works on principle of hashing techniques.Hashing is a process of converting an object into 
+   integer form by using the method hashCode().
+-> three important terms in hashmap is hash function, hash value and bucket.
+-> A bucket is used to store key value pairs.In hash map, bucket used simple linked list to store objects.
+-> through get() we will retrieve the value from hashmap.and through put method we add element in hashmap.
+-> after the getting right bucket number.equals() method is used to find the correct key from the bucket.
+   through put method we add element in hashmap.
+-> HashMap allows one null key, which is stored at the first location of bucket.
+-> HashMap also allows null value; you can store as many null values as you want,
+-> Hasmap doesnt maintain any insertion oreder.
+
+Hashmap
+-----------
+-> every method present in hashmap is bydefault non synchronized & not thread safe.
+   so multiple thread can access at a time.
+-> performance wise hashmap is much faster than hashtable.
+-> in case of hashmap only one null key and multiple null values are allowed.
+-> hashmap doesnt maintain insertion oreder in which order we are inserting the element in 
+   the same order you cannot retrieve the element it will display randomly. 
+
+ Hashtable
+--------------
+-> every method present in is hashtable is by default synchronized & threadsafe.
+   so at a time only one thread we can acces.
+-> performance wise it is slow compare to hashmap. 
+-> in case of hashtable doesnt allow null key and null value.it throws null pointer exception.
+-> hashtble & cuncurrent hashmap maintain insertion order.
+
+  Hashmap
+-------------
+-> every method present in hashmap is bydefault non synchronized & not thread safe.
+   so multiple thread can access at a time.
+-> when we synchronize hashmap by using Collections.synchronizedmap(hashmap). by using this method
+   we get hashmap obj which is equivalent to hashtable object.
+-> whenever we synchronozed hashmap hashmap it locks hole map.
+-> in hashmap one null key are allowed.
+-> performance wise hasmap is much faster than concurrent hashmap.
+-> hashmap doesnt maintain insertion oreder in which order we are inserting the element 
+   in the same order you cannot retrieve the element.it will display randomly. 
+
+ concurrent hashmap
+-----------------------------
+-> every method present in concurrent hashmap is by default synchronized & threadsafe. 
+   so at a time only one thread we can acces.
+-> concurrent hashmap synchronized or lock on the certain portion of the map.
+-> in concurrent hashmap null keys are not allowed.
+-> performance wise it is slow compare to hashmap.
+-> cuncurrent hashmap maintain insertion order. in which order we are inserting the 
+   element in the same order we can retrieve the element.it will display sequntly.
+
+failfast iterator
+---------------------------
+-> in failfast iterator every time while iterating the list it will check for the modification in the list,
+   If any modification found then it will throw ConcurrentModificationException.
+-> All the implementations of iterator in Collection classes are fail-fast except concurrent classes like
+   ConcurrentHashMap and CopyOnWriteArrayList.
+-> failfast iterator is no clone copy will be created.
+-> no memory problem is there.
+
+ Failsafe iterator
+------------------------
+-> In fail-safe iteraor while iterating the list it does't throw any exception i.e ConcurrentModificationException.
+   even if you modified the list. All implementations of Collection classes in java.util package are fail-fast and 
+   all Collections classes of java.util.concurrent are fail-safe.
+   Examples of fail-safe classes are ConcurrentHashMap and CopyOnWriteArrayList.
+-> failsafe iterator is the clone copy will be created.
+-> memory problem is there.
+-> failsafe iterator doesn't throw any exception.
+-> e.g concurrent hashmap.
+
+What will happen if you try to store a key which is already present in HashMap
+-----------------------------------------------------------------------------------
+ HashMap<String,String> map=new HashMap<String,String>();
+ map.put("one", new Integer(1));
+ map.put("one", new Float(1.0));
+ System.out.println(map.get("one"));
+ In which value it will print? 1 or 1.0.
+
+-> It will print 1.0 because if map having the same keys then it will override
+   the old key value with the new value and put method will return the old value.
+-> No, you cannot insert duplicate keys in HashMap, it doesn't allow duplicate keys. 
+   If you try to insert an existing key with the new or same value, then it will
+   override the old value, but the size of HashMap will not change.
+
+ What happened if when two different keys have the same HashCode.
+----------------------------------------------------------------------
+-> Collisions will be happened when 2 different keys generate the same hashCode() value.
+-> If two key object ‘s have same hashcode , they will go in same bucket of table array.
+-> Since bucket is one and we have two objects with the same hashcode.
+-> So we traverse through linked list , comparing keys in each entries using keys.equals() 
+   until it return true. Then the corresponding entry object Value is returned .
+-> key.equals(k) will check until it is true, if true it returns the value of it.
+
+ How hashset work in java 
+------------------------------
+-> hashset internally usinh hasmap.
+-> Each and every element in the set is unique.So that there is no duplicate element in set .
+-> through add method we add the aelement in haset.
+-> Whenever you create an object of HashSet it will create an object of HashMap
+
+ how hasmap handle collision in java
+----------------------------------------
+-> HashMap uses chaining to handle collisions,which means new entries,an object which contains both key and values, 
+  are stored in a linked list along with the existing value, and then that linked list is stored in the bucket location.
+
+
+ shallow cloning
+---------------------
+-> The clone method of the HashMap class returns a shallow copy of this map object.
+   The keys and values themselves are not copied, only the references are copied. 
+   
+   
+   LinkedList:
+   ================
+The underlying data structure is double LinkedList
+If our frequent operation is insertion (or) deletion in the middle then LinkedList is the best choice.
+If our frequent operation is retrieval operation then LinkedList is worst choice.
+Duplicate objects are allowed.
+Insertion order is preserved.
+Heterogeneous objects are allowed.
+Null insertion is possible.
+Implements Serializable and Cloneable interfaces but not RandomAccess.
+
+
+
+
+
+
+
+
+

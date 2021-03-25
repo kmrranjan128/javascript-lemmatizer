@@ -1,0 +1,332 @@
+
+ statement.
+-------------
+-> if u want to execute multiple sql query then we should go for statement.e.g-gsm sim
+-> in statement query will compile every time thatswhy performance will be low.
+   statement st = con.create statement();
+   st.executeUpdate();
+-> statemnet obj can work only for static queires.
+-> whenever we are using execute method everytime query will be compiled and executed.
+-> u cannot pass the parameter to sql query using this interface.
+
+ prepared statement
+-----------------------
+-> if u want to execute same query multiple times then we should go for prepared statement.e.g cdma sim.
+-> in prepared statement query will compile only once automatically performance will be improved.
+   connection.prepareStatement()
+-> prepared statemnet obj can work static and dynamic queries.
+-> whenever we are using execute method query won't be compiled just will be executed.
+-> u can pass the parameter to sql query at runtime using this interface.
+-> prepared statement can run only sql commands
+
+ callable statement.
+-----------------------
+-> sometimes i don't want to execute one sql query. i want to execute group of sql query 
+   or call function & procedure.then we should go for callable statement.
+-> callable statement can run sql commands and also can call procedure/function of a database.
+
+ ResultSet
+-------------
+-> resultset is not serialized object.so it is not transferable across the network.
+-> resultset is not scrollable bydefault.
+
+ Rowset.
+----------
+-> rowset is a serialized object, so it is tranferable accross the network.
+-> rowset is bydefault scrollable.
+
+ jdbc driver
+-----------------
+-> JDBC-ODBC bridge driver
+-> Native-API driver (partially java driver)
+-> Network Protocol driver (fully java driver)
+-> Thin driver (fully java driver)
+
+ steps to develop jdbc application
+--------------------------------------
+-> Registering the driver class
+-> Create a connection
+-> Create a statement
+-> Execute queries
+-> Close the connection
+
+ Diff between servlet and jsp 
+------------------------------------
+-> problem in servlet technology servlet needs to recompile.if any designing code is modified.
+   it doesn't provide seperation of concern.presentation and buisness logic are mixed.
+-> jsp overcome almost all the problems of servlet.it provides better seperation of concern,
+   now presentation and buisness logic can be easily seperated.you dont need to redeploy the application.
+-> jsp provides support to develop web application using java beans,custom tag, and jstl so that we can
+   put the buisness logic seperate from our jsp that will be easier to test and debug the application. 
+
+ servlet
+-----------
+-> Servlet is faster than jsp. Servlet is a java code.
+-> In Servlet we do not have implicit object. It means if we want to use an object 
+   then we need to get object explicitly form the servlet.
+-> In Servlet, if we modify the code then we need recompilation, reloading, restarting 
+   the server> It means it is time consuming process.
+-> In Servlet, all package must be imported on top of the servlet.
+-> In Servlet,service() method need to override.
+-> Servlet accept all protocol request.
+
+ jsp
+-------
+-> JSP is slower than Servlet because it first translate into java code then compile.
+-> In JSP, if we do any modifications then just we need to click on refresh button and 
+   recompilation, reloading, restart the server is not required.
+-> In JSP, if we do any modifications then just we need to click on refresh button and 
+   recompilation, reloading, restart the server is not required.
+-> JSP is a tag based approach.
+-> In JSP, we have implicit object support.
+-> In JSP no need to override service() method.
+-> JSP will accept only http protocol request.
+
+ Diff between http servlet & generic servlet
+---------------------------------------------------
+ HttpServlet
+---------------
+-> http servlet is protocol dependent.it support only HTTP  protocols.
+-> http servlet extends generic servlet, thus inherits the properties of generic servlet.
+-> its supports doPost, doGet method instead of service method.
+
+ Generic servlet
+-------------------
+-> generic servlet is protocol independent.i.e it can handle all types of protocols.http,smtp,ftp.
+-> it implements servlet interface.
+-> GenericServlet supports only service() method does not contain doGet() and doPost() methods. 
+
+  Diff between servlet config and servlet context.
+-------------------------------------------------------
+ servlet config
+------------------------
+-> ServletConfig is a unique object for per servlet class.
+-> ServletConfig is used to provide init parameters to the servlet.
+-> We can’t set attributes in ServletConfig object.
+-> it will be destroyed once the servlet execution is completed.
+
+ servlet context
+-------------------
+-> ServletContext is a unique object for complete web application.
+-> ServletContext is used to provide application level init parameters that all other servlets can use.
+-> we can set attributes in ServletContext that other servlets can use in their implementation.
+-> it will be destroyed once the application is removed from the server.
+
+ Diff between forward method and sendRedirect method
+-------------------------------------------------------
+ forward () method
+--------------------
+-> forward() sends the same request to another resource.
+-> forward() method works at server side.
+-> forward() method works within the server only.
+-> forward() is handled internally by the container
+
+ sendRedirect() method
+----------------------------
+-> sendRedirect() method sends new request always because it uses the URL bar of the browser.
+-> sendRedirect() method works at client side.
+-> sendRedirect() method works within and outside the server.
+-> sednRedirect() is handled by browser.
+
+ Diff between inclede() and forward ()method
+----------------------------------------------
+-> include() method to load a resource which could be a JSP page or another Servlet, 
+-> and use forward() to redirect the request to another resource for further processing,
+   again you can forward the request to another Servlet or JSP page.
+
+ Lifecycle of servlet
+---------------------------
+ public void init(serviceconfig config)
+----------------------------------------------------------------------
+-> this method is used by container to initilize the servlet, this method
+   is invoke only once in the lifecycle of servlet.
+
+ public void service(servletrequest request, servletresponse response)
+---------------------------------------------------------------------------
+-> this method is called once for every request, container can't invoke service method()
+   until unless init() method is executed.
+
+ public void destroy()
+------------------------------
+-> this method is invoked once when servlet is unloaded from memory.
+
+ RequestDispatcher
+----------------------
+-> RequestDispatcher interface is used to forward the request to another resource that 
+   can be HTML, JSP or another servlet in same application.
+   RequestDiapatcher interface has two methods
+   1> void forward(servletrequest request,servletresponse response)
+   2> void include()
+
+ How do we call one servlet to another servlet.
+----------------------------------------------------
+-> We can use RequestDispatcher forward() method to forward the processing of a request to another servlet. 
+-> If we want to include the another servlet output to the response, we can use RequestDispatcher include() method.
+
+ Can you call a jsp from the servlet
+----------------------------------------
+-> Yes, one of the way is RequestDispatcher interface for example:
+  RequestDispatcher rd=request.getRequestDispatcher("/login.jsp");  
+  rd.forward(request,response);  
+
+ how can we invoke another servlet in a different application
+-----------------------------------------------------------------
+-> we can't use requestdispatcher to invoke servlet from another application becoz it's specific 
+   for the application.
+-> if we have to forward the request to a resource in another application,we can use send response 
+   sendRedirect() method and provide complete URL of another servlet.
+-> this sends the the response to client with response code as 302 to forward the request to another url.
+-> if we have to send some data also,we can use cookies that will be part of the servlet response and 
+   sent in the request to another servlet. 
+
+ java server pages.
+---------------------
+-> jsp is used to create dynamic webpage. it is an extension to the servlet technology.
+-> a jsp page is internally convert into servlet.
+-> when a request is mapped to a jsp page for the first time,it translates the jsp page into 
+   a servlet class and compiles the class.it is this servlet that services the client requests.
+
+ Lifecycle of jsp
+--------------------
+-> translation
+-> compilation
+-> loading the class
+-> instantiating the class
+-> jspinit()
+-> jspservice()
+-> jspdestroy()
+
+ Implicit objects
+--------------------
+-> objests created by web container and contain information regarding a particular request,
+   application or page are called implicit objects.
+   request
+   response
+   session
+   application
+   exception
+   page
+   pagecontext
+   config
+   out
+
+ what is EL (expression language)
+--------------------------------------
+-> it is used in jsp to simplify the accessbility of objects.
+-> it provide many objects that can be used directly like param, request scope,
+   session scope, application scope, request, session etc. 
+
+ jstl tags
+--------------
+-> there are 5 types of jstl tags
+-> core tag
+-> sql tag
+-> xml tag
+-> internationalization tag
+-> funtions tag
+
+ JSP actions
+----------------
+-> jsp actions are mainly xml tags which directs the server for using existing components
+   or for controlling the behaviour of the jsp engine.six jsp actions
+   <jsp:include/>
+   <jsp:forward/>
+   <jsp:plugin/>
+   <jsp:usebean/>
+   <jsp:setProperty/>
+   <jsp:getProperty/>
+
+ Directive avialable in jsp
+---------------------------------
+-> page directive
+-> include directive
+-> taglib directive - it is used for custom tags.
+
+ scope avialble in <jsp:useBean>
+-----------------------------------
+-> page scope
+-> request scope
+-> application scope
+-> session scope
+
+ jsp declaration tag
+---------------------------
+-> a jsp tag is used for declaring variables and methods so that u that u can use them 
+   later on a jsp page based on the requirement.
+
+ Deployent descriptor
+-------------------------
+-> it is a configuration file for the web application and its name is web.xml and resides in web-inf directory.
+
+ session managemnet method in servlets
+-----------------------------------------
+-> user authentication
+-> html hiden field
+-> cookies
+-> url rewriting
+-> session mangement api
+
+ What is a session
+---------------------
+-> A session is an object which is used by a servlet and it is used to track user interaction
+   with a web application across multiple HTTP requests.
+   create a session :-
+   HttpSession session = request.getSession();
+
+ What is called Session Tracking
+-----------------------------------
+-> Session tracking is used to maintain a state on the series of requests from the same user 
+   for a given period of time.
+
+ What is a filter.
+---------------------
+-> A filter is nothing but a piece of code which can be reusable that will be transforming the 
+   content of HTTP requests, response and header information.
+
+ What are the advantages of cookies
+---------------------------------------
+-> A cookie is a small piece of information that is persisted between the multiple client requests.
+-> Cookies are used to store long term information that can be maintained without server interaction. 
+   Small and Medium size data are kept in a queue.
+-> It will not work if cookie is disabled from the browser.
+   create a cookies:-
+   Cookie cookie = new Cookie("key","value");
+
+  What is servlet mapping
+-----------------------------
+-> Servlet Mapping is an association mapping between servlet and a URL pattern. 
+   This is used to map servlets with the requests.
+
+ What is Servlet Chaining
+------------------------------
+-> Chaining is one of the methods where out of one servlet is given to the second servlet. 
+   This chaining can happen for any number of servlets.
+
+ What is load-on-startup in servlet
+----------------------------------------
+-> The load-on-startup element of servlet in web.xml is used to load the servlet at the time of 
+   deploying the project or server start. So it saves time for the response of first request.
+
+ how to create war file in eclipse
+----------------------------------------
+->  jar -cvf abc.war * 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,180 @@
+
+ Microservices
+-------------------
+-> it is a architectural style to develop a application.
+-> microservices architecture allows to avoid monolothic application for large application.
+-> it provide loose coupling between collaborating process which running independently in 
+   different envoroments with tight cohession.
+-> in case of microservices we have distributed architecture.each microservices represent a 
+   particular buisness functionilty.
+-> in case of microservices all the services are independent.
+-> scalling and deployment is easy becoz you have to scale and deploy each individual services
+   based on your needed.
+-> cross cutting concerns are implemented as each service.there are no technical barier
+   in case of microservices.
+
+
+ Monolithic Architecture
+----------------------------
+-> in case of Monolithic Architecture we have centralized architecture.
+-> it is easier to test a application and debug.becoz your whole code is part of your 
+   single application.
+-> scalling is issue becoz if you required particular part of a application to scallup
+   then you have to scale whole application.
+-> monolithic application cannot be built using different technologies.
+-> if one feature of the system does not work then the entire system does not work.
+
+
+ Advantages of microservices
+-------------------------------
+-> each services are independent,standalone & represent a particular buisness functionilty.
+-> scaling is easy so you can use docker to create image.and then use workstation tool 
+   like kubernate for deployment.
+-> there are no technical barier.each microservices could be developed on independent technical stack.
+-> small autonomous team to handle services.
+-> smaller code base is easy to maintain.
+-> technology diversity.
+-> fault isolation - i.e a process failure should not bring whole system down.
+-> better support smaller and parallel team.
+-> independent development - all microservices can be easily developed based on their 
+   individual functionality.
+-> independent deployment
+-> fault isolation - even if one service of the application does not work,the system will 
+   still continues to function.
+-> mix technology stack - different languages and technoligies can be used to build different 
+   services of the same application.
+-> all the services are seperated based on their domains and functionlities.
+-> developers and team can work independently of each other.
+
+ Disadvantages
+----------------------
+-> microservices is costly you have to maintain different server space for different buisness task.
+-> implementation of distributed transaction is quite difficult.
+-> implementing logging and visualization of logs for a particular request.
+-> incraese complexity if number of microservice increased.
+-> increase security concern.
+-> difficult to achieve strong consistency across services.
+-> distributed systems so hard to debug and trace the issues. 
+
+ why microservices prefer spring boot
+--------------------------------------------
+-> it provides quick development start with starter template,autoconfiguration feature
+   and embeded container support.
+
+ How to communicate microservices
+----------------------------------------
+-> for microservices communication we have RestTemplate or web client (reactive restTemplate).
+-> if the microservices are large in number,better to use service discovery pattern.
+-> you can do client side service discovery with eureka or server side service discovery with zookuper.
+-> if we have large number of microservices and these microservices can be upstream or downstream
+   then you can use service discovery.
+-> but in case of microservices are small in numbers and they are mostly independent in buisnes context 
+   does not require communication with each other at all,better to use RestTemplate or web client.
+
+
+ Eureka
+-----------
+-> Eureka is the Netflix service discovery server and client.Eureka server is using spring cloud.
+
+ Service discovery.
+--------------------------
+-> it is used to finding the network location of a service provider.there are two types of 
+   service discovery pattern.
+
+ 1> client side discovery pattern
+-----------------------------------------
+-> the client is responsible for determining the network locations of avialable services instances
+   and load balancing request across of them.
+-> the client uses a load balancing algorithm to select one of the avialable service instances
+   and makes a request.
+
+ 1> server side discovery pattern
+-----------------------------------------
+-> consumer send request to a load balancer, the load balancer query from registry and decide
+   which location of provisers to send to.
+
+
+
+Fault Tolerance
+==================
+-> Microservices must be extremely reliable because they depend on each other. The microservice architecture contains a large number of small microservices. These microservices communicate with each other in order to fulfill their requirements.
+
+-> The instances of microservices may go up and down frequently. As the number of interactions between microservices increases, the chances of failure of the microservice also increases in the system.
+
+
+-> Consider a scenario in which six microservices are communicating with each other. The microservice-5 becomes down at some point, and all the other microservices are directly or indirectly depend on it, so all other services also go down.
+
+-> The solution to this problem is to use a fallback in case of failure of a microservice. This aspect of a microservice is called fault tolerance.
+
+@HystrixCommand(fallbackMethod="fallbackRetrieveConfigurations")  
+
+
+Components of Microservices
+====================================
+There are the some components of microservices:
+
+Spring Cloud Config Server
+Netflix Eureka Naming Server
+Hystrix Server
+Netflix ZuulAPI Gateway Server
+Netflix Ribbon
+Zipkin Distributed Tracing Server
+
+
+ PACT in microservices
+---------------------------
+-> PACT is an open source tool to allow testing integrations between service providers 
+   and consumers in isolation against a contract.
+
+ Difference between SOA and microservices
+--------------------------------------------------
+  SOA
+-------
+-> buisness units are dependent of each other.
+-> SOA application are built to perform multiple buisness task.
+-> deployment is time consuming.
+
+ microservices
+-------------------
+-> all buisness units are independent of each other.
+-> microservices applications are built to perform a single buiness task.
+-> deployment is ver easy.
+
+
+
+
+ Dockers
+----------
+-> dockers allow us to create,deploy and run applications by using containers.by using this
+   containers developer can run an application as a single package.it allows you to ship libraries 
+   and other dependencies in one packages.
+
+
+
+
+
+ Encapsulation
+----------------
+-> encapsulation means wrapping the data (fields in entity class) and your buisness code
+  (methods where you use these setter and getters) on data as single unit.
+
+ if we create new spring project we have to add build path or add maven depencies ,configure application server,add spring configuratio.
+ so lot of effort is required to start a new spring project.
+ spring boot is the solution of this problem. spring boot has been built on top of existing spring framework.using spring boot we avoid 
+ all the boilerplate code and configuartionthat we had to do previously spring project.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 

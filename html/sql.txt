@@ -1,0 +1,329 @@
+
+ SQL INTERVIEW QUESTIONS
+--------------------------------
+second highest salary
+---------------------------
+
+-> select max(sal) from emp
+   where sal not in(select max(sal) from emp;
+
+-> SELECT * FROM Employee Emp1 
+   WHERE (N-1) = ( SELECT COUNT(DISTINCT(Emp2.Salary))
+                   FROM Employee Emp2
+                   WHERE Emp2.Salary > Emp1.Salary);m
+
+-> select *from emp order by sal desc limit 1,1;
+
+ third highest slary
+-----------------------
+ co-related sab query
+
+-> select *from emp e1 where 3 = (select count (distinct (sal))
+   3 = (select count (distict (sal))
+   from emp e2 where e2.sal > = e1.sal);
+
+-> select top1 salary 
+   from( select top3 salary
+         from employee order by salary DESC) 
+         AS emp order by salary ASC;
+
+-> select * from emp order by sal desc limit 2,1;
+
+ how to find the query current date
+---------------------------------------
+-> select getdate()
+
+ write a sql query to print the name of distinct employee whose dob is between 01/01/1960 to 31/12/1975
+-----------------------------------------------------------------------------------------------------------
+
+-> select distinct empname from employees 
+   where dob between '01/01/1960' and '31/12/1975'.
+
+ write a sql query to find an employee whose salary is equal or greater than 1000
+------------------------------------------------------------------------------------
+-> select empname from employes where salary >= 1000
+
+ write a sql query to find name of employees whose name start with 'm'
+-------------------------------------------------------------------------
+-> select *from employees where empname like 'm %';
+
+ Diff between delete and truncate
+-------------------------------------
+ Delete
+---------
+-> whenever we are using delete from table name then deleted data automatically stored 
+   in buffer area.so,we can get it back this deletd data using rollback.it is DML command.
+-> it is used to delete particular row or all rows from a table.
+-> It is used for temporary deletion.
+-> We can delete the specific records.
+-> we can use where clause in delete command.
+-> it will remove all rows from table,we cannnot use where clause with truncate.
+
+ Truncate
+-------------
+-> whenever we are using "truncate" command total data permanently deleted from a table.
+-> whenever we are using 'truncate' from table name then total data permanently deleted 
+   thtswhy we cannot get it back this data using "roolback". it is a DDL command.
+-> It is used for permanent deletion.
+-> We can not delete the specific record.
+-> we cannot use where clause in truncate command.
+-> it is used o remove row from a table based on where clause.
+
+ Diff between function & procedure
+----------------------------------------
+ Function
+------------
+-> function should must be return a value.
+-> function have only input parametres.
+-> function can be called in sql query.
+-> function allow only select statement.
+-> function can be called from a stored procedure. 
+-> try and catch block can not be used in a function.
+
+ Procedure
+-------------
+-> procedure can return zero or n values.
+-> procedure have input/output parametres.
+-> procedure cannot be called in sql query
+-> procedure allowed select as well as DML statement also.
+-> procedure can not be called from function.
+-> exception can be handled by try and catch block in procedure.
+
+ NVL()
+--------
+-> nvl is predifined function which is used to converts a NULL value to an actual value.
+
+ NVL2()
+----------
+-> it is introduced in oracle 9i. this function contains three parametres. nvl2(exp1,exp2,exp3).
+-> here if exp1 is null, then it returns exp3, otherwise it returns exp2.
+
+ varchar
+-----------
+-> it is used to store fixed length "alpha numeric" data in bytes. max limit is upto 2000 bytes.
+
+ varchar2
+-----------
+-> it is used to store variable length alphanumeric data in bytes. max limit is upto 4000 bytes.
+
+ Normalization
+-----------------
+-> The process of removing the redundant data, by splitting up the table in a well defined form is 
+   called normalization.
+
+ Constraint
+---------------
+-> Constraints is a mechanism which is used to stop or Restrict invalid data which is entered by the end user.
+-> constraints force the database to accept only valid values according to the buisness.
+-> constraints ensure the user to retrieve complete and accurate data.
+
+1.> primary key
+2.> uniqe key
+3.> foreign key
+4.> Check
+5.> not null
+6.> Default
+
+ Primary key
+----------------
+-> Both Primary and Unique key enforce the uniqueness of the column in the database.
+-> Primary key doesn't allow NULLs but Unique column allow one NULL value.
+-> primary key is key which is unique in the every tables and we cannot put 
+   null value in the primary key column. Every row must have a primary key value.
+-> it doesnot allow duplicate and null values. it is a combination of unique and not null.
+-> only one primary key is allow for a table. emp id, adhar no.
+
+ Foriegn key
+---------------
+-> in a RDBMS when we join two tables then primary key of one table is become foriegn key 
+  for the another table.by using the foreign key showing relation between two tables.
+
+ Unique key.
+--------------
+-> A unique key constraint uniquely identifies each record in the database.
+-> it doesnot accept duplicate values but accept null values.
+-> it provides uniqueness for the column.
+
+ Not null
+--------------
+-> it does not allow null values but allows duplicate values.e.g name.
+
+ DDL command
+---------------
+-> create
+-> alter 
+-> drop
+-> truncate
+-> rename (oracle 9i)
+
+ DML command
+----------------
+-> insert
+-> update
+-> delete
+-> merge (oracle 9i)
+
+ DQL coomand
+--------------
+-> select
+
+ JOINS
+---------
+-> whenever we are retrieving the data from multiple tables or more than one table i.e called join.
+
+-> inner join or equie join
+-> left outer join
+-> right outer join
+-> full outer join
+
+  inner join or equie join
+----------------------------------
+-> based on equality condition we are retrieving data from multiple tables. i.e called inner join.
+-> when tables having atleast one common columns then only we are using inner join.
+
+ Non Equie join
+----------------------
+-> A join query which contain join condition without == operator i.e non equie join.
+   e.g get emp details and dept details if employe not working under that department.
+       select *from emp e, dept d
+       where e.deptno<>d.deptno.
+
+ outer join
+---------------
+-> it will display matched and unmatched data from one table and only match data from
+   second table. in oracle three types of outer join
+
+ 1.> left outer join.
+------------------------
+-> in this join it will display complete data from left side table and only matched data 
+   from right side table and also returns "null" values in place of non-matcching data
+   in another table.
+   
+ 2.> right outer join
+--------------------------
+-> in this join it will display complete data from right side table and matching data from 
+   left side table and also returns null values in place of non-matching data in another table.
+
+ 3.> Full outer join.
+-----------------------
+-> in this join it will display matched data from both the tables and unmatched data from 
+   left side table and also unmatched data from right side table.
+-> it is the combination of left and right outer joins.
+-> this joins always returns matching and non matching data. and also this join returns 
+   null values in place of non matching rows.
+
+ Cross join.
+-----------------
+-> it will display all posible combination of data from multiple table. i.e each value 
+   from first table is mapped with all values in second table.
+-> it will display both valid and invalid combinations. 
+-> table number of combination = number of record in table1 * number of record in table2--
+
+   A*B = {(a,d1),(a,d2),(b,d1),(b,d2),(c,d1),(c,d2),(d,d1),(d,d2)}
+
+ Self join
+-----------
+-> A table which is join itself is known as self join. it is useful to display data from 
+   one table based on a value, we can compare the value with all value from same table and 
+   also from same column.
+-> in self join we will consisder two alias name for one physical table.
+-> finally we can select data from second alias table.
+
+ Subquery
+-------------
+-> a query within other query is known as subquery.
+-> we can use subqueries to select data from one table based on a condition from other table.
+-> to write a subquery we need atleast one common column.
+-> subqueires are more faster in execution than join queries.
+
+ Views.
+---------
+-> generally view are creted by "database administator".
+-> view is database obj which is used to provide authority level of security.
+-> view doesn't store data thatswhy view is also called virtual table.
+-> generally view are created from base tables. based on the type of base tables views are 
+   categerised into two views.
+ 1.> simple view.
+ 2.> complex view.
+-> simple view is a view which is created from only one base tables where as complex views 
+   is a view which is created from multiple base tables.
+
+ materlized view
+-------------------
+-> a view which contains buisness data physically and dynamically.
+-> by creating materized view we can perform buisness analysis also.
+
+ Inline views
+-------------------
+-> it is also known as temperory view.
+-> inline views are useful to simplefy complex queries into simple queries.
+-> to display aggregrate data from one table and normal data from other table then we 
+   can write inline view.
+
+ Indexes.
+--------------
+-> index is a database object. it is used to increase the performance and allow faster 
+   retrieval of records from the table.
+-> an index creates an entry for each value and it will be faster to retrieve data.
+-> index is having two parts :- data parts, address.
+-> unique index, clustered index, non-clustered index.
+-> reading from a clustered index is much faster than reading from non-clustered index 
+   from the same table.
+
+ Cursor.
+------------
+-> cursor is a temperory memory. cursor are useful to perform intermediate operation 
+   before output delivered to the client.
+
+ Implicit cursor
+-------------------
+-> a cursor which is used by any sql query implicit cursor is managed by oracle engine.
+
+ Explicit cursor
+---------------------
+-> this cursor is manged by programmer.
+
+ Trigger 
+----------
+-> triggers are special type of stored procedures that are defined to execute automatically 
+   in place or after data modifications.
+-> to maintain uniform buisness data.
+-> to maintain audit information of table data.
+
+ cluster
+-----------
+-> cluster is a storage space into which we can store related data together under single data block.
+-> for any join query internally only one data block will be processed.
+-> cluster is created based on common column between the table.
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
